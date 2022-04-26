@@ -1,4 +1,4 @@
-import 'package:issue3/repository/repository.dart';
+import 'package:travelidge/repository/repository.dart';
 
 import '../model/notice.dart';
 

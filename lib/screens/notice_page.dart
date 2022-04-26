@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:issue3/controller/notice_controller.dart';
-import 'package:issue3/repository/notice_repository.dart';
+import 'package:travelidge/controller/notice_controller.dart';
+import 'package:travelidge/repository/notice_repository.dart';
 import '../model/notice.dart';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';

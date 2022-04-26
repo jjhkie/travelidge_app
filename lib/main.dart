@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:issue3/screens/guide_page.dart';
-import 'package:issue3/screens/notice_page.dart';
-import 'package:issue3/screens/user_page.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:travelidge/screens/guide_page.dart';
+import 'package:travelidge/screens/notice_page.dart';
+import 'package:travelidge/screens/user_page.dart';
 
 
 Future main() async{
