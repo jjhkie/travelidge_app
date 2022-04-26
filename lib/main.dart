@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:issue3/screens/guide_page.dart';
 import 'package:issue3/screens/notice_page.dart';
 import 'package:issue3/screens/user_page.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 
-void main() {
+Future main() async{
+  await dotenv.load(fileName:"assets/.env_dev");
   runApp(const MyApp());
 }
 
@@ -16,9 +18,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blue
       ),
-      home: MyHomePage(),
+      home: MyHomePage()
     );
   }
 }
@@ -47,26 +49,26 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: _widgetOption.elementAt(_selectedIndex),
+        child: _widgetOption.elementAt(_selectedIndex)
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.note),
-            label: 'Notice',
+            label: 'Notice'
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.supervised_user_circle),
-            label: 'User',
+            label: 'User'
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.access_time),
-            label: 'Guide',
+            label: 'Guide'
           ),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.lightGreen,
-        onTap: _onItemTapped,
+        onTap: _onItemTapped
       ),
     );
   }

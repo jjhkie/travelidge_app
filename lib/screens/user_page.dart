@@ -12,7 +12,7 @@ class _userState extends State<user> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('user'),
+      child: Text('user')
     );
   }
 }

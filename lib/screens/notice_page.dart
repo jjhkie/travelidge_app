@@ -4,7 +4,7 @@ import 'package:issue3/controller/notice_controller.dart';
 import 'package:issue3/repository/notice_repository.dart';
 import '../model/notice.dart';
 
-
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class notice extends StatefulWidget {
   @override
@@ -18,7 +18,7 @@ class _noticeState extends State<notice> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Notice Data'),
+        title: Text('Notice Data')
       ),
       body: FutureBuilder<List<Notice>>(
         future: noticeController.fetchNoticeList(),
@@ -32,7 +32,7 @@ class _noticeState extends State<notice> {
           //에러가 발생한 경우 반환되는 부분
           if (snapshot.hasError) {
             return Center(
-              child: Text('error'),
+              child: Text('error')
             );
           }
 
@@ -71,7 +71,7 @@ class _noticeState extends State<notice> {
               separatorBuilder: (context, index) {
                 return Divider(
                   thickness: 0.5,
-                  height: 0.5,
+                  height: 0.5
                 );
               },
               itemCount: snapshot.data?.length ?? 0);

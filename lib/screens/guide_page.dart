@@ -10,7 +10,7 @@ class _guideState extends State<guide> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('guide'),
+      child: Text('guide')
     );
   }
 }

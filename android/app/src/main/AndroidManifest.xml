@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.travelidge">
+    package="com.kupstuido.travelidge">
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="travelidge">
