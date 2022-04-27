@@ -75,18 +75,6 @@ android {
             dimension "build-type"
         }
     }
-//    productFlavors {
-//        dev {
-//            resValue 'string', 'app_name', 'Dev Flavor Sample'
-//            applicationIdSuffix ".dev"
-//            dimension "default"
-//        }
-//        prod {
-//            resValue 'string', 'app_name', 'Prod Flavor Sample'
-//            applicationIdSuffix ".prod"
-//            dimension "default"
-//        }
-//    }
 }
 
 flutter {
