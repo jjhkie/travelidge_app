@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:travelidge/screens/guide_page.dart';
 import 'package:travelidge/screens/notice_page.dart';
 import 'package:travelidge/screens/user_page.dart';
+import 'package:flavor/flavor.dart';
 
 
-Future main() async{
-  await dotenv.load(fileName:"assets/.env_dev");
-  runApp(const MyApp());
+const String logLevelKey = 'log_level';
+
+void setupApp() {
+  final logLevel = Flavor.I.getInt(logLevelKey);
+  final url = Flavor.I.getString(Keys.apiUrl);
+
+  print('api Url: $url');
+  if (Flavor.I.isDevelopment) {
+    Flavor.I.getString(Keys.apiUrl);
+  }
+
+  runApp(FlavorApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class FlavorApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
