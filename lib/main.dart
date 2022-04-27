@@ -8,7 +8,6 @@ import 'package:flavor/flavor.dart';
 const String logLevelKey = 'log_level';
 
 void setupApp() {
-  final logLevel = Flavor.I.getInt(logLevelKey);
   final url = Flavor.I.getString(Keys.apiUrl);
 
   print('api Url: $url');

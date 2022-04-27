@@ -2,18 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'main.dart';
 import 'package:flavor/flavor.dart';
-//
-// void main() {
-//   FlavorConfig(
-//     flavor: Flavor.development,
-//     values : FlavorValues(baseUrl:"http://118.67.131.249")
-//
-//   );
-//
-//   runApp(initializeApp());
-// }
-
-//main() => Environment.newInstance(BuildType.dev).run();
 
 void main() {
   Flavor.create(

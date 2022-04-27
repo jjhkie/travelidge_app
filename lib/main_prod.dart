@@ -1,17 +1,7 @@
 
 import 'package:flavor/flavor.dart';
-import 'package:flutter/material.dart';
 
 import 'main.dart';
-// void main() async {
-//   FlavorConfig(
-//       flavor: Flavor.production,
-//       values : FlavorValues(baseUrl:"")
-//   );
-//   runApp(initializeApp());
-// }
-
-//main() => Environment.newInstance(BuildType.prod).run();
 
 void main() {
   Flavor.create(
