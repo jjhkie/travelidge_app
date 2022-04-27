@@ -1,6 +1,6 @@
+import 'package:travelidge/model/notice.dart';
 import 'package:travelidge/repository/repository.dart';
 
-import '../model/notice.dart';
 
 class NoticeController {
   final Repository _repository;
