@@ -1,4 +1,4 @@
-package com.example.travelidge
+package com.kupstuido.travelidge
 
 import io.flutter.embedding.android.FlutterActivity
 
