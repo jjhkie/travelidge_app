@@ -1,10 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:travelidge/controller/notice_controller.dart';
 import 'package:travelidge/repository/notice_repository.dart';
-import '../model/notice.dart';
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import '../model/notice.dart';
 
 class notice extends StatefulWidget {
   @override
@@ -17,9 +15,7 @@ class _noticeState extends State<notice> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Notice Data')
-      ),
+      appBar: AppBar(title: Text('Notice Data')),
       body: FutureBuilder<List<Notice>>(
         future: noticeController.fetchNoticeList(),
         builder: (context, snapshot) {
@@ -31,9 +27,7 @@ class _noticeState extends State<notice> {
 
           //에러가 발생한 경우 반환되는 부분
           if (snapshot.hasError) {
-            return Center(
-              child: Text('error')
-            );
+            return Center(child: Text('error'));
           }
 
           return ListView.separated(
@@ -55,10 +49,13 @@ class _noticeState extends State<notice> {
                             InkWell(child: buildCallContainer('patch')),
                             InkWell(
                                 onTap: () {
-                                  setState((){
+                                  setState(() {
                                     noticeController.deleteNotice(notice!);
                                   });
-                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Item Deleted"),));
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                    content: Text("Item Deleted"),
+                                  ));
                                 },
                                 child: buildCallContainer('delete')),
                           ],
@@ -69,10 +66,7 @@ class _noticeState extends State<notice> {
                 );
               },
               separatorBuilder: (context, index) {
-                return Divider(
-                  thickness: 0.5,
-                  height: 0.5
-                );
+                return Divider(thickness: 0.5, height: 0.5);
               },
               itemCount: snapshot.data?.length ?? 0);
         },

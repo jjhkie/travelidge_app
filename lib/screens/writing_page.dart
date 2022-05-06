@@ -1,12 +1,12 @@
 
 import 'package:flutter/material.dart';
 
-class guide extends StatefulWidget {
+class writing extends StatefulWidget {
   @override
-  State<guide> createState() => _guideState();
+  State<writing> createState() => _writingState();
 }
 
-class _guideState extends State<guide> {
+class _writingState extends State<writing> {
   @override
   Widget build(BuildContext context) {
     return Container(

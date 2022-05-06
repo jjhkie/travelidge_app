@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'main.dart';
+import 'nav/bottom_navi.dart';
 import 'package:flavor/flavor.dart';
 
 void main() {
@@ -11,7 +11,6 @@ void main() {
     properties: {
       Keys.apiUrl: 'http://118.67.131.249',
       Keys.apiKey: 'jksdhfkjhs83rjkh324kj23h4',
-      logLevelKey: 100,
     },
   );
   setupApp();

@@ -1,34 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:travelidge/screens/guide_page.dart';
+import 'package:travelidge/screens/declare_page.dart';
+import 'package:travelidge/screens/writing_page.dart';
+import 'package:travelidge/screens/home_page.dart';
 import 'package:travelidge/screens/notice_page.dart';
 import 'package:travelidge/screens/user_page.dart';
 import 'package:flavor/flavor.dart';
 
-
-const String logLevelKey = 'log_level';
-
 void setupApp() {
-  final url = Flavor.I.getString(Keys.apiUrl);
-
-  print('api Url: $url');
   if (Flavor.I.isDevelopment) {
     Flavor.I.getString(Keys.apiUrl);
   }
-
   runApp(FlavorApp());
 }
 
 class FlavorApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue
-      ),
-      home: MyHomePage()
-    );
+        title: 'Travelidege',
+        theme: ThemeData(primarySwatch: Colors.blue),
+        home: MyHomePage());
   }
 }
 
@@ -41,8 +32,10 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
   final List<Widget> _widgetOption = <Widget>[
+    home(),
+    declare(),
     notice(),
-    guide(),
+    writing(),
     user()
   ];
 
@@ -55,28 +48,19 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: _widgetOption.elementAt(_selectedIndex)
-      ),
+      body: SafeArea(child: _widgetOption.elementAt(_selectedIndex)),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.note),
-            label: 'Notice'
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.supervised_user_circle),
-            label: 'User'
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.access_time),
-            label: 'Guide'
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.lightGreen,
-        onTap: _onItemTapped
-      ),
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
+            BottomNavigationBarItem(icon: Icon(Icons.touch_app), label: '여행등록'),
+            BottomNavigationBarItem(icon: Icon(Icons.chat), label: '채팅'),
+            BottomNavigationBarItem(icon: Icon(Icons.note), label: '여행글'),
+            BottomNavigationBarItem(icon: Icon(Icons.people), label: '마이페이지'),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.lightGreen,
+          backgroundColor: Colors.black,
+          onTap: _onItemTapped),
     );
   }
 
