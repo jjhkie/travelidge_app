@@ -1,10 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:travelidge/controller/notice_controller.dart';
 import 'package:travelidge/repository/notice_repository.dart';
-import '../model/notice.dart';
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import '../model/notice.dart';
 
 class notice extends StatefulWidget {
   @override
@@ -14,69 +12,170 @@ class notice extends StatefulWidget {
 class _noticeState extends State<notice> {
   var noticeController = NoticeController(NoticeRepository());
 
+  final TextController = TextEditingController();
+
+  final titleController = TextEditingController();
+  final contentController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    TextController.addListener(_printValue);
+  }
+
+  @override
+  void dispose() {
+    TextController.dispose();
+    super.dispose();
+  }
+
+  void _printValue() {
+    print("Text field : ${TextController.text}");
+
+    setState(() {
+      noticeController.fetchNoticeList(TextController.text);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Notice Data')
-      ),
-      body: FutureBuilder<List<Notice>>(
-        future: noticeController.fetchNoticeList(),
-        builder: (context, snapshot) {
-          //data를 아직 받아 오지 못했을 때 실행되는 부분.
-          //snapshot.hasData == false 인 경우이다.
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator()); //로딩 애니메이션
-          }
-
-          //에러가 발생한 경우 반환되는 부분
-          if (snapshot.hasError) {
-            return Center(
-              child: Text('error')
-            );
-          }
-
-          return ListView.separated(
-              itemBuilder: (context, index) {
-                var notice = snapshot.data?[index];
-                return Container(
-                  height: 100.0,
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Row(
-                    children: [
-                      Expanded(flex: 1, child: Text('${notice?.noticeNo}')),
-                      Expanded(flex: 1, child: Text('${notice?.title}')),
-                      Expanded(flex: 2, child: Text('${notice?.contents}')),
-                      Expanded(
-                        flex: 1,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            InkWell(child: buildCallContainer('patch')),
-                            InkWell(
-                                onTap: () {
-                                  setState((){
-                                    noticeController.deleteNotice(notice!);
-                                  });
-                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Item Deleted"),));
-                                },
-                                child: buildCallContainer('delete')),
-                          ],
-                        ),
-                      ),
-                    ],
+      appBar: AppBar(title: Text('Notice Data')),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: TextField(
+                    decoration: InputDecoration(hintText: 'keyword'),
+                    controller: TextController,
+                    onChanged: searchKeyword,
                   ),
-                );
-              },
-              separatorBuilder: (context, index) {
-                return Divider(
-                  thickness: 0.5,
-                  height: 0.5
-                );
-              },
-              itemCount: snapshot.data?.length ?? 0);
-        },
+                ),
+                ElevatedButton(onPressed: () {}, child: Text('추가')),
+              ],
+            ),
+            Expanded(
+              child: FutureBuilder<List<Notice>>(
+                future: noticeController.getNoticeList(),
+                builder: (context, snapshot) {
+                  //data를 아직 받아 오지 못했을 때 실행되는 부분.
+                  //snapshot.hasData == false 인 경우이다.
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                        child: CircularProgressIndicator()); //로딩 애니메이션
+                  }
+
+                  //에러가 발생한 경우 반환되는 부분
+                  if (snapshot.hasError) {
+                    return Center(child: Text('error'));
+                  }
+
+                  return ListView.separated(
+                      itemBuilder: (context, index) {
+                        var notice = snapshot.data?[index];
+                        print('notice---------------------------');
+                        print(notice);
+                        return Container(
+                          height: 100.0,
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                  flex: 1, child: Text('${notice?.noticeNo}')),
+                              Expanded(
+                                  flex: 1, child: Text('${notice?.title}')),
+                              Expanded(
+                                  flex: 2, child: Text('${notice?.contents}')),
+                              Expanded(
+                                flex: 1,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    InkWell(child: buildCallContainer('patch')),
+                                    InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            noticeController
+                                                .deleteNotice(notice!);
+                                          });
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(SnackBar(
+                                            content: Text("Item Deleted"),
+                                          ));
+                                        },
+                                        child: buildCallContainer('delete')),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                      separatorBuilder: (context, index) {
+                        return Divider(thickness: 0.5, height: 0.5);
+                      },
+                      itemCount: snapshot.data?.length ?? 0);
+                },
+              ),
+            ),
+          ],
+        ),
       ),
+      floatingActionButton: FloatingActionButton(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          onPressed: () => showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('글 작성'),
+                content: Column(
+                  children: <Widget>[
+                    TextField(
+                      controller: titleController
+                    ),
+                    TextField(
+                      controller: contentController
+                    ),
+                  ],
+                ),
+                actions: <Widget>[
+                  TextButton(
+                    child: Text('확인'),
+                    onPressed: () {
+                      Map data = {
+                        "noticeNo": 0,
+                        "title" : "${titleController.text}",
+                        "contents" : "${contentController.text}"
+                      };
+                      print('-----------------------textbutton');
+                      print('-----------------------${titleController.text}');
+                      print('-----------------------${contentController.text}');
+                      setState((){
+                        noticeController.postNotices(titleController.text,contentController.text);
+                      });
+
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                  TextButton(
+                    child: Text('취소'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  )
+                ],
+              );
+            }
+          ),
+          backgroundColor: Colors.black,
+          child: Icon(Icons.add)),
     );
   }
 
@@ -92,4 +191,8 @@ class _noticeState extends State<notice> {
       child: Center(child: Text('$title')),
     );
   }
+  void searchKeyword(String query){
+
+  }
 }
+
