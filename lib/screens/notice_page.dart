@@ -12,12 +12,30 @@ class notice extends StatefulWidget {
 class _noticeState extends State<notice> {
   var noticeController = NoticeController(NoticeRepository());
 
+  final TextController = TextEditingController();
+
+  final titleController = TextEditingController();
+  final contentController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+  }
+
+  @override
+  void dispose() {
+    TextController.dispose();
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Notice Data')),
       body: FutureBuilder<List<Notice>>(
-        future: noticeController.fetchNoticeList(),
+        future: noticeController.getNoticeList(),
         builder: (context, snapshot) {
           //data를 아직 받아 오지 못했을 때 실행되는 부분.
           //snapshot.hasData == false 인 경우이다.
@@ -72,6 +90,56 @@ class _noticeState extends State<notice> {
               itemCount: snapshot.data?.length ?? 0);
         },
       ),
+      floatingActionButton: FloatingActionButton(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          onPressed: () => showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('글 작성'),
+                content: Column(
+                  children: <Widget>[
+                    TextField(
+                      controller: titleController
+                    ),
+                    TextField(
+                      controller: contentController
+                    ),
+                  ],
+                ),
+                actions: <Widget>[
+                  TextButton(
+                    child: Text('확인'),
+                    onPressed: () {
+                      Map data = {
+                        "noticeNo": 0,
+                        "title" : "${titleController.text}",
+                        "contents" : "${contentController.text}"
+                      };
+                      print('-----------------------textbutton');
+                      print('-----------------------${titleController.text}');
+                      print('-----------------------${contentController.text}');
+                      setState((){
+                        noticeController.postNotices(titleController.text,contentController.text);
+                      });
+
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                  TextButton(
+                    child: Text('취소'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  )
+                ],
+              );
+            }
+          ),
+          backgroundColor: Colors.black,
+          child: Icon(Icons.add)),
     );
   }
 
@@ -87,4 +155,8 @@ class _noticeState extends State<notice> {
       child: Center(child: Text('$title')),
     );
   }
+  void searchKeyword(String query){
+
+  }
 }
+
