@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:travelidge/screens/declare_page.dart';
 import 'package:travelidge/screens/writing_page.dart';
-import 'package:travelidge/screens/home_page.dart';
+import 'package:travelidge/screens/home/home_page.dart';
 import 'package:travelidge/screens/notice_page.dart';
 import 'package:travelidge/screens/user_page.dart';
 import 'package:flavor/flavor.dart';
