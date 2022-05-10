@@ -25,6 +25,7 @@ class _noticeState extends State<notice> {
             return Center(child: CircularProgressIndicator()); //로딩 애니메이션
           }
 
+
           //에러가 발생한 경우 반환되는 부분
           if (snapshot.hasError) {
             return Center(child: Text('error'));
