@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'nav/bottom_navi.dart';
 import 'package:flavor/flavor.dart';
+import 'package:travelidge/screens/nav/bottom_navi.dart';
 
 void main() {
   Flavor.create(
@@ -10,7 +9,6 @@ void main() {
     name: 'PREVIEW',
     properties: {
       Keys.apiUrl: 'http://118.67.131.249',
-      Keys.apiKey: 'jksdhfkjhs83rjkh324kj23h4',
     },
   );
   setupApp();

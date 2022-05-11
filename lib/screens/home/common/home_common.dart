@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-//리스트 제목
+//List Title
 Widget listTitle(title){
   return Align(
     alignment: Alignment.centerLeft,
@@ -8,9 +8,7 @@ Widget listTitle(title){
   );
 }
 
-
-
-//이미지 로딩
+//List Image Item
 Widget backgroundImage(data, index) {
   return Container(
     child: Image.network(

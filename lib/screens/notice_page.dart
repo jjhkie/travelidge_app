@@ -34,8 +34,8 @@ class _noticeState extends State<notice> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Notice Data')),
-      body: FutureBuilder<List<Notice>>(
-        future: noticeController.getNoticeList(),
+      body: FutureBuilder<dynamic>(
+        future: noticeController.getData(),
         builder: (context, snapshot) {
           //data를 아직 받아 오지 못했을 때 실행되는 부분.
           //snapshot.hasData == false 인 경우이다.
@@ -121,9 +121,6 @@ class _noticeState extends State<notice> {
                       print('-----------------------textbutton');
                       print('-----------------------${titleController.text}');
                       print('-----------------------${contentController.text}');
-                      setState((){
-                        noticeController.postNotices(titleController.text,contentController.text);
-                      });
 
                       Navigator.of(context).pop();
                     },
