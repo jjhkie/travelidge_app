@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:travelidge/controller/home_controller.dart';
-import 'dart:convert';
-
-import 'package:travelidge/model/home.dart';
+import 'package:travelidge/model/home_model.dart';
 import 'package:travelidge/repository/home_repository.dart';
-import 'package:travelidge/screens/home/category/category_item.dart';
-import 'package:travelidge/screens/home/friend/friend_item.dart';
-import 'package:travelidge/screens/home/popular/popular_item.dart';
-import 'package:travelidge/screens/home/recent/recent_item.dart';
+import 'package:travelidge/ui/home/list_item/category_item.dart';
+import 'package:travelidge/ui/home/list_item/friend_item.dart';
+import 'package:travelidge/ui/home/list_item/popular_item.dart';
+import 'package:travelidge/ui/home/list_item/recent_item.dart';
+
 
 class home extends StatefulWidget {
   @override
@@ -16,7 +14,6 @@ class home extends StatefulWidget {
 }
 
 class _homeState extends State<home> {
-
   var Controller = HomeController(HomeRepository());
 
   @override
@@ -76,14 +73,4 @@ class _homeState extends State<home> {
       ],
     ));
   }
-}
-
-Future<HomeListModel> getlist() async {
-  var url = Uri.parse('http://118.67.131.249/v1/api/home');
-  var response = await http.get(url);
-  String toutf = utf8.decode(response.bodyBytes);
-  //한글깨짐
-  var body = jsonDecode(toutf);
-
-  return HomeListModel.fromJson(body);
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:travelidge/controller/notice_controller.dart';
 import 'package:travelidge/repository/notice_repository.dart';
 
-import '../model/notice.dart';
+import '../../model/notice.dart';
 
 class notice extends StatefulWidget {
   @override

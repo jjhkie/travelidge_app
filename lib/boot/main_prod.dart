@@ -1,6 +1,6 @@
 
 import 'package:flavor/flavor.dart';
-import 'package:travelidge/screens/nav/bottom_navi.dart';
+import 'package:travelidge/main.dart';
 
 void main() {
   Flavor.create(

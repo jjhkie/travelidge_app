@@ -1,11 +1,11 @@
 class HomeListModel {
-  HomeList? homeList;
+  HomeData? homeList;
 
   HomeListModel({this.homeList});
 
   HomeListModel.fromJson(Map<String, dynamic> json) {
     homeList = json['homeList'] != null
-        ? new HomeList.fromJson(json['homeList'])
+        ? new HomeData.fromJson(json['homeList'])
         : null;
   }
 
@@ -18,41 +18,41 @@ class HomeListModel {
   }
 }
 
-class HomeList {
-  List<PopularLocalList>? popularLocalList;
-  List<RecentTravelList>? recentTravelList;
-  List<CategoryList>? categoryList;
-  List<FriendList>? friendList;
+class HomeData {
+  List<PopularLocal>? popularLocalList;
+  List<RecentTravel>? recentTravelList;
+  List<Category>? categoryList;
+  List<Friend>? friendList;
 
-  HomeList(
+  HomeData(
       {this.popularLocalList,
         this.recentTravelList,
         this.categoryList,
         this.friendList});
 
-  HomeList.fromJson(Map<String, dynamic> json) {
+  HomeData.fromJson(Map<String, dynamic> json) {
     if (json['popularLocalList'] != null) {
-      popularLocalList = <PopularLocalList>[];
+      popularLocalList = <PopularLocal>[];
       json['popularLocalList'].forEach((v) {
-        popularLocalList!.add(new PopularLocalList.fromJson(v));
+        popularLocalList!.add(new PopularLocal.fromJson(v));
       });
     }
     if (json['recentTravelList'] != null) {
-      recentTravelList = <RecentTravelList>[];
+      recentTravelList = <RecentTravel>[];
       json['recentTravelList'].forEach((v) {
-        recentTravelList!.add(new RecentTravelList.fromJson(v));
+        recentTravelList!.add(new RecentTravel.fromJson(v));
       });
     }
     if (json['categoryList'] != null) {
-      categoryList = <CategoryList>[];
+      categoryList = <Category>[];
       json['categoryList'].forEach((v) {
-        categoryList!.add(new CategoryList.fromJson(v));
+        categoryList!.add(new Category.fromJson(v));
       });
     }
     if (json['friendList'] != null) {
-      friendList = <FriendList>[];
+      friendList = <Friend>[];
       json['friendList'].forEach((v) {
-        friendList!.add(new FriendList.fromJson(v));
+        friendList!.add(new Friend.fromJson(v));
       });
     }
   }
@@ -77,16 +77,16 @@ class HomeList {
   }
 }
 
-class PopularLocalList {
+class PopularLocal {
   int? localNo;
   String? preTitle;
   String? postTitle;
   String? thumbnailUrl;
 
-  PopularLocalList(
+  PopularLocal(
       {this.localNo, this.preTitle, this.postTitle, this.thumbnailUrl});
 
-  PopularLocalList.fromJson(Map<String, dynamic> json) {
+  PopularLocal.fromJson(Map<String, dynamic> json) {
     localNo = json['localNo'];
     preTitle = json['preTitle'];
     postTitle = json['postTitle'];
@@ -103,7 +103,7 @@ class PopularLocalList {
   }
 }
 
-class RecentTravelList {
+class RecentTravel {
   int? travelNo;
   String? thumbnailUrl;
   String? title;
@@ -111,7 +111,7 @@ class RecentTravelList {
   int? partyCount;
   int? partyMaxCount;
 
-  RecentTravelList(
+  RecentTravel(
       {this.travelNo,
         this.thumbnailUrl,
         this.title,
@@ -119,7 +119,7 @@ class RecentTravelList {
         this.partyCount,
         this.partyMaxCount});
 
-  RecentTravelList.fromJson(Map<String, dynamic> json) {
+  RecentTravel.fromJson(Map<String, dynamic> json) {
     travelNo = json['travelNo'];
     thumbnailUrl = json['thumbnailUrl'];
     title = json['title'];
@@ -140,14 +140,14 @@ class RecentTravelList {
   }
 }
 
-class CategoryList {
+class Category {
   int? categoryNo;
   String? title;
   String? thumbnailUrl;
 
-  CategoryList({this.categoryNo, this.title, this.thumbnailUrl});
+  Category({this.categoryNo, this.title, this.thumbnailUrl});
 
-  CategoryList.fromJson(Map<String, dynamic> json) {
+  Category.fromJson(Map<String, dynamic> json) {
     categoryNo = json['categoryNo'];
     title = json['title'];
     thumbnailUrl = json['thumbnailUrl'];
@@ -162,18 +162,18 @@ class CategoryList {
   }
 }
 
-class FriendList {
+class Friend {
   int? userNo;
   String? thumbnailUrl;
-  RecentTravelList? travelDto;
+  RecentTravel? travelDto;
 
-  FriendList({this.userNo, this.thumbnailUrl, this.travelDto});
+  Friend({this.userNo, this.thumbnailUrl, this.travelDto});
 
-  FriendList.fromJson(Map<String, dynamic> json) {
+  Friend.fromJson(Map<String, dynamic> json) {
     userNo = json['user_no'];
     thumbnailUrl = json['thumbnailUrl'];
     travelDto = json['travelDto'] != null
-        ? new RecentTravelList.fromJson(json['travelDto'])
+        ? new RecentTravel.fromJson(json['travelDto'])
         : null;
   }
 

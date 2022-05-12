@@ -1,4 +1,4 @@
-import 'package:travelidge/model/home.dart';
+import 'package:travelidge/model/home_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 

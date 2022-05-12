@@ -1,4 +1,4 @@
-import 'package:travelidge/model/home.dart';
+import 'package:travelidge/model/home_model.dart';
 import 'package:travelidge/repository/home_repository.dart';
 
 class HomeController{
