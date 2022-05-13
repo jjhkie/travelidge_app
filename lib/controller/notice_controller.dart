@@ -1,20 +1,15 @@
 import 'package:travelidge/model/notice.dart';
-import 'package:travelidge/repository/repository.dart';
+import 'package:travelidge/repository/notice_repository.dart';
 
 
 class NoticeController {
-  final Repository _repository;
+  final NoticeRepository _repository;
 
   NoticeController(this._repository);
 
   //get
-  Future<List<Notice>> getNoticeList() async {
-    return _repository.getNoticeList();
-  }
-
-  //patch
-  Future<String> fetchNoticeList(String No) async{
-    return _repository.patchCompleted(No);
+  Future<dynamic> getData() async {
+    return _repository.getData();
   }
 
   //delete
@@ -22,15 +17,4 @@ class NoticeController {
     return _repository.deleteNotice(notice);
   }
 
-  //post
-  Future<String> postNotice(Notice notice) async{
-    return _repository.postNotice(notice);
-
-  }
-
-  //post
-  Future<String> postNotices(String title,String content) async{
-    return _repository.postNotices(title, content);
-
-  }
 }

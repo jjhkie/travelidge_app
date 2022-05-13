@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
-import 'main.dart';
 import 'package:flavor/flavor.dart';
+import 'package:flutter/material.dart';
+import 'package:travelidge/main.dart';
 
 void main() {
   Flavor.create(
@@ -10,8 +9,6 @@ void main() {
     name: 'PREVIEW',
     properties: {
       Keys.apiUrl: 'http://118.67.131.249',
-      Keys.apiKey: 'jksdhfkjhs83rjkh324kj23h4',
-      logLevelKey: 100,
     },
   );
   setupApp();
