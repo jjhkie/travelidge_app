@@ -1,20 +1,33 @@
-import 'package:travelidge/model/notice.dart';
-import 'package:travelidge/repository/notice_repository.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:travelidge/data/model/notice.dart';
+import 'package:travelidge/data/repository/notice_repository.dart';
 
 
-class NoticeController {
+
+class NoticeController extends GetxController{
   final NoticeRepository _repository;
 
   NoticeController(this._repository);
 
-  //get
-  Future<dynamic> getData() async {
-    return _repository.getData();
+
+  var scrollController = ScrollController().obs;
+  var noticeList = <Notice>[].obs;
+
+  @override
+  void onInit(){
+    //getNoticeAll();
+    super.onInit();
   }
 
-  //delete
-  Future<String> deleteNotice(Notice notice) async {
-    return _repository.deleteNotice(notice);
+
+  getNoticeAll(){
+    _repository.getNoticeAll().then((data){
+      this.noticeList.value = data;
+      print('---------------------------------------');
+      print(noticeList);
+    });
   }
+
 
 }

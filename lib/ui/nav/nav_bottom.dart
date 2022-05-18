@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelidge/controller/nav_controller.dart';
-import 'package:travelidge/ui/declare/declare_page.dart';
+import 'package:travelidge/ui/declare/screen/declare_page.dart';
 import 'package:travelidge/ui/home/screen/home_page.dart';
-import 'package:travelidge/ui/notice/notice_page.dart';
-import 'package:travelidge/ui/user/user_page.dart';
+import 'package:travelidge/ui/notice/screen/notice_page.dart';
+import 'package:travelidge/ui/user/screen/user_page.dart';
 import 'package:travelidge/ui/write/writing_page.dart';
 
 class page extends GetView<NavController> {

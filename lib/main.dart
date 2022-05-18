@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:travelidge/binding/init_binding.dart';
 import 'package:travelidge/ui/nav/nav_bottom.dart';
 
+import 'ui/user/screen/user_page.dart';
+
 void setupApp() {
   if (Flavor.I.isDevelopment) {
     Flavor.I.getString(Keys.apiUrl);
@@ -22,7 +24,9 @@ class FlavorApp extends StatelessWidget {
       ),
       initialBinding: InitBinding(),
       initialRoute: "/",
-      getPages: [GetPage(name: "/", page: () => page())],
+      getPages: [
+        GetPage(name: "/", page: () => page())
+      ],
     );
   }
 }

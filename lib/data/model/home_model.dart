@@ -1,18 +1,18 @@
 class HomeListModel {
-  HomeData? homeList;
+  HomeData? homeData;
 
-  HomeListModel({this.homeList});
+  HomeListModel({this.homeData});
 
   HomeListModel.fromJson(Map<String, dynamic> json) {
-    homeList = json['homeList'] != null
+    homeData = json['homeList'] != null
         ? new HomeData.fromJson(json['homeList'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.homeList != null) {
-      data['homeList'] = this.homeList!.toJson();
+    if (this.homeData != null) {
+      data['homeList'] = this.homeData!.toJson();
     }
     return data;
   }
