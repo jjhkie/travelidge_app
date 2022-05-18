@@ -8,12 +8,9 @@ class UserRepository{
 
   UserRepository(this.apiClient);
 
-  getScrollAll(countPerPage){
-    return apiClient.getScrollAll(countPerPage);
+  getScrollAll(nextNo){
+    return apiClient.getScrollAll(nextNo);
   }
 
 
-  getPageInfo(){
-    return apiClient.getPageInfo();
-  }
 }

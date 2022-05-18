@@ -22,38 +22,18 @@ class ApiClient {
       print('error');
   }
 
-  /**
-   * 여행 페이지 totalCount 가져오기
-   * **/
-  getPageInfo() async {
-    var response = await http.get(Uri.parse('$base_url/v1/api/myTravels/7'));
-    if (response.statusCode == 200) {
-      var jsonData = jsonDecode(response.body);
-
-      var pageInfo = jsonData['pageInfo']['totalCount'];
-      print(pageInfo);
-      return pageInfo;
-    }else{
-      print('error');
-    }
-  }
-
-  /**
-   * 페이징에 필요한 정보 가져오기
-   * **/
-  getScrollAll(countPerPage) async {
+  getScrollAll(nextNo) async {
     await Future.delayed(Duration(seconds: 2));
     var response = await http.get(Uri.parse(
-        '$base_url/v1/api/myTravels/7?travelNo=0&countPerPage=$countPerPage'));
+        '$base_url/v1/api/myTravels/7?travelNo=$nextNo&countPerPage=10'));
 
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
 
-      var traveldata = jsonData['myTravelList'];
+      //var traveldata = jsonData['myTravelList'];
 
-      return traveldata
-          .map<MyTravelList>((json) => MyTravelList.fromJson(json))
-          .toList();
+      return travel.fromJson(jsonData);
+          //.map<travel>((json) => travel.fromJson(json));
     }else{
       print('error');
     }

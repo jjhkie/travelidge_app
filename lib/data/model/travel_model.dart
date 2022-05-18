@@ -1,14 +1,14 @@
 class travel {
-  List<MyTravelList>? myTravelList;
+  List<MyTravel>? myTravelList;
   PageInfo? pageInfo;
 
   travel({this.myTravelList, this.pageInfo});
 
   travel.fromJson(Map<String, dynamic> json) {
     if (json['myTravelList'] != null) {
-      myTravelList = <MyTravelList>[];
+      myTravelList = <MyTravel>[];
       json['myTravelList'].forEach((v) {
-        myTravelList!.add(new MyTravelList.fromJson(v));
+        myTravelList!.add(new MyTravel.fromJson(v));
       });
     }
     pageInfo = json['pageInfo'] != null
@@ -28,7 +28,7 @@ class travel {
   }
 }
 
-class MyTravelList {
+class MyTravel {
   int? travelNo;
   int? userNo;
   String? title;
@@ -54,7 +54,7 @@ class MyTravelList {
   int? partyCount;
   int? partyMaxCount;
 
-  MyTravelList(
+  MyTravel(
       {this.travelNo,
         this.userNo,
         this.title,
@@ -80,7 +80,7 @@ class MyTravelList {
         this.partyCount,
         this.partyMaxCount});
 
-  MyTravelList.fromJson(Map<String, dynamic> json) {
+  MyTravel.fromJson(Map<String, dynamic> json) {
     travelNo = json['travelNo'];
     userNo = json['userNo'];
     title = json['title'];

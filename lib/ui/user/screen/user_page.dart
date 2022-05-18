@@ -15,6 +15,8 @@ class user extends GetView<InfiniteScrollController>  {
             () => Padding(
           padding: const EdgeInsets.all(10.0),
 
+
+
           child: ListView.separated(
             controller: controller.scrollController.value,
 
@@ -34,7 +36,7 @@ class user extends GetView<InfiniteScrollController>  {
                   ),
                 );
               }
-              if (controller.hasMore.value || controller.isLoading.value) {
+              if (controller.hasNext.value || controller.isLoading.value) {
                 return Center(child: RefreshProgressIndicator());
               }
               //데이터 새로고침
