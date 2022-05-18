@@ -2,7 +2,11 @@ import 'package:flavor/flavor.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelidge/binding/init_binding.dart';
+import 'package:travelidge/routes/app_pages.dart';
+import 'package:travelidge/routes/app_routes.dart';
 import 'package:travelidge/ui/nav/nav_bottom.dart';
+
+import 'ui/user/screen/user_page.dart';
 
 void setupApp() {
   if (Flavor.I.isDevelopment) {
@@ -21,8 +25,8 @@ class FlavorApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       initialBinding: InitBinding(),
-      initialRoute: "/",
-      getPages: [GetPage(name: "/", page: () => page())],
+      initialRoute: Routes.INITIAL,
+      getPages: AppPages.pages,
     );
   }
 }

@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:travelidge/controller/home_controller.dart';
-import 'package:travelidge/model/home_model.dart';
-import 'package:travelidge/repository/home_repository.dart';
+import 'package:travelidge/data/model/home_model.dart';
+import 'package:travelidge/data/repository/home_repository.dart';
+
 import 'package:travelidge/ui/home/list_item/category_item.dart';
 import 'package:travelidge/ui/home/list_item/friend_item.dart';
 import 'package:travelidge/ui/home/list_item/popular_item.dart';
 import 'package:travelidge/ui/home/list_item/recent_item.dart';
 
 
-class home extends StatefulWidget {
-  @override
-  State<home> createState() => _homeState();
-}
 
-class _homeState extends State<home> {
-  var Controller = HomeController(HomeRepository());
+class home extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +35,9 @@ class _homeState extends State<home> {
         SliverList(
             delegate: SliverChildListDelegate([
           FutureBuilder<HomeListModel>(
-            future: Controller.getData(),
+            future: controller.getData(),
             builder: (context, snapshot) {
-              var data = snapshot.data?.homeList;
+              var data = snapshot.data?.homeData;
 
               final popularLocalList = data?.popularLocalList;
               final recentTravelList = data?.recentTravelList;

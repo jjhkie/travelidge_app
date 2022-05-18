@@ -1,0 +1,54 @@
+import 'package:flavor/flavor.dart';
+import 'package:http/http.dart' as http;
+import 'package:travelidge/data/model/home_model.dart';
+import 'dart:convert';
+
+import 'package:travelidge/data/model/notice.dart';
+import 'package:travelidge/data/model/travel_model.dart';
+
+final base_url = Flavor.I.getString(Keys.apiUrl);
+
+class ApiClient {
+  /**
+   * notice 정보 가져오기
+   * **/
+  getNoticeAll() async {
+    await Future.delayed(Duration(seconds: 2));
+    var response = await http.get(Uri.parse('$base_url/v1/api/notices'));
+    if (response.statusCode == 200) {
+      var body = json.decode(response.body);
+      return body.map<Notice>((json) => Notice.fromJson(json)).toList();
+    } else
+      print('error');
+  }
+
+  getScrollAll(nextNo) async {
+    await Future.delayed(Duration(seconds: 2));
+    var response = await http.get(Uri.parse(
+        '$base_url/v1/api/myTravels/7?travelNo=$nextNo&countPerPage=10'));
+
+    if (response.statusCode == 200) {
+      var jsonData = jsonDecode(response.body);
+
+      //var traveldata = jsonData['myTravelList'];
+
+      return travel.fromJson(jsonData);
+          //.map<travel>((json) => travel.fromJson(json));
+    }else{
+      print('error');
+    }
+  }
+  /**
+   * 메인 화면 정보 가져오기
+   * **/
+  getHomeData() async{
+    var response = await http.get(Uri.parse('$base_url/v1/api/home'));
+    if(response.statusCode ==200){
+      String toutf = utf8.decode(response.bodyBytes);
+      var body = jsonDecode(toutf);
+
+      return HomeListModel.fromJson(body);
+    }
+
+  }
+}
