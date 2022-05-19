@@ -15,6 +15,7 @@ class page extends GetView<NavController> {
         body: SafeArea(
           child: Obx((){
             switch (RoutName.values[controller.currentIndex.value]) {
+
               case RoutName.home:
                 return home();
               case RoutName.declare:
