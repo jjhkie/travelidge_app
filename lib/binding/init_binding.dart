@@ -12,10 +12,10 @@ class InitBinding implements Bindings{
   @override
   void dependencies() {
     Get.put(NavController());
-    Get.put(NoticeController(NoticeRepository(ApiClient())));
     Get.put(DeclareController());
-    Get.put(InfiniteScrollController(UserRepository(ApiClient())));
 
+    Get.lazyPut(() => NoticeController(NoticeRepository(ApiClient())));
+    Get.lazyPut(() => InfiniteScrollController(UserRepository(ApiClient())));
   }
 
 }

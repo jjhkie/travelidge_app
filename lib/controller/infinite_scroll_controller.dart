@@ -18,20 +18,21 @@ class InfiniteScrollController extends GetxController {
   //컨트롤러가 생성될 떄 호출
   @override
   void onInit() {
-
     _getData();
-
     //변화가 감지되었을 때 position값을 이용해 보여진 정보의 가장 마지막 행에 도달했는지 확인
     //마지막 행에 도달했을 경우 _getData()가 실행
-    this.scrollController.value.addListener(() {
-      if (this.scrollController.value.position.pixels ==
-              this.scrollController.value.position.maxScrollExtent &&
-          this.hasNext.value) {
+    scrollController.value.addListener(() {
+
+      if (scrollController.value.position.pixels >=
+              scrollController.value.position.maxScrollExtent*0.9 &&
+          hasNext.value&&!isLoading.value) {
+        print(nextNo);
         _getData();
       }
     });
     super.onInit();
   }
+
 
   _getData() async {
     isLoading.value = true;

@@ -21,19 +21,17 @@ class ApiClient {
     } else
       print('error');
   }
-
+  /**
+   * travel 정보 가져오기
+   * **/
   getScrollAll(nextNo) async {
-    await Future.delayed(Duration(seconds: 2));
     var response = await http.get(Uri.parse(
-        '$base_url/v1/api/myTravels/7?travelNo=$nextNo&countPerPage=10'));
+        '$base_url/v1/api/myTravels/20?travelNo=$nextNo&countPerPage=10'));
 
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
 
-      //var traveldata = jsonData['myTravelList'];
-
       return travel.fromJson(jsonData);
-          //.map<travel>((json) => travel.fromJson(json));
     }else{
       print('error');
     }

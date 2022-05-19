@@ -5,6 +5,7 @@ import 'package:travelidge/ui/user/widgets/user_widget.dart';
 
 class user extends GetView<InfiniteScrollController>  {
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
