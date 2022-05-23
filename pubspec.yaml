@@ -39,6 +39,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   flavor: ^2.0.0
   get: ^4.6.1
+  firebase_core: ^1.17.0
+  firebase_messaging: ^11.4.0
+  flutter_local_notifications: ^9.5.3+1
 
 dev_dependencies:
   flutter_test:

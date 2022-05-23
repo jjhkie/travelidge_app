@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1023373959658",
+    "firebase_url": "https://travel-f87f8-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "travel-f87f8",
+    "storage_bucket": "travel-f87f8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1023373959658:android:18f56415bf83a458d25293",
+        "android_client_info": {
+          "package_name": "com.kupstuido.travelidge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1023373959658-kaii4uf0q1a4rb0lv9evtqjv7t6m6gl7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBheZ3srWRowp0ZqEXBpUBBfR9x0SJVEgk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1023373959658-kaii4uf0q1a4rb0lv9evtqjv7t6m6gl7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
