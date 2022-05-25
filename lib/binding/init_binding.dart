@@ -1,6 +1,7 @@
 
 import 'package:get/get.dart';
 import 'package:travelidge/controller/declare_controller.dart';
+import 'package:travelidge/controller/fcm_controller.dart';
 import 'package:travelidge/controller/infinite_scroll_controller.dart';
 import 'package:travelidge/controller/nav_controller.dart';
 import 'package:travelidge/controller/notice_controller.dart';
@@ -13,7 +14,7 @@ class InitBinding implements Bindings{
   void dependencies() {
     Get.put(NavController());
     Get.put(DeclareController());
-
+    Get.put(FcmController());
     Get.lazyPut(() => NoticeController(NoticeRepository(ApiClient())));
     Get.lazyPut(() => InfiniteScrollController(UserRepository(ApiClient())));
   }
