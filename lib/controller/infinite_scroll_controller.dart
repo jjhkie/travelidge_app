@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelidge/data/model/travel_model.dart';
 import 'package:travelidge/data/repository/user_repository.dart';
+import 'package:travelidge/ui/sign/screen/login_main_page.dart';
 
 class InfiniteScrollController extends GetxController {
   final UserRepository _repository;
@@ -52,5 +54,16 @@ class InfiniteScrollController extends GetxController {
     await Future.delayed(Duration(seconds: 2));
 
   }
+
+  logout() async{
+    FirebaseAuth.instance.signOut();
+     Get.snackbar(
+      '로그아웃',
+      '로그아웃하였습니다',
+      snackPosition: SnackPosition.BOTTOM,
+    );
+     Get.offAll(() => LoginPage());
+  }
+
 }
 

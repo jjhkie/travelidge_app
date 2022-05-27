@@ -8,6 +8,10 @@ import 'package:travelidge/ui/user/screen/user_page.dart';
 import 'package:travelidge/ui/write/writing_page.dart';
 
 class page extends GetView<NavController> {
+  const page({Key? key}) : super(key: key);
+
+
+
 
   @override
   Widget build(BuildContext context) {

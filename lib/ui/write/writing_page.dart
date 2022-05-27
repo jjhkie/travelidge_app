@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:travelidge/controller/fcm_controller.dart';
 
 
+
 class writing extends GetView<FcmController> {
 
   @override
@@ -17,8 +18,12 @@ class writing extends GetView<FcmController> {
                   child: Obx(() => Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(controller.message.value?.notification?.title ?? 'title', style: TextStyle(fontSize: 20)),
-                      Text(controller.message.value?.notification?.body ?? 'message', style: TextStyle(fontSize: 15)),
+                       Text(controller.message.value?.notification?.title ?? 'title', style: TextStyle(fontSize: 20)),
+                       Text(controller.message.value?.notification?.body ?? 'message', style: TextStyle(fontSize: 15)),
+                      //
+                     TextFormField(decoration: InputDecoration(border: OutlineInputBorder()),
+                     ),Container(child: ElevatedButton(onPressed: (){}, child: Text('결과'),),)
+                      
                     ],
                   )));
             } else if (snapshot.hasError) {
