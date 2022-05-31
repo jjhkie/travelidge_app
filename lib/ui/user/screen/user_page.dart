@@ -11,6 +11,13 @@ class user extends GetView<InfiniteScrollController>  {
     return Scaffold(
       appBar: AppBar(
         title: Text('Infinite Scroll'),
+        actions: [
+          IconButton(icon:Icon(
+              Icons.logout
+          ),onPressed: (){
+            controller.logout();
+          },)
+        ],
       ),
       body: Obx(
             () => Padding(

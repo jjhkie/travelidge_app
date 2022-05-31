@@ -4,13 +4,14 @@ import 'package:flavor/flavor.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelidge/binding/init_binding.dart';
+import 'package:travelidge/ui/login/controller/auth_controller.dart';
 import 'package:travelidge/routes/app_pages.dart';
 import 'package:travelidge/routes/app_routes.dart';
-import 'firebase_options.dart';
+import 'package:travelidge/ui/sign/screen/login_main_page.dart';
+
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
-  print("Handling a background message: ${message.messageId}");
 }
 
 void setupApp() async{
@@ -18,7 +19,8 @@ void setupApp() async{
     Flavor.I.getString(Keys.apiUrl);
   }
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  //runApp으로 앱이 실행되기 전에 비동기로 지연이 되더라도 오류가 발생하지 않도록 하는 역할
+  await Firebase.initializeApp().then((v)=> Get.put(AuthController()));
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(FlavorApp());
 }
@@ -34,7 +36,8 @@ class FlavorApp extends StatelessWidget {
       ),
       initialBinding: InitBinding(),
       initialRoute: Routes.INITIAL,
-      getPages: AppPages.pages,
+      //getPages: AppPages.pages,
+      home: LoginPage(),
     );
   }
 }

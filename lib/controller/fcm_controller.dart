@@ -1,13 +1,17 @@
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
+
 
 //https://firebase.flutter.dev/docs/messaging/notifications/
 class FcmController extends GetxController {
   static FcmController get to => Get.find();
 
   //getx Controller를 어디서든 호출하기 위해 생성
+
+
 
   final Rxn<RemoteMessage> message = Rxn<RemoteMessage>();
 
@@ -20,8 +24,13 @@ class FcmController extends GetxController {
     // Firebase 초기화부터 해야 FirebaseMessaging 를 사용할 수 있다.
     await Firebase.initializeApp();
 
-    var token = await FirebaseMessaging.instance.getToken();
-    print(token);
+    var token = FirebaseMessaging.instance.getToken();
+    print('토큰값 : $token');
+
+    // await FirebaseFirestore.instance.collection('token').doc('$token')
+    // .set({
+    //   'token' : token
+    // });
 
     // Android 에서는 별도의 확인 없이 리턴되지만, requestPermission()을 호출하지 않으면 수신되지 않는다.
     await FirebaseMessaging.instance.requestPermission(

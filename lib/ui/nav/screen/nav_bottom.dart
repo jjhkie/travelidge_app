@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:travelidge/controller/nav_controller.dart';
-import 'package:travelidge/ui/declare/screen/declare_page.dart';
+import 'package:travelidge/ui/nav/controller/nav_controller.dart';
+import 'package:travelidge/ui/chat_list/views/chat_list_view.dart';
 import 'package:travelidge/ui/home/screen/home_page.dart';
 import 'package:travelidge/ui/notice/screen/notice_page.dart';
 import 'package:travelidge/ui/user/screen/user_page.dart';
 import 'package:travelidge/ui/write/writing_page.dart';
 
 class page extends GetView<NavController> {
+  const page({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,6 @@ class page extends GetView<NavController> {
         body: SafeArea(
           child: Obx((){
             switch (RoutName.values[controller.currentIndex.value]) {
-
               case RoutName.home:
                 return home();
               case RoutName.declare:

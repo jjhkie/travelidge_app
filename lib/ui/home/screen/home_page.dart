@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:travelidge/controller/home_controller.dart';
+import 'package:travelidge/ui/home/controller/home_controller.dart';
 import 'package:travelidge/data/model/home_model.dart';
-import 'package:travelidge/data/repository/home_repository.dart';
-
-import 'package:travelidge/ui/home/list_item/category_item.dart';
-import 'package:travelidge/ui/home/list_item/friend_item.dart';
-import 'package:travelidge/ui/home/list_item/popular_item.dart';
-import 'package:travelidge/ui/home/list_item/recent_item.dart';
-
-
+import 'package:travelidge/ui/home/widgets/category_item.dart';
+import 'package:travelidge/ui/home/widgets/friend_item.dart';
+import 'package:travelidge/ui/home/widgets/popular_item.dart';
+import 'package:travelidge/ui/home/widgets/recent_item.dart';
 
 class home extends GetView<HomeController> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,12 +32,12 @@ class home extends GetView<HomeController> {
           FutureBuilder<HomeListModel>(
             future: controller.getData(),
             builder: (context, snapshot) {
-              var data = snapshot.data?.homeData;
+              var data = snapshot.data?.home;
 
-              final popularLocalList = data?.popularLocalList;
-              final recentTravelList = data?.recentTravelList;
-              final categoryTravelList = data?.categoryList;
-              final friendTravelList = data?.friendList;
+              final popularLocalList = data?.popularLocal;
+              final recentTravelList = data?.recentTravel;
+              final categoryTravelList = data?.category;
+              final friendTravelList = data?.friend;
 
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(child: CircularProgressIndicator()); //로딩 애니메이션
