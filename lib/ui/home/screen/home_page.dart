@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:travelidge/controller/home_controller.dart';
+import 'package:travelidge/ui/home/controller/home_controller.dart';
 import 'package:travelidge/data/model/home_model.dart';
-import 'package:travelidge/ui/home/list_item/category_item.dart';
-import 'package:travelidge/ui/home/list_item/friend_item.dart';
-import 'package:travelidge/ui/home/list_item/popular_item.dart';
-import 'package:travelidge/ui/home/list_item/recent_item.dart';
+import 'package:travelidge/ui/home/widgets/category_item.dart';
+import 'package:travelidge/ui/home/widgets/friend_item.dart';
+import 'package:travelidge/ui/home/widgets/popular_item.dart';
+import 'package:travelidge/ui/home/widgets/recent_item.dart';
 
 class home extends GetView<HomeController> {
   @override

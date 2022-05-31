@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
-import 'package:travelidge/controller/declare_controller.dart';
+import 'package:travelidge/ui/declare/controller/declare_controller.dart';
 
 class TitleTextfield extends GetView<DeclareController> {
   @override

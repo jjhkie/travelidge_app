@@ -12,24 +12,24 @@ class DeclareController extends GetxService{
   late FocusNode focusNode;
   late ScrollController scrollC;
 
-  Stream<QuerySnapshot<Map<String, dynamic>>> streamChatData(String uid) {
+  Stream<QuerySnapshot<Map<String, dynamic>>> streamChatData(email, chatRoomN) {
     CollectionReference chats = store.collection("chats");
+
+    print("----chatRoomN---");
+    print(chatRoomN);
     //return chats.doc(uid).collection("chat").orderBy("time").snapshots();
-    return chats.doc("aaa").collection("chat").orderBy("time").snapshots();
+    return chats.doc(chatRoomN).collection("messages").orderBy("time").snapshots();
   }
 
-  void newChat(String uid,String chat) async{
-
+  void newChat(String uid,String chat,chatRoom) async{
     if(chat != ""){
       CollectionReference chats = store.collection('chats');
-
       String date = DateTime.now().toIso8601String();
-      await chats.doc("aaa").collection('chat').add({
+      await chats.doc(chatRoom).collection('messages').add({
         "text":chat,
         "time":date,
-        "userId":uid
+        "fromId":uid
       });
-
       chatC.clear();
     }
   }

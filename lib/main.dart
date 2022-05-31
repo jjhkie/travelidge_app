@@ -4,7 +4,7 @@ import 'package:flavor/flavor.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelidge/binding/init_binding.dart';
-import 'package:travelidge/controller/auth_controller.dart';
+import 'package:travelidge/ui/login/controller/auth_controller.dart';
 import 'package:travelidge/routes/app_pages.dart';
 import 'package:travelidge/routes/app_routes.dart';
 import 'package:travelidge/ui/sign/screen/login_main_page.dart';
