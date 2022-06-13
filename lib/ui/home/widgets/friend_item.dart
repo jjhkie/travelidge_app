@@ -24,9 +24,9 @@ Widget friendList(data) {
                         Container(
                           child: Column(
                             children: [
-                              Text('${data[index].travelDto.title}'),
+                              Text('${data[index].travelList.title}'),
                               Text(
-                                  '${data[index].travelDto.partyCount} / ${data[index].travelDto.partyMaxCount}'),
+                                  '${data[index].travelList.partyCount} / ${data[index].travelList.partyMaxCount}'),
                             ],
                           ),
                         ),

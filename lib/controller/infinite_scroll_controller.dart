@@ -24,7 +24,6 @@ class InfiniteScrollController extends GetxController {
     //변화가 감지되었을 때 position값을 이용해 보여진 정보의 가장 마지막 행에 도달했는지 확인
     //마지막 행에 도달했을 경우 _getData()가 실행
     scrollController.value.addListener(() {
-
       if (scrollController.value.position.pixels >=
               scrollController.value.position.maxScrollExtent*0.9 &&
           hasNext.value&&!isLoading.value) {
