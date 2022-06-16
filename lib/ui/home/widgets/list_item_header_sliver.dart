@@ -17,6 +17,10 @@ class ListItemHeaderSliver extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         child: Row(
           children: [
+            IconButton(
+              icon: Icon(Icons.keyboard_arrow_down), onPressed: () {  },
+            ),
+            SizedBox(width:3),
             ButtonCustom('상품', 0xFFFFFFCC,0xFFFFCC99),
             SizedBox(width: 3),
             ButtonCustom('같이', 0xFFFFCCCC,0xFFFF6666),

@@ -17,7 +17,7 @@ class page extends GetView<NavController> {
           child: Obx((){
             switch (RoutName.values[controller.currentIndex.value]) {
               case RoutName.home:
-                return home();
+                return Home();
               case RoutName.declare:
                 return declare();
               case RoutName.notice:
