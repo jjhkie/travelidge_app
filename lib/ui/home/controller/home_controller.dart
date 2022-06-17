@@ -12,6 +12,8 @@ class HomeController extends GetxController {
   var recent = <RecentTravel>[].obs;
   var category = <Category>[].obs;
 
+
+
   @override
   void onInit() {
     super.onInit();
@@ -54,6 +56,10 @@ class HomeController extends GetxController {
       this.recent.value = data.home.recentTravel;
       this.category.value = data.home.category;
     });
+  }
+
+  void colorChange(activation){
+      activation = !activation;
   }
 
 

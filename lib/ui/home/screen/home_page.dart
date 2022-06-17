@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelidge/data/model/home_model.dart';
 import 'package:travelidge/ui/home/controller/home_controller.dart';
-import 'package:travelidge/ui/home/widgets/appbar/SliverHeaderData.dart';
+import 'package:travelidge/ui/home/widgets/appbar/sliver_header_data.dart';
 import 'package:travelidge/ui/home/widgets/appbar/list_item_header_sliver.dart';
 import 'package:travelidge/ui/home/widgets/category_item.dart';
 import 'package:travelidge/ui/home/widgets/friend_item.dart';
@@ -14,6 +14,7 @@ import 'package:travelidge/ui/home/widgets/recent_item.dart';
 
 class Home extends GetView<HomeController> {
   final double sliverMinHeight = 80.0, sliverMaxHeight = 260.0;
+
   const Home({Key? key}) : super(key: key);
 
   @override
@@ -21,16 +22,14 @@ class Home extends GetView<HomeController> {
     return SafeArea(
         child: Scaffold(
       body: NestedScrollView(
-        controller: controller.scrollController,
-        headerSliverBuilder: headerSliverBuilder,
-        body:CustomScrollView(
-          slivers: [
-            SliverList(delegate: SliverChildListDelegate([
-              _mainList(controller)
-            ]))
-          ],
-        ) 
-      ),
+          controller: controller.scrollController,
+          headerSliverBuilder: headerSliverBuilder,
+          body: CustomScrollView(
+            slivers: [
+              SliverList(
+                  delegate: SliverChildListDelegate([_mainList(controller)]))
+            ],
+          )),
     ));
   }
 
@@ -57,13 +56,13 @@ class Home extends GetView<HomeController> {
   }
 
   Widget topChild() {
-    return SliverHeaderData();
+    return SliverHeaderData(controller:controller);
   }
 }
 
 Widget _mainList(controller) {
   return Padding(
-    padding: const EdgeInsets.only(top:25.0),
+    padding: const EdgeInsets.only(top: 25.0),
     child: FutureBuilder<HomeListModel>(
       future: controller.getData(),
       builder: (context, snapshot) {
@@ -95,6 +94,7 @@ Widget _mainList(controller) {
     ),
   );
 }
+
 class SliverHeaderDelegateCS extends SliverPersistentHeaderDelegate {
   final double minHeight, maxHeight;
   final Widget maxChild, minChild;
@@ -166,4 +166,3 @@ class SliverHeaderDelegateCS extends SliverPersistentHeaderDelegate {
     );
   }
 }
-
