@@ -1,189 +1,168 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:travelidge/data/provider/api.dart';
-import 'package:travelidge/data/repository/home_repository.dart';
-import 'package:travelidge/ui/home/controller/home_controller.dart';
 import 'package:travelidge/data/model/home_model.dart';
-import 'package:travelidge/ui/home/widgets/SliverHeaderData.dart';
+import 'package:travelidge/ui/home/controller/home_controller.dart';
+import 'package:travelidge/ui/home/widgets/appbar/sliver_header_data.dart';
+import 'package:travelidge/ui/home/widgets/appbar/list_item_header_sliver.dart';
 import 'package:travelidge/ui/home/widgets/category_item.dart';
 import 'package:travelidge/ui/home/widgets/friend_item.dart';
-import 'package:travelidge/ui/home/widgets/list_item_header_sliver.dart';
+
 import 'package:travelidge/ui/home/widgets/popular_item.dart';
 import 'package:travelidge/ui/home/widgets/recent_item.dart';
 
-class home extends GetView<HomeController> {
+class Home extends GetView<HomeController> {
+  final double sliverMinHeight = 80.0, sliverMaxHeight = 260.0;
 
-  final controller = Get.put(HomeController(HomeRepository(ApiClient())));
+  const Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final sizeHeight = MediaQuery
-        .of(context)
-        .size
-        .height;
-    return Scaffold(
-
-      body: CustomScrollView(
-        controller: controller.scrollController,
-        slivers: [
-          SliverAppBar(
-            elevation: 1.0,
-            automaticallyImplyLeading: false,
-            backgroundColor: Colors.transparent,
-
-            leading: const Text('logo',style: TextStyle(color: Colors.black,fontSize:20),),
-            actions: [
-              Icon(Icons.add_circle,color: Colors.black),
-              SizedBox(width: 20),
-              Icon(Icons.add_alert,color: Colors.black)
+    return SafeArea(
+        child: Scaffold(
+      body: NestedScrollView(
+          controller: controller.scrollController,
+          headerSliverBuilder: headerSliverBuilder,
+          body: CustomScrollView(
+            slivers: [
+              SliverList(
+                  delegate: SliverChildListDelegate([_mainList(controller)]))
             ],
-            stretch: true,
-            pinned:  false,
+          )),
+    ));
+  }
 
-            flexibleSpace: Padding(
-              padding: const EdgeInsets.only(top: 16),
-              child: FlexibleSpaceBar(
-                collapseMode: CollapseMode.pin,
-                stretchModes: const [StretchMode.zoomBackground],
-                background: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    //const BackgroundSliver(),
-                    Positioned(
-                      right: 10,
-                      top: (sizeHeight + 20) - controller.valueScroll.value,
-                      child: const Icon(
-                        Icons.favorite,
-                        size: 30,
-                      ),
-                    ),
-                    Positioned(
-                      left: 10,
-                      top: (sizeHeight + 20) - controller.valueScroll.value,
-                      child: const Icon(
-                        Icons.arrow_back,
-                        size: 30,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
+  List<Widget> headerSliverBuilder(
+      BuildContext context, bool innerBoxIsScrolled) {
+    return <Widget>[
+      SliverOverlapAbsorber(
+        handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+        sliver: SliverPersistentHeader(
+          pinned: true,
+          delegate: SliverHeaderDelegateCS(
+            minHeight: sliverMinHeight,
+            maxHeight: sliverMaxHeight,
+            minChild: minTopChild(),
+            maxChild: topChild(),
           ),
-
-          SliverPersistentHeader(
-              pinned: true,
-              delegate: _HeaderSliver(controller: controller)),
-
-          SliverList(
-              delegate: SliverChildListDelegate([
-                FutureBuilder<HomeListModel>(
-                  future: controller.getData(),
-                  builder: (context, snapshot) {
-                    var data = snapshot.data?.home;
-
-                    final popularLocalList = controller.popular;
-                    final recentTravelList = controller.recent;
-                    final categoryTravelList = controller.category;
-                    final friendTravelList = controller.friend;
-
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(
-                          child: CircularProgressIndicator()); //로딩 애니메이션
-                    }
-                    //에러가 발생한 경우 반환되는 부분
-                    if (snapshot.hasError) {
-                      return Center(child: Text('error'));
-                    }
-                    return Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: Column(
-                          children: [
-                            popularList(popularLocalList),
-                            SizedBox(height: 30),
-                            recentList(recentTravelList),
-                            SizedBox(height: 30),
-                            categoryList(categoryTravelList),
-                            SizedBox(height: 30),
-                            friendList(friendTravelList)
-                          ],
-                        ));
-                  },
-                ),
-              ]))
-        ],
+        ),
       ),
-    );
+    ];
+  }
+
+  Widget minTopChild() {
+    return ListItemHeaderSliver(controller: controller);
+  }
+
+  Widget topChild() {
+    return SliverHeaderData(controller:controller);
   }
 }
 
+Widget _mainList(controller) {
+  return Padding(
+    padding: const EdgeInsets.only(top: 25.0),
+    child: FutureBuilder<HomeListModel>(
+      future: controller.getData(),
+      builder: (context, snapshot) {
+        final popularLocalList = controller.popular;
+        final recentTravelList = controller.recent;
+        final categoryTravelList = controller.category;
+        final friendTravelList = controller.friend;
 
-const _maxHeaderExtent = 240.0;
-const _minHeaderExtent = 100.0;
-
-class _HeaderSliver extends SliverPersistentHeaderDelegate {
-  _HeaderSliver({required this.controller});
-
-  final HomeController controller;
-
-
-  @override
-  Widget build(BuildContext context, double shrinkOffset,
-      bool overlapsContent) {
-    final percent = (shrinkOffset-70) / _maxHeaderExtent;
-    // controller.visibleHeader.value = true;
-
-    return Stack(
-      
-      children: [
-        Positioned(
-          bottom: 0,
-          left: 0,
-          right: 0,
-          top: 0- controller.globalOffsetValue.value,
-          child: Container(
-            color: Colors.white,
-            height: _maxHeaderExtent,
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator()); //로딩 애니메이션
+        }
+        if (snapshot.hasError) {
+          return const Center(child: Text('error'));
+        }
+        return Padding(
+            padding: const EdgeInsets.all(10.0),
             child: Column(
               children: [
-                const SizedBox(
-                  height: 3,
-                ),
-                Expanded(
-                  child: AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 400),
-                      child: percent > 0.0
-                          ? ListItemHeaderSliver(controller: controller)
-                          : const SliverHeaderData()),
-                )
+                popularList(popularLocalList),
+                const SizedBox(height: 30),
+                recentList(recentTravelList),
+                const SizedBox(height: 30),
+                categoryList(categoryTravelList),
+                const SizedBox(height: 30),
+                friendList(friendTravelList)
               ],
-            ),
-          ),
-        ),
-        if (percent > 0.1)
-          Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 300),
-                  child: percent > 0.1
-                      ? Container(
-                    height: 0.5,
-                    color: Colors.blue,
-                  )
-                      : null))
-      ],
-    );
+            ));
+      },
+    ),
+  );
+}
+
+class SliverHeaderDelegateCS extends SliverPersistentHeaderDelegate {
+  final double minHeight, maxHeight;
+  final Widget maxChild, minChild;
+
+  SliverHeaderDelegateCS({
+    required this.minHeight,
+    required this.maxHeight,
+    required this.maxChild,
+    required this.minChild,
+  });
+
+  late double visibleMainHeight, animationVal, width;
+
+  @override
+  bool shouldRebuild(SliverHeaderDelegateCS oldDelegate) => true;
+
+  @override
+  double get minExtent => minHeight;
+
+  @override
+  double get maxExtent => max(maxHeight, minHeight);
+
+  double scrollAnimationValue(double shrinkOffset) {
+    double maxScrollAllowed = maxExtent - minExtent;
+
+    return ((maxScrollAllowed - shrinkOffset) / maxScrollAllowed)
+        .clamp(0, 1)
+        .toDouble();
   }
 
   @override
-  double get maxExtent => _maxHeaderExtent;
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    width = MediaQuery.of(context).size.width;
+    visibleMainHeight = max(maxExtent - shrinkOffset, minExtent);
+    animationVal = scrollAnimationValue(shrinkOffset);
 
-  @override
-  double get minExtent => _minHeaderExtent;
+    return Container(
+        height: visibleMainHeight,
+        width: MediaQuery.of(context).size.width,
+        color: Color(0xFFFFFFFF),
+        child: Stack(
+          children: <Widget>[
+            getMinTop(),
+            animationVal != 0 ? getMaxTop() : Container(),
+          ],
+        ));
+  }
 
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
-      false;
+  Widget getMaxTop() {
+    return Positioned(
+      bottom: 0.0,
+      child: Opacity(
+        opacity: animationVal,
+        child: SizedBox(
+          height: maxHeight,
+          width: width,
+          child: maxChild,
+        ),
+      ),
+    );
+  }
+
+  Widget getMinTop() {
+    return Opacity(
+      opacity: 1 - animationVal,
+      child:
+          Container(height: visibleMainHeight, width: width, child: minChild),
+    );
+  }
 }
