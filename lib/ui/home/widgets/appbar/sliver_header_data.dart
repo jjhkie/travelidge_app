@@ -4,9 +4,9 @@ import "package:table_calendar/table_calendar.dart";
 import 'package:travelidge/ui/home/controller/home_controller.dart';
 
 class SliverHeaderData extends StatelessWidget {
-  const SliverHeaderData({Key? key,required this.controller}) : super(key: key);
+  const SliverHeaderData({Key? key, required this.controller})
+      : super(key: key);
   final HomeController controller;
-
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,6 @@ class SliverHeaderData extends StatelessWidget {
           children: [
             /** location ui  & bottom Sheet */
             _locationBox(context),
-
             const SizedBox(width: 10),
 
             /**calendar ui $ bottom Sheet */
@@ -35,6 +34,8 @@ class SliverHeaderData extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 26),
+
+        /** 첫 번째 라인 Toggle Button*/
         Row(
           children: [
             ButtonCustom('현지인 상품', 0xFFFFFFCC, 0xFFFFCC99),
@@ -45,13 +46,14 @@ class SliverHeaderData extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 1),
+
+        /** 두 번째 라인 Toggle Button*/
         SizedBox(
           height: 40,
           child: ListView(
             padding: const EdgeInsets.symmetric(vertical: 8),
             scrollDirection: Axis.horizontal,
             children: <Widget>[
-
               ButtonCustom('전체', 0xFFFFFFCC, 0xFFFFFFCC),
               const SizedBox(width: 10),
               ButtonCustom('액티비티', 0xFFE0E0E0, 0xFF808080),
@@ -72,14 +74,17 @@ class SliverHeaderData extends StatelessWidget {
   }
 
   /** getx  적용 중*/
-  Widget BarCategoryButton(title,color,textColor,bool activation){
+  Widget BarCategoryButton(title, color, textColor, bool activation) {
     return GestureDetector(
       child: Container(
-        decoration: BoxDecoration(color: Colors.grey),
-        child: Text('$title',style: TextStyle(color: activation?Color(color) :  Colors.grey),),
+        decoration: const BoxDecoration(color: Colors.grey),
+        child: Text(
+          '$title',
+          style: TextStyle(color: activation ? Color(color) : Colors.grey),
+        ),
       ),
-      onTap: (){
-        controller.colorChange(activation);
+      onTap: () {
+        //controller.colorChange(activation);
       },
     );
   }
@@ -163,10 +168,15 @@ Widget _locationBox(context) {
                         padding: const EdgeInsets.all(8.0),
                         itemCount: 10,
                         itemBuilder: (BuildContext context, int index) {
-                          return SizedBox(
-                            height: 50,
-                            child: Expanded(
-                              child: Text('목적지 $index'),
+                          return GestureDetector(
+                            onTap: () {
+                              print('$index');
+                            },
+                            child: SizedBox(
+                              height: 50,
+                              child: Expanded(
+                                child: Text('목적지 $index'),
+                              ),
                             ),
                           );
                         },

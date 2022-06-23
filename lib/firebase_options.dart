@@ -50,22 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBheZ3srWRowp0ZqEXBpUBBfR9x0SJVEgk',
-    appId: '1:1023373959658:android:18f56415bf83a458d25293',
-    messagingSenderId: '1023373959658',
-    projectId: 'travel-f87f8',
-    databaseURL: 'https://travel-f87f8-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'travel-f87f8.appspot.com',
+    apiKey: 'AIzaSyCp-iqfQbGUsARqbUdjV7O1DhFe9S9Mzfw',
+    appId: '1:553446182941:android:b61dd7cb642256a99376f4',
+    messagingSenderId: '553446182941',
+    projectId: 'travelidge',
+    storageBucket: 'travelidge.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCbz-QhfBKgm--UaiGU_vctdMsDsVA-Xi4',
-    appId: '1:1023373959658:ios:eceed0e87a2cad4ad25293',
-    messagingSenderId: '1023373959658',
-    projectId: 'travel-f87f8',
-    databaseURL: 'https://travel-f87f8-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'travel-f87f8.appspot.com',
-    iosClientId: '1023373959658-abmhj9gol6ruo0mvarbhrpckkj79kngp.apps.googleusercontent.com',
+    apiKey: 'AIzaSyCiEUbsrS1fb-CIqMl7zJvRzgh38a8KxGo',
+    appId: '1:553446182941:ios:6fc7f5379df0c4c79376f4',
+    messagingSenderId: '553446182941',
+    projectId: 'travelidge',
+    storageBucket: 'travelidge.appspot.com',
+    iosClientId: '553446182941-7djgnfc8s8luiu15ehtquqtecqi4o8to.apps.googleusercontent.com',
     iosBundleId: 'com.kupstuido.travelidge',
   );
 }

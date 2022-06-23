@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelidge/data/model/home_model.dart';
@@ -8,7 +7,6 @@ import 'package:travelidge/ui/home/widgets/appbar/sliver_header_data.dart';
 import 'package:travelidge/ui/home/widgets/appbar/list_item_header_sliver.dart';
 import 'package:travelidge/ui/home/widgets/category_item.dart';
 import 'package:travelidge/ui/home/widgets/friend_item.dart';
-
 import 'package:travelidge/ui/home/widgets/popular_item.dart';
 import 'package:travelidge/ui/home/widgets/recent_item.dart';
 
@@ -56,7 +54,7 @@ class Home extends GetView<HomeController> {
   }
 
   Widget topChild() {
-    return SliverHeaderData(controller:controller);
+    return SliverHeaderData(controller: controller);
   }
 }
 
@@ -135,7 +133,7 @@ class SliverHeaderDelegateCS extends SliverPersistentHeaderDelegate {
     return Container(
         height: visibleMainHeight,
         width: MediaQuery.of(context).size.width,
-        color: Color(0xFFFFFFFF),
+        color: const Color(0xFFFFFFFF),
         child: Stack(
           children: <Widget>[
             getMinTop(),

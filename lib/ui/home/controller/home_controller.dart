@@ -12,26 +12,11 @@ class HomeController extends GetxController {
   var recent = <RecentTravel>[].obs;
   var category = <Category>[].obs;
 
-
-
   @override
   void onInit() {
     super.onInit();
     scrollController = ScrollController();
-    scrollController.addListener(_listenToScrollChange);
-
-    scrollControllerItemHeader = ScrollController();
-
   }
-  void _listenToScrollChange(){
-    if(scrollController.offset < 130){
-      globalOffsetValue.value = scrollController.offset;
-    }else{
-      globalOffsetValue.value = 0;
-    }
-
-  }
-
 
   /**appbar 변수*/
   var startWidth = Get.width; //기기 width
@@ -41,26 +26,13 @@ class HomeController extends GetxController {
   var valueScroll = ValueNotifier<double>(0);
   RxBool visibleHeader = false.obs;
 
-  //삭제
-  late List<double> listOffsetItemHeader = [];
-  late ScrollController scrollControllerItemHeader;
-
-
+  /**json 정보 가져오기*/
   getData() {
     _repository.getHomeData().then((data) {
-      this.popular.value = data.home.popularLocal;
-
-      print('---popular---');
-      print(popular);
-      this.friend.value = data.home.friend;
-      this.recent.value = data.home.recentTravel;
-      this.category.value = data.home.category;
+      popular.value = data.home.popularLocal;
+      friend.value = data.home.friend;
+      recent.value = data.home.recentTravel;
+      category.value = data.home.category;
     });
   }
-
-  void colorChange(activation){
-      activation = !activation;
-  }
-
-
 }

@@ -13,7 +13,9 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
-		B4AEDDFD285C18EB00A1770E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4AEDDFC285C18EB00A1770E /* GoogleService-Info.plist */; };
+		B46012722862A6AA0052D852 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = B46012712862A6AA0052D852 /* Podfile */; };
+		B4AC21AA2861AC7800B2ECEA /* flu.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4AC21A92861AC7800B2ECEA /* flu.plist */; };
+		B4AC21B02861B44300B2ECEA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4AC21AF2861B44300B2ECEA /* GoogleService-Info.plist */; };
 		B4B11575285B219800F46392 /* Debug-dev.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B4B11574285B219800F46392 /* Debug-dev.xcconfig */; };
 		DCBE884CC8854868A09A06EA /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1614FEAED1793BFA77746CB1 /* Pods_Runner.framework */; };
 /* End PBXBuildFile section */
@@ -50,7 +52,9 @@
 		A0AFC6F88F123308143D6F3D /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		A79C27CA48544FCB60B747A8 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 		B1A0EB40F714E200CB1E3CC3 /* Pods-Runner.debug-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug-dev.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug-dev.xcconfig"; sourceTree = "<group>"; };
-		B4AEDDFC285C18EB00A1770E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B46012712862A6AA0052D852 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; path = Podfile; sourceTree = "<group>"; };
+		B4AC21A92861AC7800B2ECEA /* flu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = flu.plist; path = ../../../../../Downloads/flu.plist; sourceTree = "<group>"; };
+		B4AC21AF2861B44300B2ECEA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B4B11573285B1E5500F46392 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Config.xcconfig; path = Flutter/Config.xcconfig; sourceTree = "<group>"; };
 		B4B11574285B219800F46392 /* Debug-dev.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Debug-dev.xcconfig"; path = "Flutter/Debug-dev.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,7 +117,8 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
-				B4AEDDFC285C18EB00A1770E /* GoogleService-Info.plist */,
+				B4AC21AF2861B44300B2ECEA /* GoogleService-Info.plist */,
+				B4AC21A92861AC7800B2ECEA /* flu.plist */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
@@ -129,6 +134,7 @@
 		DC271CD175F926CFA95D8F05 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B46012712862A6AA0052D852 /* Podfile */,
 				1614FEAED1793BFA77746CB1 /* Pods_Runner.framework */,
 			);
 			name = Frameworks;
@@ -198,11 +204,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
+				B4AC21B02861B44300B2ECEA /* GoogleService-Info.plist in Resources */,
+				B46012722862A6AA0052D852 /* Podfile in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				B4B11575285B219800F46392 /* Debug-dev.xcconfig in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
-				B4AEDDFD285C18EB00A1770E /* GoogleService-Info.plist in Resources */,
+				B4AC21AA2861AC7800B2ECEA /* flu.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,7 +392,6 @@
 		};
 		97C147031CF9000F007C117D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4B11574285B219800F46392 /* Debug-dev.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -537,7 +544,6 @@
 		};
 		B4B11576285B21FE00F46392 /* Debug-dev */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4B11574285B219800F46392 /* Debug-dev.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -626,7 +632,7 @@
 				249021D3217E4FDB00AE95B9 /* Profile */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Debug-dev";
+			defaultConfigurationName = Release;
 		};
 		97C147051CF9000F007C117D /* Build configuration list for PBXNativeTarget "Runner" */ = {
 			isa = XCConfigurationList;
@@ -637,7 +643,7 @@
 				249021D4217E4FDB00AE95B9 /* Profile */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Debug-dev";
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

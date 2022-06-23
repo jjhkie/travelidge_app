@@ -63,24 +63,24 @@ android {
 
     }
     //flavorDimensions "default"
-    flavorDimensions "build-type"
+    flavorDimensions "app"
     //구분을 나타낸다.
     //예를 들어 api, mode, version 에 따른 구분
 
     productFlavors {
         dev {
-            resValue "string", "app_name", "dev_trave"
-            //문자열 정의 string.xml 파일에서 문자열을 정의해주는 것과 같다.
-
-            applicationIdSuffix ".dev"
-            //defaultCOnfig에 명시된 applicationId 뒤에 붙어 구분하게 해준다.
-            dimension "build-type"
+            dimension "app"
+            //applicationIdSuffix ".dev" id 뒤에 붙는
+            applicationId "com.kupstuido.travelidge.dev"
+            //buildConfigField 'String', 'Flavor_Name',"Dev"
         }
         prod {
-            resValue "string", "app_name", "prod_trave"
-            dimension "build-type"
+            dimension "app"
+            applicationId "com.kupstuido.travelidge"
+            //buildConfigField 'String', 'Flavor_Name',"Prod"
         }
     }
+
 }
 
 flutter {

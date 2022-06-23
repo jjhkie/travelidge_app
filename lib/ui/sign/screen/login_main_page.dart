@@ -26,7 +26,7 @@ class LoginPage extends GetView<AuthController> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    "Hello",
+                    "dddddfdhdtjtr",
                     style: TextStyle(
                       fontSize: 70,
                       fontWeight: FontWeight.bold,

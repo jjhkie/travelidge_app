@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:travelidge/ui/home/controller/home_controller.dart';
 
 class ListItemHeaderSliver extends StatelessWidget {
-  ListItemHeaderSliver({Key? key, required this.controller}) : super(key: key);
+  const ListItemHeaderSliver({Key? key, required this.controller}) : super(key: key);
   final HomeController controller;
 //  final controller = Get.put(SliverScrollController());
 
