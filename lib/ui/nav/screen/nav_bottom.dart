@@ -15,16 +15,16 @@ class page extends GetView<NavController> {
     return Scaffold(
         body: SafeArea(
           child: Obx((){
-            switch (RoutName.values[controller.currentIndex.value]) {
-              case RoutName.home:
+            switch (RouteName.values[controller.currentIndex.value]) {
+              case RouteName.home:
                 return Home();
-              case RoutName.community:
+              case RouteName.community:
                 return declare();
-              case RoutName.writing:
+              case RouteName.writing:
                 return notice();
-              case RoutName.chat:
+              case RouteName.chat:
                 return writing();
-              case RoutName.user:
+              case RouteName.user:
                 return user();
             }
           }),

@@ -38,6 +38,7 @@ class FlavorApp extends StatelessWidget {
     return GetMaterialApp(
       title: config.appName,
       theme: ThemeData(
+        fontFamily: 'AppleSDGothicNeo',
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),

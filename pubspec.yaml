@@ -68,6 +68,10 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  fonts:
+    - family: AppleSDGothicNeo
+      fonts:
+        - asset: fonts/AppleSDGothicNeoSB.ttf
   # To add assets to your application, add an assets section, like this:
   #assets:
   # - assets/.env_dev
