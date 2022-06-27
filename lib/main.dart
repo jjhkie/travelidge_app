@@ -1,16 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flavor/flavor.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:travelidge/Languages.dart';
 import 'package:travelidge/app_config.dart';
 import 'package:travelidge/binding/init_binding.dart';
 import 'package:travelidge/firebase_options.dart';
 import 'package:travelidge/routes/app_pages.dart';
 import 'package:travelidge/ui/login/controller/auth_controller.dart';
 import 'package:travelidge/routes/app_routes.dart';
-import 'package:travelidge/ui/nav/screen/nav_bottom.dart';
-import 'package:travelidge/ui/sign/screen/login_main_page.dart';
 
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -36,6 +34,9 @@ class FlavorApp extends StatelessWidget {
 
     var config = AppConfig.of(context)!;
     return GetMaterialApp(
+      translations: Languages(),
+      locale: Get.deviceLocale,
+      fallbackLocale: const Locale('ko','KR'),
       title: config.appName,
       theme: ThemeData(
         fontFamily: 'AppleSDGothicNeo',

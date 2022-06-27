@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelidge/ui/nav/controller/nav_controller.dart';
 import 'package:travelidge/ui/chat_list/views/chat_list_view.dart';
-import 'package:travelidge/ui/home/screen/home_page.dart';
+import 'package:travelidge/ui/home/page/home_page.dart';
 import 'package:travelidge/ui/notice/screen/notice_page.dart';
 import 'package:travelidge/ui/user/screen/user_page.dart';
 import 'package:travelidge/ui/write/writing_page.dart';
@@ -31,7 +31,6 @@ class page extends GetView<NavController> {
         ),
         bottomNavigationBar: Obx(()=> BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          //item 이 4개 이상인 경우 추가.
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), label: '탐색'),
             BottomNavigationBarItem(icon: Icon(Icons.notifications_none), label: '커뮤니티'),

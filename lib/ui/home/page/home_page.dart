@@ -11,7 +11,7 @@ import 'package:travelidge/ui/home/components/popular_item.dart';
 import 'package:travelidge/ui/home/components/recent_item.dart';
 
 class Home extends GetView<HomeController> {
-  final double sliverMinHeight = 80.0, sliverMaxHeight = 280.0;
+  final double sliverMinHeight = 60.0, sliverMaxHeight = 280.0;
 
   const Home({Key? key}) : super(key: key);
   @override

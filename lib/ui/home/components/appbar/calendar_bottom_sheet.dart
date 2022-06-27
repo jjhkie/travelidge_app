@@ -18,8 +18,8 @@ class CalendarBottomSheet extends StatelessWidget {
               const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 20),
           child: Column(
             children: [
-              const Center(
-                child: Text('얼마나 여행하세요'),
+              Center(
+                child: Text('calendarBs'.tr),
               ),
               Expanded(
                 child: TableCalendar(
@@ -28,9 +28,9 @@ class CalendarBottomSheet extends StatelessWidget {
                     firstDay: DateTime(2022, 1, 1)),
               ),
               const SizedBox(height: 10),
-              _sheetButton('확인', Colors.grey,Colors.black,Get.back),
+              _sheetButton('CheckOn'.tr, Colors.grey,Colors.black,Get.back),
               const SizedBox(height: 2),
-              _sheetButton('나중에 하기',Colors.white,Colors.grey, Get.back),
+              _sheetButton('Cancel'.tr,Colors.white,Colors.grey, Get.back),
             ],
           ),
         ),

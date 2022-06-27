@@ -10,6 +10,5 @@ void main() {
     child: FlavorApp(),
   );
 
-
   runApp(configuredApp);
 }

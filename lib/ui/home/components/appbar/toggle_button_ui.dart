@@ -28,6 +28,7 @@ Widget categoryFunctionButton(title, color, textColor, int index) {
                 color: controller.selection_1[index].value
                     ? Color(textColor)
                     : const Color(0xFFD3D3D3),
+                fontSize: 16,
                 fontWeight: controller.selection_1[index].value
                     ? FontWeight.w600
                     : FontWeight.normal),
@@ -60,6 +61,7 @@ Widget categoryGenreButton(title, color, textColor, int index) {
                       color: controller.selection_2[index].value
                           ? Color(textColor)
                           : const Color(0xFFD3D3D3),
+                      fontSize: 16,
                       fontWeight: controller.selection_2[index].value
                           ? FontWeight.w600
                           : FontWeight.normal),

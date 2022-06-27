@@ -25,11 +25,7 @@ class HomeController extends GetxController {
   late ScrollController scrollController;//Home scroll controller
 
 
-
-
-
   /** toggle button */
-  //List<RxBool> selections3 = <RxBool>[false,false,true].obs;
   RxList<Rx<bool>> selection_1 = [true.obs, true.obs, true.obs].obs;
   RxList<Rx<bool>> selection_2 = [true.obs, true.obs, true.obs, true.obs, true.obs, true.obs, true.obs].obs;
 
@@ -40,10 +36,6 @@ class HomeController extends GetxController {
   genreToggleChange(index){
     selection_2[index].value = !selection_2[index].value;
   }
-
-
-
-
 
   /**json 정보 가져오기*/
   getData() {
@@ -64,6 +56,7 @@ class HomeController extends GetxController {
       case 'calendar':
         Get.bottomSheet(CalendarBottomSheet());
     }
-
   }
+
+
 }

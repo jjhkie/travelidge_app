@@ -14,12 +14,12 @@ class SliverHeaderData extends StatelessWidget {
       /** Logo & Icon */
       _mainAppbar(),
       const SizedBox(height: 30),
-      const Padding(
+      Padding(
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: Text(
-          "언제 어디로 떠나세요?",
+          'appBarTitle'.tr,
           style: TextStyle(
-              fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
+              fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),
         ),
       ),
       const SizedBox(height: 10),
@@ -41,11 +41,11 @@ class SliverHeaderData extends StatelessWidget {
         padding: const EdgeInsets.only(left: 20),
         child: Row(
           children: [
-            categoryFunctionButton('현지인 상품', 0xFFFFF6CB, 0xFFC38100, 0),
+            categoryFunctionButton('ContentFun_1'.tr, 0xFFFFF6CB, 0xFFC38100, 0),
             const SizedBox(width: 10),
-            categoryFunctionButton('같이가요', 0xFFFAE1FF, 0xFF9B3AAB, 1),
+            categoryFunctionButton('ContentFun_2'.tr, 0xFFFAE1FF, 0xFF9B3AAB, 1),
             const SizedBox(width: 10),
-            categoryFunctionButton('현지인 요청', 0xFFD3ECFF, 0xFF29B3FF, 2)
+            categoryFunctionButton('ContentFun_3'.tr, 0xFFD3ECFF, 0xFF29B3FF, 2)
           ],
         ),
       ),
@@ -59,19 +59,19 @@ class SliverHeaderData extends StatelessWidget {
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: <Widget>[
-              categoryGenreButton('전체', 0xFFD3D3D3, 0xFF000000,0),
+              categoryGenreButton('ContentGen'.tr, 0xFFD3D3D3, 0xFF000000, 0),
               const SizedBox(width: 10),
-              categoryGenreButton('액티비티', 0xFFD3D3D3, 0xFF000000,1),
+              categoryGenreButton('ContentGen_1'.tr, 0xFFD3D3D3, 0xFF000000, 1),
               const SizedBox(width: 10),
-              categoryGenreButton('이색체험', 0xFFD3D3D3, 0xFF000000,2),
+              categoryGenreButton('ContentGen_2'.tr, 0xFFD3D3D3, 0xFF000000, 2),
               const SizedBox(width: 10),
-              categoryGenreButton('박물관/전시', 0xFFD3D3D3, 0xFF000000,3),
+              categoryGenreButton('ContentGen_3'.tr, 0xFFD3D3D3, 0xFF000000, 3),
               const SizedBox(width: 10),
-              categoryGenreButton('맛집', 0xFFD3D3D3, 0xFF000000,4),
+              categoryGenreButton('ContentGen_4'.tr, 0xFFD3D3D3, 0xFF000000, 4),
               const SizedBox(width: 10),
-              categoryGenreButton('맛집', 0xFFD3D3D3, 0xFF000000,5),
+              categoryGenreButton('ContentGen_5'.tr, 0xFFD3D3D3, 0xFF000000, 5),
               const SizedBox(width: 10),
-              categoryGenreButton('맛집', 0xFFD3D3D3, 0xFF000000,6),
+              categoryGenreButton('ContentGen_6'.tr, 0xFFD3D3D3, 0xFF000000, 6),
               const SizedBox(width: 10)
             ],
           ),
@@ -80,8 +80,7 @@ class SliverHeaderData extends StatelessWidget {
     ]);
   }
 
-
-  /** location ui & bottomSheet*/
+  /** location page & bottomSheet*/
   Widget _locationBox(context) {
     return Expanded(
         child: Container(
@@ -94,8 +93,7 @@ class SliverHeaderData extends StatelessWidget {
         },
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          child: Row(children: [
             Expanded(
                 flex: 1,
                 child: Icon(
@@ -111,7 +109,7 @@ class SliverHeaderData extends StatelessWidget {
     ));
   }
 
-  /** Calendar ui & bottomSheet*/
+  /** Calendar page & bottomSheet*/
   Widget _calendarBox(context) {
     return Expanded(
         child: Container(
@@ -151,7 +149,7 @@ Widget _mainAppbar() {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Text('logo', style: TextStyle(color: Colors.black, fontSize: 20)),
+        Text('logo'.tr, style: TextStyle(color: Colors.black, fontSize: 20)),
         Row(
           children: const [
             Icon(Icons.search, color: Colors.black),
