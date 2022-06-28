@@ -28,9 +28,9 @@ class SliverHeaderData extends StatelessWidget {
         child: Row(
           /** location ui  & calendar ui */
           children: [
-            _locationBox(context),
+            _locationBox(),
             const SizedBox(width: 10),
-            _calendarBox(context),
+            _calendarBox(),
           ],
         ),
       ),
@@ -81,7 +81,7 @@ class SliverHeaderData extends StatelessWidget {
   }
 
   /** location page & bottomSheet*/
-  Widget _locationBox(context) {
+  Widget _locationBox() {
     return Expanded(
         child: Container(
       decoration: BoxDecoration(
@@ -101,8 +101,8 @@ class SliverHeaderData extends StatelessWidget {
                   size: 20,
                   color: Colors.grey.withOpacity(0.7),
                 )),
-            const Expanded(
-                flex: 4, child: Text('목적지', style: TextStyle(fontSize: 18)))
+            Expanded(
+                flex: 4, child: Obx(() =>Text(controller.bottomSheetLo.value, style: TextStyle(fontSize: 18))))
           ]),
         ),
       ),
@@ -110,7 +110,7 @@ class SliverHeaderData extends StatelessWidget {
   }
 
   /** Calendar page & bottomSheet*/
-  Widget _calendarBox(context) {
+  Widget _calendarBox() {
     return Expanded(
         child: Container(
       decoration: BoxDecoration(

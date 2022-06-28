@@ -2,9 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:travelidge/ui/home/components/appbar/toggle_button_ui.dart';
 
 class LocationBottomSheet extends StatelessWidget {
-  const LocationBottomSheet({Key? key}) : super(key: key);
+  LocationBottomSheet({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,16 +34,15 @@ class LocationBottomSheet extends StatelessWidget {
               const SizedBox(height: 10),
               Expanded(
                 child: ListView.separated(
-                  //padding: const EdgeInsets.all(8.0),
-                  itemCount: 10,
+                  itemCount: controller.location.length,
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(
                       behavior: HitTestBehavior.translucent,
-                      onTap: Get.back,
+                      onTap: () =>controller.locationClick(index),
                       child: Container(
                         alignment: Alignment.centerLeft,
                           height: 40,
-                          child: Text('목적지 $index')
+                          child: Text(controller.location[index])
                       ),
                     );
                   }, separatorBuilder: (BuildContext context, int index) { return Divider(thickness:1); },

@@ -14,6 +14,28 @@ class HomeController extends GetxController {
   var recent = <RecentTravel>[].obs;
   var category = <Category>[].obs;
 
+  final location = [
+    '서울',
+    '경기도',
+    '강원도',
+    '충청남도',
+    '충청북도',
+    '부산',
+    '대구',
+    '인천',
+    '광주',
+    '대전',
+    '울산',
+    '강원도',
+    '전라남도',
+    '전라북도',
+    '경상북도',
+    '경상남도',
+    '제주도'
+  ];
+  RxString bottomSheetLo = '목적지'.obs;
+
+
   @override
   void onInit() {
     super.onInit();
@@ -22,18 +44,31 @@ class HomeController extends GetxController {
 
   /**appbar 변수*/
   var startWidth = Get.width; //기기 width
-  late ScrollController scrollController;//Home scroll controller
-
+  late ScrollController scrollController; //Home scroll controller
 
   /** toggle button */
   RxList<Rx<bool>> selection_1 = [true.obs, true.obs, true.obs].obs;
-  RxList<Rx<bool>> selection_2 = [true.obs, true.obs, true.obs, true.obs, true.obs, true.obs, true.obs].obs;
+  RxList<Rx<bool>> selection_2 = [
+    true.obs,
+    true.obs,
+    true.obs,
+    true.obs,
+    true.obs,
+    true.obs,
+    true.obs
+  ].obs;
 
-  functionToggleChange(index){
+  /** 목적지 입력*/
+  locationClick(index){
+    bottomSheetLo.value = location[index];
+    Get.back();
+  }
+
+  functionToggleChange(index) {
     selection_1[index].value = !selection_1[index].value;
   }
 
-  genreToggleChange(index){
+  genreToggleChange(index) {
     selection_2[index].value = !selection_2[index].value;
   }
 
@@ -49,7 +84,7 @@ class HomeController extends GetxController {
 
   /**BottomSheet  */
   void BottomSheet(String division) {
-    switch(division){
+    switch (division) {
       case 'location':
         Get.bottomSheet(LocationBottomSheet());
         break;
@@ -57,6 +92,4 @@ class HomeController extends GetxController {
         Get.bottomSheet(CalendarBottomSheet());
     }
   }
-
-
 }
