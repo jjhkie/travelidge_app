@@ -1,22 +1,19 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelidge/data/model/home_model.dart';
 import 'package:travelidge/ui/home/controller/home_controller.dart';
-import 'package:travelidge/ui/home/widgets/appbar/sliver_header_data.dart';
-import 'package:travelidge/ui/home/widgets/appbar/list_item_header_sliver.dart';
-import 'package:travelidge/ui/home/widgets/category_item.dart';
-import 'package:travelidge/ui/home/widgets/friend_item.dart';
-
-import 'package:travelidge/ui/home/widgets/popular_item.dart';
-import 'package:travelidge/ui/home/widgets/recent_item.dart';
+import 'package:travelidge/ui/home/components/appbar/sliver_header_data.dart';
+import 'package:travelidge/ui/home/components/appbar/list_item_header_sliver.dart';
+import 'package:travelidge/ui/home/components/category_item.dart';
+import 'package:travelidge/ui/home/components/friend_item.dart';
+import 'package:travelidge/ui/home/components/popular_item.dart';
+import 'package:travelidge/ui/home/components/recent_item.dart';
 
 class Home extends GetView<HomeController> {
-  final double sliverMinHeight = 80.0, sliverMaxHeight = 260.0;
+  final double sliverMinHeight = 60.0, sliverMaxHeight = 280.0;
 
   const Home({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -27,7 +24,7 @@ class Home extends GetView<HomeController> {
           body: CustomScrollView(
             slivers: [
               SliverList(
-                  delegate: SliverChildListDelegate([_mainList(controller)]))
+                  delegate: SliverChildListDelegate([_homeList(controller)]))
             ],
           )),
     ));
@@ -56,11 +53,11 @@ class Home extends GetView<HomeController> {
   }
 
   Widget topChild() {
-    return SliverHeaderData(controller:controller);
+    return SliverHeaderData(controller: controller);
   }
 }
 
-Widget _mainList(controller) {
+Widget _homeList(controller) {
   return Padding(
     padding: const EdgeInsets.only(top: 25.0),
     child: FutureBuilder<HomeListModel>(
@@ -135,7 +132,7 @@ class SliverHeaderDelegateCS extends SliverPersistentHeaderDelegate {
     return Container(
         height: visibleMainHeight,
         width: MediaQuery.of(context).size.width,
-        color: Color(0xFFFFFFFF),
+        color: const Color(0xFFFFFFFF),
         child: Stack(
           children: <Widget>[
             getMinTop(),

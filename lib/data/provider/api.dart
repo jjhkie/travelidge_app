@@ -6,7 +6,9 @@ import 'dart:convert';
 import 'package:travelidge/data/model/notice.dart';
 import 'package:travelidge/data/model/travel_model.dart';
 
-final base_url = Flavor.I.getString(Keys.apiUrl);
+final base_url = 'http://118.67.131.249';
+
+
 
 class ApiClient {
   /**

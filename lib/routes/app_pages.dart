@@ -4,6 +4,6 @@ import 'package:travelidge/ui/nav/screen/nav_bottom.dart';
 
 class AppPages{
   static final pages = [
-    GetPage(name: Routes.INITIAL, page: () => page())
+    GetPage(name: Routes.INITIAL, page: () => const page())
   ];
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:travelidge/ui/home/widgets/home_common.dart';
+import 'package:travelidge/ui/home/components/home_common.dart';
 
-Widget popularList(data) {
+Widget recentList(data) {
   return Column(
     children: <Widget>[
-      listTitle('지금 인기 지역'),
+      listTitle('최근 등록된 여행'),
       SizedBox(height: 2),
       Container(
         height: 200,
@@ -24,8 +24,10 @@ Widget popularList(data) {
                         Container(
                           child: Column(
                             children: [
-                              Text('${data[index].preTitle}'),
-                              Text('${data[index].postTitle}'),
+                              Text('${data[index].title}'),
+                              Text('${data[index].type}'),
+                              Text(
+                                  '${data[index].partyCount} / ${data[index].partyMaxCount}'),
                             ],
                           ),
                         ),

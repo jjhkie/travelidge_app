@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travelidge/ui/home/widgets/home_common.dart';
+import 'package:travelidge/ui/home/components/home_common.dart';
 
 Widget friendList(data) {
   return Column(

@@ -39,12 +39,12 @@ dependencies:
   cupertino_icons: ^1.0.2
   flavor: ^2.0.0
   get: ^4.6.1
-  firebase_core: ^1.17.0
   firebase_messaging: ^11.4.0
   flutter_local_notifications: ^9.5.3+1
   cloud_firestore: ^3.1.15
   firebase_auth: ^3.3.18
   table_calendar: ^3.0.6
+  firebase_core: ^1.18.0
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +68,11 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+
+  fonts:
+    - family: AppleSDGothicNeo
+      fonts:
+        - asset: fonts/AppleSDGothicNeoSB.ttf
   # To add assets to your application, add an assets section, like this:
   #assets:
   # - assets/.env_dev
