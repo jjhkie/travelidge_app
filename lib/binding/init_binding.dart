@@ -16,7 +16,7 @@ class InitBinding implements Bindings{
   @override
   void dependencies() {
    //Get.put(NavController());
-    Get.put(FcmController());
+    //Get.put(FcmController());
     Get.lazyPut(() => NoticeController(NoticeRepository(ApiClient())));
     Get.lazyPut(() => DeclareController());
     Get.lazyPut(() => ChatListController());

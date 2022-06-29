@@ -27,6 +27,16 @@ void setupApp() async{
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(FlavorApp());
 }
+void main() {
+  var configuredApp = AppConfig(
+    appName: 'Build flavors DEV',
+    flavorName: 'dev',
+    apiBaseUrl: 'http://118.67.131.249',
+    child: FlavorApp(),
+  );
+
+  runApp(configuredApp);
+}
 
 class FlavorApp extends StatelessWidget {
   @override
