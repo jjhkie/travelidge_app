@@ -5,7 +5,7 @@ import 'package:travelidge/ui/chat_list/views/chat_list_view.dart';
 import 'package:travelidge/ui/home/page/home_page.dart';
 import 'package:travelidge/ui/notice/screen/notice_page.dart';
 import 'package:travelidge/ui/user/screen/user_page.dart';
-import 'package:travelidge/ui/write/writing_page.dart';
+import 'package:travelidge/ui/write/page/writing_page.dart';
 
 class page extends GetView<NavController> {
   const page({Key? key}) : super(key: key);

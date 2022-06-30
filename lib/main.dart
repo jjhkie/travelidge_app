@@ -27,6 +27,7 @@ void setupApp() async{
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(FlavorApp());
 }
+
 void main() {
   var configuredApp = AppConfig(
     appName: 'Build flavors DEV',

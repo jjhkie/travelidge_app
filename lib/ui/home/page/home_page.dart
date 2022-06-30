@@ -18,6 +18,9 @@ class Home extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(0), child: AppBar(),
+          ),
       body: NestedScrollView(
           controller: controller.scrollController,
           headerSliverBuilder: headerSliverBuilder,
