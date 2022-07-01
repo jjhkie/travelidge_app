@@ -6,7 +6,7 @@ import 'package:travelidge/ui/write/page/writing_page.dart';
 
 class AppPages{
   static final pages = [
-    GetPage(name: Routes.INITIAL, page: () => const page()),
-    GetPage(name: Routes.WRITING, page: () => writing(),binding:WriteBinding())
+    GetPage(name: Routes.INITIAL, page: () => const Page()),
+    GetPage(name: Routes.WRITING, page: () => const Writing(),binding:WriteBinding())
   ];
 }

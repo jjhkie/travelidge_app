@@ -1,7 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelidge/ui/write/components/destination_bottom_sheet.dart';
 
 class WriteController extends GetxController{
+
+  static WriteController get to => Get.find<WriteController>();
+
   final location = [
     '서울',
     '경기도',
@@ -22,6 +26,12 @@ class WriteController extends GetxController{
     '제주도'
   ];
 
+  //add
+  RxBool writingButton = false.obs;
+
+  var Sc = ScrollController().obs;
+  var deviceHeight = Get.height;
+
   RxString bottomSheetDe = '목적지'.obs;
   RxBool leadTimeDay = true.obs;
   RxBool timeDayConference = false.obs;
@@ -34,6 +44,10 @@ class WriteController extends GetxController{
   destinationClick(index){
     bottomSheetDe.value = location[index];
     Get.back();
+  }
+
+  scrollEvent(){
+
   }
 
   destinationToggle(){

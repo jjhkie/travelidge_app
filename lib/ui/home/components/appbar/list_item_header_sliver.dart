@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:travelidge/palette.dart';
 import 'package:travelidge/ui/home/components/appbar/toggle_button_ui.dart';
 import 'package:travelidge/ui/home/controller/home_controller.dart';
 
@@ -22,23 +23,23 @@ class ListItemHeaderSliver extends StatelessWidget {
               icon: Icon(Icons.keyboard_arrow_down), onPressed: () {  },
             ),
             SizedBox(width:3),
-            hideFunctionButton('SummaryFun_1'.tr, 0xFFFFF6CB,0xFFC38100,0),
+            hideFunctionButton('SummaryFun_1'.tr, Palette.lightYellow,Palette.strongYellow,0),
             SizedBox(width: 4),
-            hideFunctionButton('SummaryFun_2'.tr, 0xFFFAE1FF,0xFF9B3AAB,1),
+            hideFunctionButton('SummaryFun_2'.tr, Palette.lightPurple,Palette.strongPurple,1),
             SizedBox(width: 4),
-            hideFunctionButton('SummaryFun_3'.tr, 0xFFD3ECFF,0xFF29B3FF,2),
+            hideFunctionButton('SummaryFun_3'.tr, Palette.lightBlue,Palette.strongBlue,2),
             SizedBox(width: 12),
-            hideGenreButton('ContentGen_1'.tr, 0xFFD3D3D3,0xFF000000,0),
+            hideGenreButton('ContentGen_1'.tr, Palette.lightGrey,Palette.black,0),
             SizedBox(width: 4),
-            hideGenreButton('ContentGen_2'.tr, 0xFFD3D3D3,0xFF000000,1),
+            hideGenreButton('ContentGen_2'.tr, Palette.lightGrey,Palette.black,1),
             SizedBox(width: 4),
-            hideGenreButton('ContentGen_3'.tr,0xFFD3D3D3,0xFF000000,2),
+            hideGenreButton('ContentGen_3'.tr,Palette.lightGrey,Palette.black,2),
             SizedBox(width: 4),
-            hideGenreButton('ContentGen_4'.tr, 0xFFD3D3D3,0xFF000000,3),
+            hideGenreButton('ContentGen_4'.tr, Palette.lightGrey,Palette.black,3),
             SizedBox(width: 4),
-            hideGenreButton('ContentGen_5'.tr, 0xFFD3D3D3,0xFF000000,4),
+            hideGenreButton('ContentGen_5'.tr, Palette.lightGrey,Palette.black,4),
             SizedBox(width: 4),
-            hideGenreButton('ContentGen_6'.tr, 0xFFD3D3D3,0xFF000000,5),
+            hideGenreButton('ContentGen_6'.tr, Palette.lightGrey,Palette.black,5),
             SizedBox(width: 3),
           ],
 

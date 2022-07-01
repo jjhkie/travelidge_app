@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelidge/data/provider/api.dart';
 import 'package:travelidge/data/repository/home_repository.dart';
+import 'package:travelidge/palette.dart';
 import 'package:travelidge/ui/home/controller/home_controller.dart';
 
 final c = Get.put(HomeController(HomeRepository(ApiClient())));
@@ -12,20 +13,14 @@ FunctionButton(title, color, textColor, int index) {
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
               width: 1.0,
-              color: c.selection_1[index].value
-                  ? Color(color)
-                  : Color(0xFFD3D3D3)),
-          color: c.selection_1[index].value
-              ? Color(color)
-              : Colors.white),
+              color: c.selection_1[index].value ? color : Palette.lightGrey),
+          color: c.selection_1[index].value ? color : Palette.white),
       child: Padding(
         padding: const EdgeInsets.all(5.0),
         child: Text(
           '$title',
           style: TextStyle(
-              color: c.selection_1[index].value
-                  ? Color(textColor)
-                  : const Color(0xFFD3D3D3),
+              color: c.selection_1[index].value ? textColor : Palette.lightGrey,
               fontSize: 16,
               fontWeight: c.selection_1[index].value
                   ? FontWeight.w600
@@ -41,15 +36,26 @@ listGenreButton(title, color, textColor, int index) {
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
                 width: 1.0,
-                color: c.sectionAll.value?Color(color):c.selection_2[index].value?Color(color):Color(0xFFD3D3D3)),
-            color: c.sectionAll.value?Color(color):c.selection_2[index].value?Color(color):Colors.white),
+                color: c.sectionAll.value
+                    ? color
+                    : c.selection_2[index].value
+                        ? color
+                        : Palette.lightGrey),
+            color: c.sectionAll.value
+                ? color
+                : c.selection_2[index].value
+                    ? color
+                    : Palette.white),
         child: Padding(
           padding: const EdgeInsets.all(5.0),
           child: Text(
             '$title',
             style: TextStyle(
-                color:
-                c.sectionAll.value?Color(textColor):c.selection_2[index].value?Color(textColor):Color(0xFFD3D3D3),
+                color: c.sectionAll.value
+                    ? textColor
+                    : c.selection_2[index].value
+                        ? textColor
+                        : Palette.lightGrey,
                 fontSize: 16,
                 fontWeight: c.selection_2[index].value
                     ? FontWeight.w600
@@ -66,14 +72,15 @@ GenreButton(title, color, textColor, int index) {
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
                 width: 1.0,
-                color: c.selection_2[index].value?Color(color):Color(0xFFD3D3D3)),
-            color: c.selection_2[index].value?Color(color):Colors.white),
+                color: c.selection_2[index].value ? color : Palette.lightGrey),
+            color: c.selection_2[index].value ? color : Palette.white),
         child: Padding(
           padding: const EdgeInsets.all(5.0),
           child: Text(
             '$title',
             style: TextStyle(
-                color: c.selection_2[index].value?Color(textColor):Color(0xFFD3D3D3),
+                color:
+                    c.selection_2[index].value ? textColor : Palette.lightGrey,
                 fontSize: 16,
                 fontWeight: c.selection_2[index].value
                     ? FontWeight.w600
@@ -101,7 +108,7 @@ Widget hideGenreButton(title, color, textColor, int index) {
   );
 }
 
-Widget categoryFunctionButton(title, color, textColor, int index) {
+Widget categoryFunctionButton(title, Color color, Color textColor, int index) {
   return InkWell(
       onTap: () => c.functionToggleChange(index),
       child: Obx(() => FunctionButton(title, color, textColor, index)));
@@ -123,20 +130,14 @@ Widget allGenreButton(title, color, textColor) {
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
                       width: 1.0,
-                      color: c.sectionAll.value
-                          ? Color(color)
-                          : Color(0xFFD3D3D3)),
-                  color: c.sectionAll.value
-                      ? Color(color)
-                      : Colors.white),
+                      color: c.sectionAll.value ? color : Palette.lightGrey),
+                  color: c.sectionAll.value ? color : Palette.white),
               child: Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: Text(
                   '$title',
                   style: TextStyle(
-                      color: c.sectionAll.value
-                          ? Color(textColor)
-                          : const Color(0xFFD3D3D3),
+                      color: c.sectionAll.value ? textColor : Palette.lightGrey,
                       fontSize: 16,
                       fontWeight: c.sectionAll.value
                           ? FontWeight.w600

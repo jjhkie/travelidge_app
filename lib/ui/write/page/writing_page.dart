@@ -4,13 +4,15 @@ import 'package:travelidge/ui/write/components/bottom_fixed_sheet.dart';
 import 'package:travelidge/ui/write/components/category_page.dart';
 import 'package:travelidge/ui/write/controller/write_controller.dart';
 
-class writing extends GetView<WriteController> {
+class Writing extends GetView<WriteController> {
+  const Writing({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: AppBar(),
         body: SingleChildScrollView(
+          //physics: const NeverScrollableScrollPhysics(),
           scrollDirection: Axis.vertical,
           child: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -28,7 +30,7 @@ class writing extends GetView<WriteController> {
             ),
           ),
         ),
-        bottomSheet: bottomFixedSheet(size));
+        bottomSheet: bottomFixedSheet());
   }
 
 
