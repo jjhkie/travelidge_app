@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 import 'package:travelidge/ui/write/controller/write_controller.dart';
 
 
-class BottomSheetDestination extends StatelessWidget {
-  const BottomSheetDestination({Key? key}) : super(key: key);
+class DestinationBottomSheet extends StatelessWidget {
+  const DestinationBottomSheet({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

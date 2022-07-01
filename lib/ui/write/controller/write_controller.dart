@@ -1,8 +1,5 @@
-
-
-
 import 'package:get/get.dart';
-import 'package:travelidge/ui/write/components/bottom_sheet_destination.dart';
+import 'package:travelidge/ui/write/components/destination_bottom_sheet.dart';
 
 class WriteController extends GetxController{
   final location = [
@@ -27,9 +24,12 @@ class WriteController extends GetxController{
 
   RxString bottomSheetDe = '목적지'.obs;
   RxBool leadTimeDay = true.obs;
-  RxBool conference = false.obs;
+  RxBool timeDayConference = false.obs;
 
   RxInt maxPeople = 1.obs;
+
+  RxBool priceChoice = true.obs;
+  RxBool priceConference = false.obs;
 
   destinationClick(index){
     bottomSheetDe.value = location[index];
@@ -37,7 +37,7 @@ class WriteController extends GetxController{
   }
 
   destinationToggle(){
-    Get.bottomSheet(BottomSheetDestination());
+    Get.bottomSheet(DestinationBottomSheet());
   }
 
   leadTimeToggle(String TD){
@@ -48,9 +48,8 @@ class WriteController extends GetxController{
     }
   }
 
-   conferenceToggle(){
-    conference.value = !conference.value;
-    print(conference.value);
+  timeDayConferenceToggle(){
+     timeDayConference.value = !timeDayConference.value;
   }
 
   peopleAdd(){
@@ -61,7 +60,19 @@ class WriteController extends GetxController{
     if(maxPeople>1){
       maxPeople--;
     }
+  }
 
+  priceConferenceToggle(){
+    priceConference.value = !priceConference.value;
+  }
+
+  priceToggle(String Pr){
+    if(Pr =='free'&&priceChoice==false){
+      priceChoice.value = !priceChoice.value;
+      priceConference.value = false;
+    }else if(Pr =='pay'&& priceChoice==true){
+      priceChoice.value = !priceChoice.value;
+    }
   }
 
 }

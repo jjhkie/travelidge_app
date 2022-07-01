@@ -19,12 +19,12 @@ class InitBinding implements Bindings{
    //Get.put(NavController());
     //Get.put(FcmController());
     Get.lazyPut(() => NoticeController(NoticeRepository(ApiClient())));
-    Get.lazyPut(() => DeclareController());
-    Get.lazyPut(() => ChatListController());
+    //Get.lazyPut(() => DeclareController());
+    //Get.lazyPut(() => ChatListController());
     Get.lazyPut(() => NavController());
-    Get.lazyPut(() => WriteController());
+    //Get.lazyPut(() => WriteController());
     Get.lazyPut(() => HomeController(HomeRepository(ApiClient())));
-    Get.lazyPut(() => InfiniteScrollController(UserRepository(ApiClient())));
+    //Get.lazyPut(() => InfiniteScrollController(UserRepository(ApiClient())));
   }
 
 }

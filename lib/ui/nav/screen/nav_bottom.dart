@@ -19,13 +19,13 @@ class page extends GetView<NavController> {
               case RouteName.home:
                 return Home();
               case RouteName.community:
-                return declare();
+                return Container();
               case RouteName.writing:
                 return notice();
               case RouteName.chat:
                 return writing();
               case RouteName.user:
-                return user();
+                return Container();
             }
           }),
         ),

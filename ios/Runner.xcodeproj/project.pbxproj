@@ -17,6 +17,7 @@
 		B46012722862A6AA0052D852 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = B46012712862A6AA0052D852 /* Podfile */; };
 		B4AC21AA2861AC7800B2ECEA /* flu.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4AC21A92861AC7800B2ECEA /* flu.plist */; };
 		B4AC21B02861B44300B2ECEA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4AC21AF2861B44300B2ECEA /* GoogleService-Info.plist */; };
+		B4DB73EA286E74D900092EC9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4DB73E9286E74D900092EC9 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -56,6 +57,7 @@
 		B4AC21AF2861B44300B2ECEA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B4B11573285B1E5500F46392 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Config.xcconfig; path = Flutter/Config.xcconfig; sourceTree = "<group>"; };
 		B4B11574285B219800F46392 /* Debug-dev.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Debug-dev.xcconfig"; path = "Flutter/Debug-dev.xcconfig"; sourceTree = "<group>"; };
+		B4DB73E9286E74D900092EC9 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4DB73EA286E74D900092EC9 /* WebKit.framework in Frameworks */,
 				17C87895E901AA3EE81F5582 /* Pods_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -133,6 +136,7 @@
 		DC271CD175F926CFA95D8F05 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B4DB73E9286E74D900092EC9 /* WebKit.framework */,
 				B46012712862A6AA0052D852 /* Podfile */,
 				1614FEAED1793BFA77746CB1 /* Pods_Runner.framework */,
 			);
@@ -153,7 +157,6 @@
 				97C146EC1CF9000F007C117D /* Resources */,
 				9705A1C41CF9048500538489 /* Embed Frameworks */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
-				E0353724002F7AC4314B08AC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -263,23 +266,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E0353724002F7AC4314B08AC /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
