@@ -47,16 +47,18 @@ class HomeController extends GetxController {
   late ScrollController scrollController; //Home scroll controller
 
   /** toggle button */
+  RxBool sectionAll = true.obs;
   RxList<Rx<bool>> selection_1 = [true.obs, true.obs, true.obs].obs;
-  RxList<Rx<bool>> selection_2 = [
-    true.obs,
-    true.obs,
-    true.obs,
-    true.obs,
-    true.obs,
-    true.obs,
-    true.obs
-  ].obs;
+  RxList<Rx<bool>> selection_2 = List.generate(6, (index) => false.obs).obs;
+
+  // RxList<Rx<bool>> selection_2 = [
+  //   false.obs,
+  //   false.obs,
+  //   false.obs,
+  //   false.obs,
+  //   false.obs,
+  //   false.obs
+  // ].obs;
 
   /** 목적지 입력*/
   locationClick(index){
@@ -64,12 +66,46 @@ class HomeController extends GetxController {
     Get.back();
   }
 
+  /** 기능별 카테고리 버튼 이벤트*/
   functionToggleChange(index) {
-    selection_1[index].value = !selection_1[index].value;
+    if(selection_1[index].value == true && selection_1.where((i) => i == true.obs).length ==1){
+      snackBarEvent();
+    }else{
+      selection_1[index].value = !selection_1[index].value;
+    }
   }
 
+  /** 장르별 카테고리 버튼 이벤트*/
   genreToggleChange(index) {
-    selection_2[index].value = !selection_2[index].value;
+    if(sectionAll.value == true){
+      sectionAll.value = false;
+      selection_2[index].value = !selection_2[index].value;
+    }else{
+      if(selection_2[index].value == true && selection_2.where((i) => i == true.obs).length ==1){
+        snackBarEvent();
+      }else{
+        selection_2[index].value = !selection_2[index].value;
+      }
+
+    }
+  }
+
+  /** 스낵바 이벤트*/
+  void snackBarEvent(){
+    Get.snackbar( 'Error',
+      '하나는 선택해야합니다.',
+      snackPosition: SnackPosition.BOTTOM,
+      forwardAnimationCurve: Curves.elasticInOut,
+      reverseAnimationCurve: Curves.easeOut,);
+  }
+
+
+  /** 전체 버튼 이벤트*/
+  allToggleButton(){
+    if(sectionAll.value ==false){
+      selection_2.value = List.generate(6, (index) => false.obs).obs;
+      sectionAll.value = true;
+    }
   }
 
   /**json 정보 가져오기*/
@@ -92,4 +128,5 @@ class HomeController extends GetxController {
         Get.bottomSheet(CalendarBottomSheet());
     }
   }
+
 }

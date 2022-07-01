@@ -9,6 +9,5 @@ void main() {
     apiBaseUrl: 'http://118.67.131.249',
     child: FlavorApp(),
   );
-  setupApp();
   runApp(configuredApp);
 }

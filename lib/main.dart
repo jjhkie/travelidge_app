@@ -1,5 +1,4 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelidge/Languages.dart';
@@ -11,21 +10,31 @@ import 'package:travelidge/ui/login/controller/auth_controller.dart';
 import 'package:travelidge/routes/app_routes.dart';
 
 
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
-}
+// Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+//   await Firebase.initializeApp();
+// }
+//
+// void setupApp() async{
+//   WidgetsFlutterBinding.ensureInitialized();
+//   //runApp으로 앱이 실행되기 전에 비동기로 지연이 되더라도 오류가 발생하지 않도록 하는 역할
+//   //await Firebase.initializeApp().then((v)=> Get.put(AuthController()));
+//   await Firebase.initializeApp(
+//     options: DefaultFirebaseOptions.currentPlatform,
+//   );
+//   Get.put(AuthController());
+//   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+//   runApp(FlavorApp());
+// }
 
-void setupApp() async{
-
-  WidgetsFlutterBinding.ensureInitialized();
-  //runApp으로 앱이 실행되기 전에 비동기로 지연이 되더라도 오류가 발생하지 않도록 하는 역할
-  //await Firebase.initializeApp().then((v)=> Get.put(AuthController()));
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+void main() {
+  var configuredApp = AppConfig(
+    appName: 'Build flavors DEV',
+    flavorName: 'dev',
+    apiBaseUrl: 'http://118.67.131.249',
+    child: FlavorApp(),
   );
-  Get.put(AuthController());
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  runApp(FlavorApp());
+
+  runApp(configuredApp);
 }
 
 class FlavorApp extends StatelessWidget {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:travelidge/palette.dart';
 import 'package:travelidge/ui/home/components/appbar/toggle_button_ui.dart';
 import 'package:travelidge/ui/home/controller/home_controller.dart';
 
@@ -41,11 +42,11 @@ class SliverHeaderData extends StatelessWidget {
         padding: const EdgeInsets.only(left: 20),
         child: Row(
           children: [
-            categoryFunctionButton('ContentFun_1'.tr, 0xFFFFF6CB, 0xFFC38100, 0),
+            categoryFunctionButton('ContentFun_1'.tr, Palette.lightYellow, Palette.strongYellow, 0),
             const SizedBox(width: 10),
-            categoryFunctionButton('ContentFun_2'.tr, 0xFFFAE1FF, 0xFF9B3AAB, 1),
+            categoryFunctionButton('ContentFun_2'.tr, Palette.lightPurple, Palette.strongPurple, 1),
             const SizedBox(width: 10),
-            categoryFunctionButton('ContentFun_3'.tr, 0xFFD3ECFF, 0xFF29B3FF, 2)
+            categoryFunctionButton('ContentFun_3'.tr, Palette.lightBlue, Palette.strongBlue, 2)
           ],
         ),
       ),
@@ -59,19 +60,19 @@ class SliverHeaderData extends StatelessWidget {
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: <Widget>[
-              categoryGenreButton('ContentGen'.tr, 0xFFD3D3D3, 0xFF000000, 0),
+              allGenreButton('ContentGen'.tr, Palette.lightGrey, Palette.black),
               const SizedBox(width: 10),
-              categoryGenreButton('ContentGen_1'.tr, 0xFFD3D3D3, 0xFF000000, 1),
+              categoryGenreButton('ContentGen_1'.tr, Palette.lightGrey, Palette.black, 0),
               const SizedBox(width: 10),
-              categoryGenreButton('ContentGen_2'.tr, 0xFFD3D3D3, 0xFF000000, 2),
+              categoryGenreButton('ContentGen_2'.tr, Palette.lightGrey, Palette.black, 1),
               const SizedBox(width: 10),
-              categoryGenreButton('ContentGen_3'.tr, 0xFFD3D3D3, 0xFF000000, 3),
+              categoryGenreButton('ContentGen_3'.tr, Palette.lightGrey, Palette.black, 2),
               const SizedBox(width: 10),
-              categoryGenreButton('ContentGen_4'.tr, 0xFFD3D3D3, 0xFF000000, 4),
+              categoryGenreButton('ContentGen_4'.tr, Palette.lightGrey, Palette.black, 3),
               const SizedBox(width: 10),
-              categoryGenreButton('ContentGen_5'.tr, 0xFFD3D3D3, 0xFF000000, 5),
+              categoryGenreButton('ContentGen_5'.tr, Palette.lightGrey, Palette.black, 4),
               const SizedBox(width: 10),
-              categoryGenreButton('ContentGen_6'.tr, 0xFFD3D3D3, 0xFF000000, 6),
+              categoryGenreButton('ContentGen_6'.tr, Palette.lightGrey, Palette.black, 5),
               const SizedBox(width: 10)
             ],
           ),

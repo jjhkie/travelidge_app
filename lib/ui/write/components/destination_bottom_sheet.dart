@@ -1,11 +1,13 @@
 
 
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:travelidge/ui/home/components/appbar/toggle_button_ui.dart';
+import 'package:travelidge/ui/write/controller/write_controller.dart';
 
-class LocationBottomSheet extends StatelessWidget {
-  LocationBottomSheet({Key? key}) : super(key: key);
+
+class DestinationBottomSheet extends StatelessWidget {
+  const DestinationBottomSheet({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,29 +36,21 @@ class LocationBottomSheet extends StatelessWidget {
               const SizedBox(height: 10),
               Expanded(
                 child: ListView.separated(
-                  itemCount: c.location.length,
+                  itemCount: Get.find<WriteController>().location.length,
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(
                       behavior: HitTestBehavior.translucent,
-                      onTap: () =>c.locationClick(index),
+                      onTap: () =>Get.find<WriteController>().destinationClick(index),
                       child: Container(
-                        alignment: Alignment.centerLeft,
+                          alignment: Alignment.centerLeft,
                           height: 40,
-                          child: Text(c.location[index])
+                          child: Text(Get.find<WriteController>().location[index])
                       ),
                     );
                   }, separatorBuilder: (BuildContext context, int index) { return Divider(thickness:1); },
                 ),
               ),
               const SizedBox(height: 10),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30)),
-                      primary: Colors.black,
-                      minimumSize: const Size.fromHeight(50)),
-                  onPressed: Get.back,
-                  child: Text('CheckOn'.tr)),
             ],
           ),
         ),
