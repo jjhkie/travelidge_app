@@ -1,13 +1,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:travelidge/Languages.dart';
+import 'package:travelidge/app/translations/languages.dart';
+import 'package:travelidge/app/binding/init_binding.dart';
+import 'package:travelidge/app/routes/app_pages.dart';
+import 'package:travelidge/app/routes/app_routes.dart';
 import 'package:travelidge/app_config.dart';
-import 'package:travelidge/binding/init_binding.dart';
-import 'package:travelidge/firebase_options.dart';
-import 'package:travelidge/routes/app_pages.dart';
-import 'package:travelidge/ui/login/controller/auth_controller.dart';
-import 'package:travelidge/routes/app_routes.dart';
 
 
 // Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
