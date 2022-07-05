@@ -32,7 +32,7 @@ class Languages extends Translations {
           //writing
           'category_t':'카테고리',
           'category_content':'하나만 고를 수 있어요',
-          'title_t':'제목',
+          'title_t':'어떤 여행인가요?',
           'title_hint_text':'여행명을 입력하세요',
           'destination_t':'목적지',
           'maximum_people_title':'스케줄당 최대 모집 인원',

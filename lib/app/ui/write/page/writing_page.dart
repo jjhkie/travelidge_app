@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelidge/app/ui/write/components/bottom_fixed_sheet.dart';
-import 'package:travelidge/app/ui/write/components/category_page.dart';
+import 'package:travelidge/app/ui/write/components/write_calendar_page.dart';
+import 'package:travelidge/app/ui/write/components/write_category_page.dart';
 import 'package:travelidge/app/ui/write/components/write_content_page.dart';
 import 'package:travelidge/app/ui/write/components/write_destination_page.dart';
 import 'package:travelidge/app/ui/write/components/write_leadtimeday_page.dart';
@@ -13,39 +14,38 @@ import 'package:travelidge/app/ui/write/controller/write_controller.dart';
 class Writing extends GetView<WriteController> {
   Writing({Key? key}) : super(key: key);
 
-  final dataKey = GlobalKey();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: SingleChildScrollView(
-        controller: controller.Sc.value,
-        physics: const NeverScrollableScrollPhysics(),
-        scrollDirection: Axis.vertical,
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              categoryPage(), //카테고리
-              SizedBox(key:dataKey),
-              titlePage(), //제목
-              destinationPage(), //목적지
-              leadTimeDayPage(),
-              maximumPeople(),
-              pricePage(),
-              contentPage()
-            ],
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(40),
+          child: Container(
+            decoration: BoxDecoration(color: Colors.white),
           ),
         ),
-      ),
-      bottomNavigationBar: ElevatedButton(
-
-        onPressed: () => Scrollable.ensureVisible(dataKey.currentContext!),
-        child: new Text("Scroll to data"),
-      ),
-    );
-    //bottomSheet: bottomFixedSheet());
+        body: Obx(() => SingleChildScrollView(
+              controller: controller.autoController,
+              physics: controller.scrollType.value
+                  ? null
+                  : NeverScrollableScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    writeCategoryPage(0, controller.contextHeight), //카테고리
+                    titlePage(1, controller.contextHeight), //제목
+                    destinationPage(2, controller.contextHeight), //목적지
+                    calendarPage(3, controller.contextHeight),
+                    leadTimeDayPage(4, controller.contextHeight),
+                    maximumPeople(5, controller.contextHeight),
+                    pricePage(6, controller.contextHeight),
+                    contentPage(7, controller.contextHeight)
+                  ],
+                ),
+              ),
+            )),
+        bottomSheet: bottomFixedSheet());
   }
 }

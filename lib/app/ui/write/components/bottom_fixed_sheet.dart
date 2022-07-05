@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:travelidge/app/translations/palette.dart';
 import 'package:travelidge/app/ui/write/controller/write_controller.dart';
 
@@ -11,15 +12,15 @@ Widget bottomFixedSheet() {
       color: Color(0xff9E9E9E),
       width: 1.0,
     ))),
-    child: Padding(
+    child: Obx(() => Padding(
         padding: EdgeInsets.only(
             top: (WriteController.to.deviceHeight * 0.02),
             left: 20,
             right: 20,
             bottom: 30),
-        child: WriteController.to.writingButton.value
+        child: WriteController.to.scrollType.value
             ? registerButton()
-            : nextButton()),
+            : nextButton())),
   );
 }
 
@@ -56,7 +57,7 @@ nextButton() {
     children: [
       Expanded(
         child: GestureDetector(
-          onTap: () =>WriteController.to.moveScroll(),
+          onTap: () => WriteController.to.nextCounter(),
           child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
