@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:travelidge/app/binding/write_binding.dart';
 import 'package:travelidge/app/routes/app_routes.dart';
-import 'package:travelidge/app/ui/pages/nav/screen/nav_bottom.dart';
+import 'package:travelidge/app/ui/pages/nav/page/nav_bottom.dart';
 import 'package:travelidge/app/ui/pages/write/page/writing_page.dart';
 
 

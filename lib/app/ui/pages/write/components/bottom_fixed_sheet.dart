@@ -6,6 +6,7 @@ import 'package:travelidge/app/ui/theme/app_colors.dart';
 /**Bottom 고정 화면 */
 Widget bottomFixedSheet() {
   return Container(
+    key: WriteController.to.bottomKey,
     decoration: BoxDecoration(
         border: Border(
             top: BorderSide(
@@ -14,13 +15,14 @@ Widget bottomFixedSheet() {
     ))),
     child: Obx(() => Padding(
         padding: EdgeInsets.only(
-            top: (WriteController.to.deviceHeight * 0.02),
+            top: 10,
             left: 20,
             right: 20,
-            bottom: 30),
+        bottom:10),
         child: WriteController.to.scrollType.value
             ? registerButton()
             : nextButton())),
+    height: 60,
   );
 }
 

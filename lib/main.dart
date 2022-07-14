@@ -8,6 +8,16 @@ import 'package:travelidge/app/routes/app_routes.dart';
 import 'package:travelidge/app/ui/theme/app_theme.dart';
 import 'package:travelidge/app_config.dart';
 
+void main() {
+  var configuredApp = AppConfig(
+    appName: 'Build flavors DEV',
+    flavorName: 'dev',
+    apiBaseUrl: 'http://118.67.131.249',
+    child: FlavorApp(),
+  );
+
+  runApp(configuredApp);
+}
 
 
 class FlavorApp extends StatelessWidget {
