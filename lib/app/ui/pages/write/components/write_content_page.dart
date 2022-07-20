@@ -12,7 +12,9 @@ Widget contentPage(int index) {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text('content_title'.tr,style:TextStyle(fontSize: 20)),
+        SizedBox(height: 8),
         Text('content_subtitle'.tr,style:TextStyle(color: Colors.grey)),
+        SizedBox(height: 20),
         TextField(
           decoration: InputDecoration(
               hintText: 'content_hint_text'.tr,

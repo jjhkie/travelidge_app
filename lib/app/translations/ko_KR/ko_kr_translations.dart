@@ -16,6 +16,7 @@ final Map<String, String> koKR = {
   'SummaryFun_3': '요청',
 
   'ContentGen': '전체',
+  'ContentGen_0': '문화/공연',
   'ContentGen_1': '액티비티',
   'ContentGen_2': '박물관/전시회',
   'ContentGen_3': '이색체험',
@@ -23,7 +24,7 @@ final Map<String, String> koKR = {
   'ContentGen_5': '관광',
   'ContentGen_6': '자연/휴식',
   //writing
-  'category_t': '카테고리',
+  'category_t': '어떤 여행인가요?',
   'category_content': '하나만 고를 수 있어요',
   'title_t': '어떤 여행인가요?',
   'title_hint_text': '여행명을 입력하세요',
@@ -36,7 +37,7 @@ final Map<String, String> koKR = {
   'content_title': '여행 내용',
   'content_subtitle': '방문장소와 체험내용 등 최대한 구체적으로 계획을 알려주세요',
   'content_hint_text': '방문장소와 체험내용 등 최대한 구체적으로 계획을 알려주세요',
-  'lead_t': '상품 소요시간',
+  'lead_t': '상품의 체험시간을 알려주세요',
   'lead_time': '시간',
   'lead_day': '1박 이상',
   //Common

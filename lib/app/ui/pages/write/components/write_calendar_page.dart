@@ -5,11 +5,13 @@ Widget calendarPage(int index) {
   return wrapScrollTag(
       index: index,
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Text("달력 위젯 생성 자리"),
+        Text("여행 일정을 알려주세요"),
+        SizedBox(height: 12),
         SizedBox(
             height: 200,
             width: 200,
             child: Placeholder(
+              key: controller.positionKey[index],
               color: Colors.black,
             ))
       ]));

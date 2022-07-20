@@ -12,7 +12,9 @@ Widget pricePage(int index) {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text('price_title'.tr, style: TextStyle(fontSize: 20)),
+        SizedBox(height: 12),
         Row(
+          key: controller.positionKey[index],
           children: [
             GestureDetector(
                 onTap: () => WriteController.to.priceToggle('free'),
@@ -27,6 +29,7 @@ Widget pricePage(int index) {
                         Border.all(width: 0.5, color: Colors.grey),
                         borderRadius: BorderRadius.circular(20)),
                     child: Text('price_free'.tr))),
+            SizedBox(width:10),
             GestureDetector(
                 onTap: () => WriteController.to.priceToggle('pay'),
                 child: Container(
@@ -42,6 +45,7 @@ Widget pricePage(int index) {
                     child: Text('price_pay'.tr))),
           ],
         ),
+        SizedBox(height: 28),
         WriteController.to.priceChoice.value ? Container() : payPage()
       ],
     ),
@@ -52,16 +56,19 @@ Widget pricePage(int index) {
 payPage() {
   return Column(
     children: [
-      TextField(
-        keyboardType: TextInputType.number,
-        decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular((15)),
-            ),
-            suffixText: '원',
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey, width: 0.5),
-                borderRadius: BorderRadius.circular(15))),
+      SizedBox(
+        height: 50,
+        child: TextField(
+          keyboardType: TextInputType.number,
+          decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular((15)),
+              ),
+              suffixText: '원',
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey, width: 0.5),
+                  borderRadius: BorderRadius.circular(15))),
+        ),
       ),
       Row(
         children: [

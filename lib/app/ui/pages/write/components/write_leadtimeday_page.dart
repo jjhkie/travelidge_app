@@ -12,6 +12,7 @@ Widget leadTimeDayPage(int index) {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text('lead_t'.tr, style: TextStyle(fontSize: 20)),
+                SizedBox(height: 11),
                 Row(children: [
                   GestureDetector(
                       onTap: () => WriteController.to.leadTimeToggle('time'),
@@ -26,6 +27,7 @@ Widget leadTimeDayPage(int index) {
                                   Border.all(width: 0.5, color: Colors.grey),
                               borderRadius: BorderRadius.circular(20)),
                           child: Text('lead_time'.tr))),
+                  SizedBox(width: 12),
                   GestureDetector(
                       onTap: () => WriteController.to.leadTimeToggle('day'),
                       child: Container(
@@ -40,9 +42,11 @@ Widget leadTimeDayPage(int index) {
                               borderRadius: BorderRadius.circular(20)),
                           child: Text('lead_day'.tr))),
                 ]),
+                SizedBox(height: 23),
                 WriteController.to.leadTimeDay.value ? leadTime() : leadDay(),
                 Row(children: [
                   Checkbox(
+                      key: controller.positionKey[index],
                       value: WriteController.to.timeDayConference.value,
                       onChanged: (_) =>
                           WriteController.to.timeDayConferenceToggle()),
@@ -54,14 +58,21 @@ Widget leadTimeDayPage(int index) {
 /** leadTime*/
 leadTime() {
   return Row(
-    children: [leadTimeDayField(), Text('시간')],
+    children: [leadTimeDayField(), SizedBox(width: 12), Text('시간')],
   );
 }
 
 /**leadDay*/
 leadDay() {
   return Row(
-    children: [leadTimeDayField(), Text('박'), leadTimeDayField(), Text('일')],
+    children: [
+      leadTimeDayField(),
+      SizedBox(width: 12),
+      Text('박'),
+      SizedBox(width: 12),
+      leadTimeDayField(),
+      Text('일')
+    ],
   );
 }
 
@@ -69,6 +80,7 @@ leadDay() {
 leadTimeDayField() {
   return SizedBox(
       width: 50,
+      height: 50,
       child: TextField(
         style: TextStyle(fontSize: 24),
         textAlign: TextAlign.center,
@@ -79,5 +91,6 @@ leadTimeDayField() {
             enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.grey, width: 0.5))),
         maxLines: 1,
+        keyboardType: TextInputType.number,
       ));
 }

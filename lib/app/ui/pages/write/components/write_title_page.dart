@@ -14,35 +14,13 @@ Widget titlePage(int index) {
               children: [
             Text('title_t'.tr, style: TextStyle(fontSize: 20)),
             TextField(
+              key: controller.positionKey[index],
               decoration: InputDecoration(hintText: 'title_hint_text'.tr),
             ),
-            Padding(
-                padding: EdgeInsets.only(
-                    bottom: MediaQuery.of(WriteController.to.context)
-                        .viewInsets
-                        .bottom))
+                // Padding(
+                //     padding: EdgeInsets.only(
+                //         bottom: MediaQuery.of(WriteController.to.context)
+                //             .viewInsets
+                //             .bottom))
           ])));
-}
-
-Widget commonWidget() {
-  return AnimatedPadding(
-    curve: Curves.fastOutSlowIn,
-    duration: Duration(milliseconds: 1000),
-    padding: EdgeInsets.only(top: 10, bottom: 10),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text('title_t'.tr, style: TextStyle(fontSize: 20)),
-        TextField(
-          decoration: InputDecoration(hintText: 'title_hint_text'.tr),
-        ),
-        Padding(
-            padding: EdgeInsets.only(
-                bottom: MediaQuery.of(WriteController.to.context)
-                    .viewInsets
-                    .bottom))
-      ],
-    ),
-  );
 }

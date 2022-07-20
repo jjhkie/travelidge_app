@@ -12,9 +12,11 @@ Widget destinationPage(int index) {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('destination_t'.tr, style: TextStyle(fontSize: 20)),
+            SizedBox(height: 12),
             GestureDetector(
                 onTap: () => WriteController.to.destinationToggle(),
                 child: Container(
+                    key: controller.positionKey[index],
                     padding:  EdgeInsets.symmetric(
                         horizontal: 15, vertical: 10),
                     decoration: BoxDecoration(

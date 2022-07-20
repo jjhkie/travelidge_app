@@ -13,8 +13,10 @@ Widget maximumPeople(int index ) {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text('maximum_people_title'.tr, style: TextStyle(fontSize: 20)),
+        SizedBox(height: 47),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
+          key: controller.positionKey[index],
           children: [
             IconButton(
               icon: Icon(Icons.remove),

@@ -5,25 +5,29 @@ import 'package:travelidge/app/ui/theme/app_colors.dart';
 
 /**Bottom 고정 화면 */
 Widget bottomFixedSheet() {
-  return Container(
-    key: WriteController.to.bottomKey,
-    decoration: BoxDecoration(
-        border: Border(
-            top: BorderSide(
-      color: Color(0xff9E9E9E),
-      width: 1.0,
-    ))),
-    child: Obx(() => Padding(
-        padding: EdgeInsets.only(
-            top: 10,
-            left: 20,
-            right: 20,
-        bottom:10),
-        child: WriteController.to.scrollType.value
-            ? registerButton()
-            : nextButton())),
-    height: 60,
-  );
+  return Obx(() => Offstage(
+      offstage: WriteController.to.bottomState.value ? false : true,
+      child: AnimatedSize(
+        duration: Duration(milliseconds: 400),
+        curve: Curves.fastOutSlowIn,
+        child: Container(
+          height: WriteController.to.bottomState.value ? 80 : 0,
+          //padding: EdgeInsets.only(bottom:WriteController.to.context.mediaQueryViewInsets.bottom),
+          decoration: BoxDecoration(
+              border: Border(
+                  top: BorderSide(
+            color: Color(0xff9E9E9E),
+            width: 1.0
+          ))),
+          child: Padding(
+              padding:
+                  EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 30),
+              child: WriteController.to.seenPage.value >
+                      WriteController.to.maxCounter
+                  ? registerButton()
+                  : nextButton())
+        )
+      )));
 }
 
 registerButton() {
