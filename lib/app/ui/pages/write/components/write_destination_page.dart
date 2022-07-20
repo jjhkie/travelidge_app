@@ -16,7 +16,6 @@ Widget destinationPage(int index) {
             GestureDetector(
                 onTap: () => WriteController.to.destinationToggle(),
                 child: Container(
-                    key: controller.positionKey[index],
                     padding:  EdgeInsets.symmetric(
                         horizontal: 15, vertical: 10),
                     decoration: BoxDecoration(

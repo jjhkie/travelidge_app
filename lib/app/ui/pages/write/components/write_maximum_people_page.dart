@@ -16,7 +16,6 @@ Widget maximumPeople(int index ) {
         SizedBox(height: 47),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          key: controller.positionKey[index],
           children: [
             IconButton(
               icon: Icon(Icons.remove),

@@ -49,21 +49,21 @@ class Writing extends GetView<WriteController> {
                   Positioned(
                       top: 0,
                       left: 0,
-                      child: Obx(() => AnimatedSize(
-                          duration: Duration(milliseconds: 500),
-                          curve: Curves.easeIn,
-                          child: SizedBox(
-                              width: MediaQuery.of(context).size.width,
-                              height: controller.paddingHalfValue.value,
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter,
-                                          colors: [
-                                    Colors.white,
-                                    Colors.white60.withOpacity(0.1)
-                                  ]))))))),
+                      child: Obx(() => Offstage(
+                        offstage: controller.scrollTap.value.contains(true)?false:true,
+                        child: SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            height: controller.paddingHalfValue.value,
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                        colors: [
+                                  Colors.white,
+                                  Colors.white60.withOpacity(0.1)
+                                ])))),
+                      ))),
                   Positioned(
                       top: 0,
                       left: 0,
@@ -72,7 +72,7 @@ class Writing extends GetView<WriteController> {
                           height: 2,
                           child: LinearProgressIndicator(
                             valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
-                            value: (controller.seenPage.value+1)/(controller.maxCounter+1),
+                            value: (controller.writeComplete.lastIndexOf(true)+1)/(controller.maxCounter+1),
                           ))))
                 ]))),
         bottomSheet: bottomFixedSheet());

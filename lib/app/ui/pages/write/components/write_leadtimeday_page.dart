@@ -46,7 +46,6 @@ Widget leadTimeDayPage(int index) {
                 WriteController.to.leadTimeDay.value ? leadTime() : leadDay(),
                 Row(children: [
                   Checkbox(
-                      key: controller.positionKey[index],
                       value: WriteController.to.timeDayConference.value,
                       onChanged: (_) =>
                           WriteController.to.timeDayConferenceToggle()),

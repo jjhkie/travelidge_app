@@ -14,7 +14,6 @@ Widget pricePage(int index) {
         Text('price_title'.tr, style: TextStyle(fontSize: 20)),
         SizedBox(height: 12),
         Row(
-          key: controller.positionKey[index],
           children: [
             GestureDetector(
                 onTap: () => WriteController.to.priceToggle('free'),

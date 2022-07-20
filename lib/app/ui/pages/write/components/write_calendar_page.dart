@@ -11,7 +11,6 @@ Widget calendarPage(int index) {
             height: 200,
             width: 200,
             child: Placeholder(
-              key: controller.positionKey[index],
               color: Colors.black,
             ))
       ]));

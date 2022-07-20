@@ -20,7 +20,11 @@ Widget wrapScrollTag({required int index, required Widget child}) => Offstage(
         //padding: EdgeInsets.only(top:(height - controller.getSize(index))/2),
         padding: controller.scrollTap[index].value
             ? EdgeInsets.only(
-                top: (height -controller.paddingWidgetValue.value - controller.paddingHalfValue.value) /2 - 60,
+                top: (height -
+                            controller.paddingWidgetValue.value -
+                            controller.paddingHalfValue.value) /
+                        2 -
+                    60,
                 bottom: (height -
                             controller.paddingWidgetValue.value -
                             controller.paddingHalfValue.value) /
@@ -28,23 +32,25 @@ Widget wrapScrollTag({required int index, required Widget child}) => Offstage(
                     60,
                 left: 20,
                 right: 20)
-            :index == controller.seenPage.value?EdgeInsets.only(top: 30, bottom: 100, left: 20, right: 20) : EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
+            : index == controller.writeComplete.lastIndexOf(true)
+                ? EdgeInsets.only(top: 30, bottom: 100, left: 20, right: 20)
+                : EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
         duration: Duration(milliseconds: 1000),
         curve: Curves.fastOutSlowIn,
         child: AnimatedOpacity(
             duration: Duration(milliseconds: 1000),
-            curve: Curves.easeInOutBack,
+            curve: Curves.fastOutSlowIn,
             opacity: controller.writeComplete[index].value
                 ? 1
                 : controller.scrollTap[index].value
                     ? 1
                     : 0,
             child: GestureDetector(
-                onTap: ()=> controller.widgetClickCounter(index),
+                onTap: () => controller.widgetClickCounter(index),
                 child: SizedBox(
-                  width: Get.context!.width,
+                    width: Get.context!.width,
                     key: controller.listKey[index],
                     child: AbsorbPointer(
-                      absorbing:
-                          controller.scrollTap[index].value ? false : true,
-                      child: child))))));
+                        absorbing:
+                            controller.scrollTap[index].value ? false : true,
+                        child: child))))));

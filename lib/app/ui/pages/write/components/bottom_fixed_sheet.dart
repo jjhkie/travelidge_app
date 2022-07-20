@@ -22,8 +22,7 @@ Widget bottomFixedSheet() {
           child: Padding(
               padding:
                   EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 30),
-              child: WriteController.to.seenPage.value >
-                      WriteController.to.maxCounter
+              child: WriteController.to.pageFinal.value
                   ? registerButton()
                   : nextButton())
         )

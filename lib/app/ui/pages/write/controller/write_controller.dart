@@ -28,11 +28,10 @@ class WriteController extends GetxController {
   RxBool scrollType = false.obs;//자동 스크롤 || 수동 스크롤 판단
   var scrollController = ScrollController().obs;
   var counter = 0.obs;
-  var seenPage = 0.obs;
+  RxBool pageFinal = false.obs;
 
   /** key */
   RxList<GlobalKey> listKey = List.generate(8, (index) => GlobalKey()).obs;
-  RxList<GlobalKey> positionKey = List.generate(8, (index) => GlobalKey()).obs;
   GlobalKey bottomKey = GlobalKey();
 
   resetData() {
@@ -55,9 +54,19 @@ class WriteController extends GetxController {
 
   RxList<Rx<bool>> scrollTap = List.generate(8, (index) => false.obs).obs;
   RxList<Rx<bool>> writeComplete = List.generate(8, (index) => false.obs).obs;
+  RxList<Rx<bool>> categoryButton = List.generate(6, (index) => false.obs).obs;
+  int buttonIndex = 0;
+
 
   var maxCounter = 7;
   RxInt totalCounter = 0.obs;
+
+
+  categoryButtonEvent(int index){
+    categoryButton[buttonIndex].value = false;
+    categoryButton[index].value = true;
+    buttonIndex = index;
+  }
 
   @override
   void onInit() {
@@ -71,7 +80,6 @@ class WriteController extends GetxController {
 
     /** 스크롤할 때*/
     scrollController.value.addListener(() {
-
       if (scrollController.value.position.pixels ==
           scrollController.value.position.maxScrollExtent) {
         bottomState.value = true;
@@ -119,31 +127,29 @@ class WriteController extends GetxController {
 
     Future.delayed(Duration(milliseconds:700), () {
 
-      print('00000');
       print(scrollController.value.position.pixels+getPosition(index));
       scrollController.value.animateTo(
-          //scrollInsideValue.value+insideHeightValue.value,
         scrollController.value.position.pixels-110+getPosition(index-1)+insideHeightValue.value,
         duration: Duration(milliseconds: 400),
         curve: Curves.fastOutSlowIn
       );
     });
 
-    Future.delayed(Duration(milliseconds: 3000), () {
+    Future.delayed(Duration(milliseconds: 1400), () {
       scrollType.value = false;
     });
   }
 
   /** 스크롤 제일 하단으로 이동*/
-  downScroll() {
-    Future.delayed(Duration(milliseconds: 200), () {
+  downScroll(int time) {
+    Future.delayed(Duration(milliseconds: time), () {
       scrollController.value.animateTo(
-          scrollController.value.position.maxScrollExtent,
+          scrollController.value.position.maxScrollExtent+60,
           duration: Duration(milliseconds: 600),
           curve: Curves.easeOut);
     });
 
-    Future.delayed(Duration(milliseconds: 1500), () {
+    Future.delayed(Duration(milliseconds: time+1250), () {
       scrollType.value = false;
     });
   }
@@ -164,22 +170,26 @@ class WriteController extends GetxController {
   widgetClickCounter(int index) {
 
     scrollType.value = true;
-    //위젯 half height
-    paddingHalfValue.value = getSize(index - 1) / 2;
+
     paddingWidgetValue.value = getSize(index);
     if(index ==0){
+      paddingHalfValue.value = getSize(index +1) / 2;
       scrollTap[counter.value].value = false; //800
       counter.value = index;
       scrollTap[index].value = true;
       upScroll();
     }else{
+      paddingHalfValue.value = getSize(index - 1) / 2;
       insideHeightValue.value = ((getPosition(index)-getPosition(index-1))/2.0).abs();
       scrollTap[index].value = true;
-      scrollTap[counter.value].value = false; //800
-      counter.value = index;
+
+      if(index != counter.value){
+        scrollTap[counter.value].value = false; //800
+        counter.value = index;
+      }
 
       if(writeComplete.lastIndexOf(true) == index){
-        downScroll();
+        downScroll(650);
       }else{
         keyValueScroll(index);
       }
@@ -196,7 +206,7 @@ class WriteController extends GetxController {
     }
     scrollType.value = true; //scroll 감지 막기
     /** 다음 버튼 클릭 시 실행되는 기본 코드 */
-    if (seenPage.value != maxCounter) {
+    if (writeComplete.lastIndexOf(true) != maxCounter) {
       paddingHalfValue.value = getSize(counter.value) / 2;
       paddingWidgetValue.value = getSize(counter.value + 1);
       scrollTap[counter.value + 1].value = true;//800
@@ -204,8 +214,7 @@ class WriteController extends GetxController {
         writeComplete[counter.value + 1].value = true;
         scrollTap[counter.value].value = false;
         counter.value++;
-        seenPage.value++;
-        downScroll();
+        downScroll(400);
       });
       /** 마지막 페이지 작성 후 버튼 클릭 시 실행되는 코드*/
     } else {
@@ -213,8 +222,8 @@ class WriteController extends GetxController {
       scrollController.value.animateTo(
           scrollController.value.position.minScrollExtent,
           duration: Duration(milliseconds: 800),
-          curve: Curves.fastOutSlowIn);
-      seenPage.value++;
+          curve: Curves.linear);
+      pageFinal.value = true;
     }
   }
 

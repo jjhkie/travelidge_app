@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelidge/app/ui/pages/write/components/wrap_Scroll_Tag.dart';
-import 'package:travelidge/app/ui/pages/write/controller/write_controller.dart';
 
 /**제목 작성 페이지 */
 Widget titlePage(int index) {
@@ -14,7 +13,6 @@ Widget titlePage(int index) {
               children: [
             Text('title_t'.tr, style: TextStyle(fontSize: 20)),
             TextField(
-              key: controller.positionKey[index],
               decoration: InputDecoration(hintText: 'title_hint_text'.tr),
             ),
                 // Padding(
