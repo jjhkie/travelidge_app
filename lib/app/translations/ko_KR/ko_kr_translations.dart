@@ -6,7 +6,22 @@ final Map<String, String> koKR = {
   'calendarBs': '얼마나 여행하세요',
 
   //목적지
-
+  'destination0':'서울',
+  'destination1':'경기도',
+  'destination2':'강원도',
+  'destination3':'충청남도',
+  'destination4':'부산',
+  'destination5':'대구',
+  'destination6':'인천',
+  'destination7':'광주',
+  'destination8':'대전',
+  'destination9':'울산',
+  'destination10':'강원도',
+  'destination11':'전라남도',
+  'destination12':'전라북도',
+  'destination13':'경상북도',
+  'destination14':'경상남도',
+  'destination15':'제주도',
   //Home - AppBar
   'ContentFun_1': '현지인 상품',
   'ContentFun_2': '같이가요',

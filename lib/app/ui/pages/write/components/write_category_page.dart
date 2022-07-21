@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelidge/app/ui/pages/write/components/wrap_Scroll_Tag.dart';
+import 'package:travelidge/app/ui/pages/write/controller/write_controller.dart';
 
 /** 카테고리 선택 페이지*/
 Widget writeCategoryPage(int index) {
+  var controller = WriteController.to;
   return wrapScrollTag(
       index: index,
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

@@ -55,18 +55,31 @@ Widget pricePage(int index) {
 payPage() {
   return Column(
     children: [
-      SizedBox(
+      Container(
+        padding: EdgeInsets.only(top:2,bottom:2,left:15),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color:Colors.black.withOpacity(0.8),
+            width:1
+          ),
+          borderRadius: BorderRadius.circular(10)
+        ),
         height: 50,
-        child: TextField(
-          keyboardType: TextInputType.number,
-          decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular((15)),
+        child: Row(
+          children: [
+            Expanded(
+              flex: 9,
+              child: TextField(
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  border: InputBorder.none
+                ),
               ),
-              suffixText: '원',
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey, width: 0.5),
-                  borderRadius: BorderRadius.circular(15))),
+            ),
+            Expanded(
+                flex:1,
+                child: Text("원"))
+          ],
         ),
       ),
       Row(

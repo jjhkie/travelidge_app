@@ -32,49 +32,60 @@ class Writing extends GetView<WriteController> {
         body: SafeArea(
             child: GestureDetector(
                 onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+                //onVerticalDragUpdate: (){print('aaaa')},
                 child: Stack(children: [
-                  SingleChildScrollView(
-                      controller: controller.scrollController.value,
-                      physics: ClampingScrollPhysics(),
-                      child: Obx(() => Column(children: [
-                            writeCategoryPage(0),
-                            titlePage(1),
-                            destinationPage(2),
-                            calendarPage(3),
-                            leadTimeDayPage(4),
-                            maximumPeople(5),
-                            pricePage(6),
-                            contentPage(7),
-                          ]))),
+                  Obx(()=> AbsorbPointer(
+                    absorbing: controller.scrollType.value?true:false,
+                    child: SingleChildScrollView(
+                        controller: controller.scrollController.value,
+                        physics:ClampingScrollPhysics(),
+                        child: Column(children: [
+                              writeCategoryPage(0),
+                              titlePage(1),
+                              destinationPage(2),
+                              calendarPage(3),
+                              leadTimeDayPage(4),
+                              maximumPeople(5),
+                              pricePage(6),
+                              contentPage(7),
+                            ])),
+                  )),
                   Positioned(
                       top: 0,
                       left: 0,
                       child: Obx(() => Offstage(
                         offstage: controller.scrollTap.value.contains(true)?false:true,
-                        child: SizedBox(
-                            width: MediaQuery.of(context).size.width,
-                            height: controller.paddingHalfValue.value,
-                            child: Container(
-                                decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                        colors: [
-                                  Colors.white,
-                                  Colors.white60.withOpacity(0.1)
-                                ])))),
+                        child: GestureDetector(
+                          onTap: ()=> controller.widgetClickCounter(controller.counter.value-1),
+                          child: SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              height: controller.paddingHalfValue.value,
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                          colors: [
+                                    Colors.white,
+                                    Colors.white60.withOpacity(0.1)
+                                  ])))),
+                        ),
                       ))),
                   Positioned(
                       top: 0,
                       left: 0,
-                      child: Obx(()=>SizedBox(
+                      child: SizedBox(
                           width: MediaQuery.of(context).size.width,
-                          height: 2,
-                          child: LinearProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
-                            value: (controller.writeComplete.lastIndexOf(true)+1)/(controller.maxCounter+1),
-                          ))))
+                          height: 3,
+                            child:Obx(()=>LinearProgressIndicator(
+                              // value:(controller.writeComplete.lastIndexOf(true)+1)/(controller.maxCounter+1),
+                              // valueColor: controller.colorAnimation,
+                              // backgroundColor: controller.colorAnimation.value?.withOpacity(0.4),
+                              valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
+                              value: (controller.writeComplete.lastIndexOf(true)+1)/(controller.maxCounter+1),
+                            )),
+                          )),
                 ]))),
-        bottomSheet: bottomFixedSheet());
+        bottomSheet:bottomFixedSheet());
   }
 }

@@ -8,7 +8,7 @@ Widget bottomFixedSheet() {
   return Obx(() => Offstage(
       offstage: WriteController.to.bottomState.value ? false : true,
       child: AnimatedSize(
-        duration: Duration(milliseconds: 400),
+        duration: Duration(milliseconds: 100),
         curve: Curves.fastOutSlowIn,
         child: Container(
           height: WriteController.to.bottomState.value ? 80 : 0,

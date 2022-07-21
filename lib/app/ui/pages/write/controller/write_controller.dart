@@ -2,81 +2,67 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelidge/app/ui/pages/write/components/destination_bottom_sheet.dart';
 
-class WriteController extends GetxController {
+class WriteController extends GetxController with GetSingleTickerProviderStateMixin{
   static WriteController get to => Get.find<WriteController>();
+  var context = Get.context;
+  /** TextField Focus */
+  FocusNode titleFocus = FocusNode();
+  RxBool titleFocusPadding = false.obs;
 
-  final location = [
-    '서울',
-    '경기도',
-    '강원도',
-    '충청남도',
-    '충청북도',
-    '부산',
-    '대구',
-    '인천',
-    '광주',
-    '대전',
-    '울산',
-    '강원도',
-    '전라남도',
-    '전라북도',
-    '경상북도',
-    '경상남도',
-    '제주도'
-  ];
-
-  RxBool scrollType = false.obs;//자동 스크롤 || 수동 스크롤 판단
-  var scrollController = ScrollController().obs;
-  var counter = 0.obs;
-  RxBool pageFinal = false.obs;
+  /** 목적지 목록 */
+  final location = List.generate(16, (index) => 'destination$index'.tr);
 
   /** key */
   RxList<GlobalKey> listKey = List.generate(8, (index) => GlobalKey()).obs;
-  GlobalKey bottomKey = GlobalKey();
 
-  resetData() {
-    scrollTap.value = List.generate(8, (index) => false.obs).obs;
-    writeComplete.value = List.generate(8, (index) => false.obs).obs;
-    scrollTap[0].value = true;
-    writeComplete[0].value = true;
-    counter.value = 0;
-    paddingWidgetValue.value = 152;
-  }
-
-  /** bottomSheet 변수*/
+  /** bottomSheet 상태 관리 변수*/
   RxBool bottomState = true.obs;
 
   /** 높이 계산 변수*/
   RxDouble paddingWidgetValue = 0.0.obs;
   RxDouble paddingHalfValue = 0.0.obs;
-
   RxDouble insideHeightValue = 0.0.obs;
 
-  RxList<Rx<bool>> scrollTap = List.generate(8, (index) => false.obs).obs;
-  RxList<Rx<bool>> writeComplete = List.generate(8, (index) => false.obs).obs;
-  RxList<Rx<bool>> categoryButton = List.generate(6, (index) => false.obs).obs;
+  /** 스크롤 관련 변수*/
+  RxBool scrollType = false.obs;//자동 스크롤 || 수동 스크롤 판단
+  var scrollController = ScrollController().obs;
+  late RxList<Rx<bool>> scrollTap;
+  late RxList<Rx<bool>> writeComplete;
+  var counter = 0.obs;
+
+  /** 카테고리 버튼 */
+  late RxList<Rx<bool>> categoryButton = List.generate(6, (index) => false.obs).obs;
   int buttonIndex = 0;
 
+  /** 글작성 완료 변수*/
+  RxBool pageFinal = false.obs;
 
   var maxCounter = 7;
-  RxInt totalCounter = 0.obs;
 
 
-  categoryButtonEvent(int index){
-    categoryButton[buttonIndex].value = false;
-    categoryButton[index].value = true;
-    buttonIndex = index;
-  }
+  var keyboardInsetBottom = 0.obs;
 
   @override
   void onInit() {
-    print('onInit');
-    scrollTap.value = List.generate(8, (index) => false.obs).obs;
-    writeComplete.value = List.generate(8, (index) => false.obs).obs;
+    super.onInit();
+/**
+    titleFocus.addListener(() {
+      if(titleFocus.hasFocus){
+        keyboardInsetBottom.value = 100;
+      }else{
+        keyboardInsetBottom.value = 0;
+      }
+      print('focus');
+
+    });
+ */
+
+    scrollTap = List.generate(8, (index) => false.obs).obs;
+    writeComplete = List.generate(8, (index) => false.obs).obs;
     scrollTap[0].value = true;
     writeComplete[0].value = true;
     paddingWidgetValue.value = 152;
-    super.onInit();
+
 
     /** 스크롤할 때*/
     scrollController.value.addListener(() {
@@ -94,17 +80,36 @@ class WriteController extends GetxController {
     });
   }
 
+  focusChange(hasFocus){
+    print(hasFocus);
+    print('focus change');
+    keyboardInsetBottom.value = 0;
+  }
+  focusUp(hasFocus){
+    print(hasFocus);
+    print('focus change');
+    keyboardInsetBottom.value = 100;
+  }
   @override
   void dispose() {
-    print('dispose');
-
     scrollController.value.dispose();
     super.dispose();
   }
 
+ /**카테고리 버튼 기능 */
+  categoryButtonEvent(int index){
+    categoryButton[buttonIndex].value = false;
+    categoryButton[index].value = true;
+    buttonIndex = index;
+  }
+
+
   /**key 를 사용한 크기 측정*/
   getSize(int index) {
+    print('getSize');
     GlobalKey key = listKey[index];
+    print(index);
+    print(key.currentContext);
     if (key.currentContext != null) {
       final RenderBox renderBox =
           key.currentContext!.findRenderObject() as RenderBox;
@@ -112,6 +117,7 @@ class WriteController extends GetxController {
       return size.height;
     }
   }
+  /**key 를 사용한 위젯 위치 측정*/
   getPosition(int index) {
     GlobalKey key = listKey[index];
     if (key.currentContext != null) {
@@ -124,9 +130,7 @@ class WriteController extends GetxController {
 
   /** key 값에 따라 스크롤 이동 */
   keyValueScroll(int index) {
-
     Future.delayed(Duration(milliseconds:700), () {
-
       print(scrollController.value.position.pixels+getPosition(index));
       scrollController.value.animateTo(
         scrollController.value.position.pixels-110+getPosition(index-1)+insideHeightValue.value,
@@ -150,6 +154,9 @@ class WriteController extends GetxController {
     });
 
     Future.delayed(Duration(milliseconds: time+1250), () {
+      if(counter.value ==1){
+        titleFocus.requestFocus();
+      }
       scrollType.value = false;
     });
   }
@@ -168,7 +175,6 @@ class WriteController extends GetxController {
   }
 
   widgetClickCounter(int index) {
-
     scrollType.value = true;
 
     paddingWidgetValue.value = getSize(index);
@@ -196,9 +202,10 @@ class WriteController extends GetxController {
     }
   }
 
-  /** counter 는 특정 위젯을 보여주기 위한 변수*/
+
   /** showtalCount 는 lastIndexOf값으로 변경 가능*/
   nextCounter() {
+    FocusManager.instance.primaryFocus?.unfocus();
     /** counter 의 값에 마지막 index 값 저장 */
     if (counter.value != writeComplete.lastIndexOf(true)) {
       scrollTap[counter.value].value = false;
@@ -207,13 +214,16 @@ class WriteController extends GetxController {
     scrollType.value = true; //scroll 감지 막기
     /** 다음 버튼 클릭 시 실행되는 기본 코드 */
     if (writeComplete.lastIndexOf(true) != maxCounter) {
-      paddingHalfValue.value = getSize(counter.value) / 2;
+      print(counter.value);
+      paddingHalfValue.value = getSize(counter.value)/2;
+      print(counter.value);
       paddingWidgetValue.value = getSize(counter.value + 1);
       scrollTap[counter.value + 1].value = true;//800
       Future.delayed(Duration(milliseconds: 200), () {
         writeComplete[counter.value + 1].value = true;
         scrollTap[counter.value].value = false;
         counter.value++;
+
         downScroll(400);
       });
       /** 마지막 페이지 작성 후 버튼 클릭 시 실행되는 코드*/
@@ -247,8 +257,10 @@ class WriteController extends GetxController {
 
   leadTimeToggle(String TD) {
     if (TD == 'time' && leadTimeDay.value == false) {
+      timeDayConference.value = false;
       leadTimeDay.value = !leadTimeDay.value;
     } else if (TD == 'day' && leadTimeDay.value == true) {
+      timeDayConference.value = false;
       leadTimeDay.value = !leadTimeDay.value;
     }
   }
@@ -281,9 +293,7 @@ class WriteController extends GetxController {
   }
 
   prevPage() {
-    Get.reset();
     Get.back();
-
     //resetData();
   }
 }
