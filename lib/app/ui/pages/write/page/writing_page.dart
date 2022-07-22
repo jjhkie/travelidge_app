@@ -32,13 +32,13 @@ class Writing extends GetView<WriteController> {
         body: SafeArea(
             child: GestureDetector(
                 onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-                //onVerticalDragUpdate: (){print('aaaa')},
+                onVerticalDragUpdate: (detail){controller.effectiveFunc('scroll');},
                 child: Stack(children: [
                   Obx(()=> AbsorbPointer(
                     absorbing: controller.scrollType.value?true:false,
                     child: SingleChildScrollView(
                         controller: controller.scrollController.value,
-                        physics:ClampingScrollPhysics(),
+                        physics:controller.scrollType.value?ClampingScrollPhysics():controller.effectiveCheck.value?ClampingScrollPhysics():NeverScrollableScrollPhysics(),
                         child: Column(children: [
                               writeCategoryPage(0),
                               titlePage(1),
@@ -56,7 +56,7 @@ class Writing extends GetView<WriteController> {
                       child: Obx(() => Offstage(
                         offstage: controller.scrollTap.value.contains(true)?false:true,
                         child: GestureDetector(
-                          onTap: ()=> controller.widgetClickCounter(controller.counter.value-1),
+                          onTap: ()=> controller.effectiveFunc('topTouch'),
                           child: SizedBox(
                               width: MediaQuery.of(context).size.width,
                               height: controller.paddingHalfValue.value,
@@ -85,7 +85,13 @@ class Writing extends GetView<WriteController> {
                               value: (controller.writeComplete.lastIndexOf(true)+1)/(controller.maxCounter+1),
                             )),
                           )),
+                  // Positioned(
+                  //   bottom:0,
+                  //   left:0,
+                  //   child:bottomFixedSheet()
+                  // )
                 ]))),
-        bottomSheet:bottomFixedSheet());
+        bottomSheet:bottomFixedSheet()
+    );
   }
 }

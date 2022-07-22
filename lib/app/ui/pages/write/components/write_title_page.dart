@@ -24,15 +24,22 @@ Widget titlePage(int index) {
                       Focus(
                         onFocusChange: (hasFocus) {
                           if (hasFocus) {
-                            //print('0-----$hasFocus');
                             controller.focusUp(hasFocus);
                           }else{
                             controller.focusChange(hasFocus);
                           }
                         },
-                        child: TextField(
+                        child: TextFormField(
+                          onChanged: (text){
+                            if(text.isEmpty){
+                              controller.effectiveCheck.value = false;
+                            }
+                          },
+                          controller: controller.titleTextController,
                           focusNode: controller.titleFocus,
+                          maxLength: 50,
                           decoration: InputDecoration(
+                            counterText: "",
                               hintText: 'title_hint_text'.tr),
                         ),
                       ),

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:travelidge/app/ui/pages/write/components/wrap_Scroll_Tag.dart';
 import 'package:travelidge/app/ui/pages/write/controller/write_controller.dart';
 
 /** 소요 시간 기간*/
+final controller = WriteController.to;
 Widget leadTimeDayPage(int index) {
   return wrapScrollTag(
       index: index,
@@ -57,7 +59,7 @@ Widget leadTimeDayPage(int index) {
 /** leadTime*/
 leadTime() {
   return Row(
-    children: [leadTimeDayField(), SizedBox(width: 12), Text('시간')],
+    children: [leadTimeDayField(controller.timeTextController,controller.timeFocus), SizedBox(width: 12), Text('시간')],
   );
 }
 
@@ -65,31 +67,50 @@ leadTime() {
 leadDay() {
   return Row(
     children: [
-      leadTimeDayField(),
+      leadTimeDayField(controller.nightTextController,controller.nightFocus),
       SizedBox(width: 12),
       Text('박'),
       SizedBox(width: 12),
-      leadTimeDayField(),
+      leadTimeDayField(controller.dayTextController,controller.dayFocus),
       Text('일')
     ],
   );
 }
 
 /** leadTimeDay TextField */
-leadTimeDayField() {
+leadTimeDayField(textController,focus) {
   return SizedBox(
       width: 50,
       height: 50,
-      child: TextField(
-        style: TextStyle(fontSize: 24),
-        textAlign: TextAlign.center,
-        decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.grey.withOpacity(0.5),
-            hintText: '0',
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey, width: 0.5))),
-        maxLines: 1,
-        keyboardType: TextInputType.number,
+      child: Focus(
+        onFocusChange: (hasFocus){
+          if (hasFocus) {
+            controller.focusUp(hasFocus);
+          }else{
+            controller.focusChange(hasFocus);
+          }
+        },
+        child: TextField(
+          onChanged: (text){
+            if(text.isEmpty){
+             // controller.effectiveCheck.value = false;
+            }
+          },
+          inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-9]'))],
+          controller: textController,
+          focusNode: focus,
+          maxLength: 2,
+          style: TextStyle(fontSize: 24),
+          textAlign: TextAlign.center,
+          decoration: InputDecoration(
+            counterText: "",
+              filled: true,
+              fillColor: Colors.grey.withOpacity(0.5),
+              hintText: '0',
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey, width: 0.5))),
+          maxLines: 1,
+          keyboardType: TextInputType.number,
+        ),
       ));
 }

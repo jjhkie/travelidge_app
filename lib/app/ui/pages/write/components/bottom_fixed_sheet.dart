@@ -11,6 +11,7 @@ Widget bottomFixedSheet() {
         duration: Duration(milliseconds: 100),
         curve: Curves.fastOutSlowIn,
         child: Container(
+          width:WriteController.to.context!.width,
           height: WriteController.to.bottomState.value ? 80 : 0,
           //padding: EdgeInsets.only(bottom:WriteController.to.context.mediaQueryViewInsets.bottom),
           decoration: BoxDecoration(
@@ -62,7 +63,7 @@ nextButton() {
     children: [
       Expanded(
         child: GestureDetector(
-          onTap: () => WriteController.to.nextCounter(),
+          onTap: () => WriteController.to.effectiveFunc('next'),
           child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),

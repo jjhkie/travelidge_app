@@ -1,27 +1,29 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:travelidge/app/ui/pages/write/components/wrap_Scroll_Tag.dart';
 import 'package:travelidge/app/ui/pages/write/controller/write_controller.dart';
 /** 예상 가격 */
 Widget pricePage(int index) {
+  final controller =WriteController.to;
   return wrapScrollTag(
+
     index: index,
     child: Obx(() =>Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text('price_title'.tr, style: TextStyle(fontSize: 20)),
         SizedBox(height: 12),
         Row(
           children: [
             GestureDetector(
-                onTap: () => WriteController.to.priceToggle('free'),
+                onTap: () => controller.priceToggle('free'),
                 child: Container(
                     padding:
                     EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
-                        color: WriteController.to.priceChoice.value
+                        color: controller.priceChoice.value
                             ? Colors.grey
                             : Colors.white,
                         border:
@@ -30,12 +32,12 @@ Widget pricePage(int index) {
                     child: Text('price_free'.tr))),
             SizedBox(width:10),
             GestureDetector(
-                onTap: () => WriteController.to.priceToggle('pay'),
+                onTap: () => controller.priceToggle('pay'),
                 child: Container(
                     padding:
                     EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
-                        color: WriteController.to.priceChoice.value
+                        color: controller.priceChoice.value
                             ? Colors.white
                             : Colors.grey,
                         border:
@@ -45,14 +47,14 @@ Widget pricePage(int index) {
           ],
         ),
         SizedBox(height: 28),
-        WriteController.to.priceChoice.value ? Container() : payPage()
+        controller.priceChoice.value ? Container() : payPage(controller)
       ],
     ),
     ),
   );
 }
 
-payPage() {
+payPage(controller) {
   return Column(
     children: [
       Container(
@@ -69,10 +71,22 @@ payPage() {
           children: [
             Expanded(
               flex: 9,
-              child: TextField(
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  border: InputBorder.none
+              child: Focus(
+                onFocusChange: (hasFocus) {
+                  if (hasFocus) {
+                    controller.focusUp(hasFocus);
+                  }else{
+                    controller.focusChange(hasFocus);
+                  }
+                },
+                child: TextFormField(
+                  focusNode: controller.priceFocus,
+                  inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-9]'))],
+                  controller: controller.priceTextController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    border: InputBorder.none
+                  ),
                 ),
               ),
             ),

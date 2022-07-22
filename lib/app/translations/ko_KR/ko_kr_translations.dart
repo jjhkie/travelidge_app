@@ -44,6 +44,7 @@ final Map<String, String> koKR = {
   'title_t': '어떤 여행인가요?',
   'title_hint_text': '여행명을 입력하세요',
   'destination_t': '목적지',
+  'calendar_title':'여행 일정을 알려주세요',
   'maximum_people_title': '스케줄당 최대 모집 인원',
   'price_title': '예상비용',
   'price_free': '무료',
