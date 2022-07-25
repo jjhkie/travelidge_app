@@ -38,32 +38,33 @@ class WriteController extends GetxController {
 
   /** 글작성 완료 변수*/
   RxBool pageFinal = false.obs;
-
   var maxCounter = 7;
-
   var keyboardInsetBottom = 0.obs;
+
+
+  /** Title Text Controller */
+  late TextEditingController titleTextController;
+
+  /** LeadTime Text Controller*/
+  late TextEditingController timeTextController;
+  TextEditingController nightTextController = TextEditingController();
+  TextEditingController dayTextController = TextEditingController();
+  FocusNode timeFocus = FocusNode();
+  FocusNode nightFocus = FocusNode();
+  FocusNode dayFocus = FocusNode();
+
 
   @override
   void onInit() {
     super.onInit();
-    /**
-        titleFocus.addListener(() {
-        if(titleFocus.hasFocus){
-        keyboardInsetBottom.value = 100;
-        }else{
-        keyboardInsetBottom.value = 0;
-        }
-        print('focus');
-
-        });
-     */
 
     scrollTap = List.generate(8, (index) => false.obs).obs;
     writeComplete = List.generate(8, (index) => false.obs).obs;
     scrollTap[0].value = true;
     writeComplete[0].value = true;
     paddingWidgetValue.value = 152;
-
+    titleTextController = TextEditingController();
+    timeTextController = TextEditingController();
     /** 스크롤할 때*/
     scrollController.value.addListener(() {
       if (scrollController.value.position.pixels ==
@@ -83,6 +84,21 @@ class WriteController extends GetxController {
     });
   }
 
+  /** 뒤로가기 두번클릭 */
+  DateTime? currentBackPressTime;
+  onWillPop() {
+    DateTime now = DateTime.now();
+    if (currentBackPressTime == null ||
+        now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
+      currentBackPressTime = now;
+      Get.snackbar('경고', '한번 더 누르면 페이지가 종료됩니다.',snackPosition: SnackPosition.BOTTOM,duration: Duration(milliseconds: 2000));
+    }else {
+      Get.closeAllSnackbars();
+      Get.offAllNamed('/');
+
+    }
+  }
+
   focusChange(hasFocus) {
     keyboardInsetBottom.value = 0;
   }
@@ -93,7 +109,6 @@ class WriteController extends GetxController {
 
   @override
   void dispose() {
-    //scrollController.value.dispose();
     super.dispose();
   }
 
@@ -139,42 +154,39 @@ class WriteController extends GetxController {
           curve: Curves.fastOutSlowIn);
     });
 
-    scrollLastFun(index,1400);
+    scrollLastFun(1400);
   }
 
   /** */
-  scrollLastFun(index,time){
+  scrollLastFun(time){
     Future.delayed(Duration(milliseconds: time), () {
       scrollType.value = false;
       effectiveCheck.value = false;
-      // if(index ==1){
-      //   titleFocus.requestFocus();
-      // }else if(index ==4){
-      //   if(leadTimeDay.value == true){
-      //     timeFocus.requestFocus();
-      //   }else{
-      //     nightFocus.requestFocus();
-      //   }
-      // }else if(index ==6){
-      //   if(priceChoice.value ==false){
-      //     priceFocus.requestFocus();
-      //   }
-      // }else if( index ==7){
-      //   contentFocus.requestFocus();
-      // }
+      if(counter.value ==1){
+        titleFocus.requestFocus();
+      }
+      else if(counter.value ==4) {
+        if (leadTimeDay.value == true) {
+          timeFocus.requestFocus();
+        } else {
+          nightFocus.requestFocus();
+        }
+      }else if(counter.value == 7){
+        contentFocus.requestFocus();
+      }
     });
   }
 
   /** 스크롤 제일 하단으로 이동*/
-  downScroll(int index,int time) {
-    Future.delayed(Duration(milliseconds: time+100), () {
+  downScroll(int time) {
+    Future.delayed(Duration(milliseconds: time), () {
       scrollController.value.animateTo(
           scrollController.value.position.maxScrollExtent + 60,
           duration: Duration(milliseconds: 600),
           curve: Curves.easeOut);
     });
 
-    scrollLastFun(index,time+1250);
+    scrollLastFun(time+1250);
   }
 
   /** 스크롤 제일 상단으로 이동*/
@@ -186,22 +198,11 @@ class WriteController extends GetxController {
           curve: Curves.easeOut);
     });
 
-    scrollLastFun(0,1500);
+    scrollLastFun(1500);
   }
 
   /** 스크롤 유효성 확인*/
   RxBool effectiveCheck = false.obs;
-
-  /** Title Text Controller */
-  TextEditingController titleTextController = TextEditingController();
-
-  /** LeadTime Text Controller*/
-  TextEditingController timeTextController = TextEditingController();
-  TextEditingController nightTextController = TextEditingController();
-  TextEditingController dayTextController = TextEditingController();
-  FocusNode timeFocus = FocusNode();
-  FocusNode nightFocus = FocusNode();
-  FocusNode dayFocus = FocusNode();
 
   /** Price Text Controller*/
   TextEditingController priceTextController = TextEditingController();
@@ -211,9 +212,9 @@ class WriteController extends GetxController {
   TextEditingController contentTextController = TextEditingController();
   FocusNode contentFocus = FocusNode();
   /** type 에 따른 실행*/
-  typeEffective(type,index) {
+  typeEffective(type) {
     if (type == 'next') {
-      nextCounter(index+1);
+      nextCounter();
     } else if (type == 'scroll') {
       effectiveCheck.value = true;
     }else if(type == 'topTouch'){
@@ -234,7 +235,7 @@ class WriteController extends GetxController {
     switch (counter.value) {
       case 0:
         if (categoryButton.value.contains(true)) {
-          typeEffective(type,0);
+          typeEffective(type);
 
         } else {
           snackBarEffective('버튼', '하나라도 선택해주세요');
@@ -244,19 +245,19 @@ class WriteController extends GetxController {
         if (titleTextController.text.isEmpty) {
           snackBarEffective('제목', '제목을 입력해주세요');
         } else {
-           typeEffective(type,1);
+           typeEffective(type);
           //titleFocus.requestFocus();
         }
         break;
       case 2:
         if (bottomSheetDe.value != '목적지') {
-          typeEffective(type,2);
+          typeEffective(type);
         } else {
           snackBarEffective('목적지', '목적지를 선택해주세요');
         }
         break;
       case 3:
-        typeEffective(type,3);
+        typeEffective(type);
         break;
       case 4:
         if (leadTimeDay.value) {
@@ -264,7 +265,7 @@ class WriteController extends GetxController {
             snackBarEffective('시간', '시간을 작성해주세요');
             timeFocus.requestFocus();
           } else {
-            typeEffective(type,4);
+            typeEffective(type);
           }
         } else {
           if (nightTextController.text.isEmpty) {
@@ -281,21 +282,24 @@ class WriteController extends GetxController {
               2) {
             snackBarEffective('x', '제대로 적으세요');
           } else {
-            typeEffective(type,4);
+            typeEffective(type);
           }
         }
         break;
       case 5:
-        typeEffective(type,5);
+        typeEffective(type);
         break;
       case 6:
         if (priceChoice.value) {
-          typeEffective(type,6);
+          typeEffective(type);
         } else {
           if (priceTextController.text.isEmpty) {
             snackBarEffective('x', '가격을 적어주세요');
-          } else {
-            typeEffective(type,6);
+          }else if(priceTextController.text[0] == 0){
+            print('0dld');
+          }
+          else {
+            typeEffective(type);
           }
         }
         break;
@@ -303,13 +307,10 @@ class WriteController extends GetxController {
         if (contentTextController.text.isEmpty) {
           snackBarEffective('x', '계획을 작성해주세요');
         } else {
-          typeEffective(type,7);
+          typeEffective(type);
         }
         break;
       case 8:
-        print('hey');
-        print(scrollType.value);
-
         effectiveCheck.value = true;
         break;
     }
@@ -337,7 +338,7 @@ class WriteController extends GetxController {
       }
 
       if (writeComplete.lastIndexOf(true) == index) {
-        downScroll(index,650);
+        downScroll(1050);
       } else {
         keyValueScroll(index);
       }
@@ -345,48 +346,32 @@ class WriteController extends GetxController {
   }
 
   /** showtalCount 는 lastIndexOf값으로 변경 가능*/
-  nextCounter(index) {
+  nextCounter() {
     FocusManager.instance.primaryFocus?.unfocus();
     /** counter 의 값에 마지막 index 값 저장 */
     if (counter.value != writeComplete.lastIndexOf(true)) {
-
       scrollTap[counter.value].value = false;
       counter.value = writeComplete.lastIndexOf(true);
     }
-
     scrollType.value = true; //scroll 감지 막기
 
     /** 다음 버튼 클릭 시 실행되는 기본 코드 */
     if (writeComplete.lastIndexOf(true) != maxCounter) {
-
       paddingHalfValue.value = getSize(counter.value) / 2;
-
       paddingWidgetValue.value = getSize(counter.value + 1);
       scrollTap[counter.value + 1].value = true; //800
       Future.delayed(Duration(milliseconds: 200), () {
         writeComplete[counter.value + 1].value = true;
         scrollTap[counter.value].value = false;
         counter.value++;
-
-        downScroll(index,400);
+        downScroll(400);
       });
       /** 마지막 페이지 작성 후 버튼 클릭 시 실행되는 코드*/
     } else {
-      print('3');
-      print('마지막 페이지 실행');
       effectiveCheck.value = true;
       scrollTap[counter.value].value = false;
       upScroll();
-      // scrollController.value.animateTo(
-      //     scrollController.value.position.minScrollExtent,
-      //     duration: Duration(milliseconds: 800),
-      //     curve: Curves.linear);
       pageFinal.value = true;
-      //counter.value++;
-      print(counter.value);
-      print(effectiveCheck.value);
-      print(scrollType.value);
-
     }
   }
 
@@ -403,7 +388,7 @@ class WriteController extends GetxController {
     bottomSheetDe.value = location[index];
     Get.back();
     if (counter.value == writeComplete.lastIndexOf(true)) {
-      nextCounter(index);
+      nextCounter();
     }
   }
 
@@ -413,6 +398,7 @@ class WriteController extends GetxController {
 
   leadTimeToggle(String TD) {
     if (TD == 'time' && leadTimeDay.value == false) {
+      print('타입');
       timeDayConference.value = false;
       leadTimeDay.value = !leadTimeDay.value;
       timeTextController.clear();
@@ -457,7 +443,6 @@ class WriteController extends GetxController {
   }
 
   prevPage() {
-    Get.back();
-    //resetData();
+    onWillPop();
   }
 }

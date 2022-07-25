@@ -5,24 +5,24 @@ import 'package:travelidge/app/ui/pages/write/components/wrap_Scroll_Tag.dart';
 import 'package:travelidge/app/ui/pages/write/controller/write_controller.dart';
 
 /** 소요 시간 기간*/
-final controller = WriteController.to;
+
 Widget leadTimeDayPage(int index) {
+  final controller = WriteController.to;
   return wrapScrollTag(
       index: index,
       child: Obx(() => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text('lead_t'.tr, style: TextStyle(fontSize: 20)),
                 SizedBox(height: 11),
                 Row(children: [
                   GestureDetector(
-                      onTap: () => WriteController.to.leadTimeToggle('time'),
+                      onTap: () => controller.leadTimeToggle('time'),
                       child: Container(
                           padding:
                               EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                           decoration: BoxDecoration(
-                              color: WriteController.to.leadTimeDay.value
+                              color: controller.leadTimeDay.value
                                   ? Colors.grey
                                   : Colors.white,
                               border:
@@ -31,12 +31,12 @@ Widget leadTimeDayPage(int index) {
                           child: Text('lead_time'.tr))),
                   SizedBox(width: 12),
                   GestureDetector(
-                      onTap: () => WriteController.to.leadTimeToggle('day'),
+                      onTap: () => controller.leadTimeToggle('day'),
                       child: Container(
                           padding:
                               EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                           decoration: BoxDecoration(
-                              color: WriteController.to.leadTimeDay.value
+                              color: controller.leadTimeDay.value
                                   ? Colors.white
                                   : Colors.grey,
                               border:
@@ -45,40 +45,41 @@ Widget leadTimeDayPage(int index) {
                           child: Text('lead_day'.tr))),
                 ]),
                 SizedBox(height: 23),
-                WriteController.to.leadTimeDay.value ? leadTime() : leadDay(),
+                WriteController.to.leadTimeDay.value ? leadTime(controller) : leadDay(controller),
                 Row(children: [
                   Checkbox(
-                      value: WriteController.to.timeDayConference.value,
+                      value: controller.timeDayConference.value,
                       onChanged: (_) =>
-                          WriteController.to.timeDayConferenceToggle()),
+                          controller.timeDayConferenceToggle()),
                   Text('협의 가능')
                 ])
               ])));
 }
 
 /** leadTime*/
-leadTime() {
+leadTime(controller) {
   return Row(
-    children: [leadTimeDayField(controller.timeTextController,controller.timeFocus), SizedBox(width: 12), Text('시간')],
+    children: [leadTimeDayField(controller,controller.timeTextController,controller.timeFocus), SizedBox(width: 12), Text('시간')],
   );
 }
 
 /**leadDay*/
-leadDay() {
+leadDay(controller) {
   return Row(
     children: [
-      leadTimeDayField(controller.nightTextController,controller.nightFocus),
+      leadTimeDayField(controller,controller.nightTextController,controller.nightFocus),
       SizedBox(width: 12),
       Text('박'),
       SizedBox(width: 12),
-      leadTimeDayField(controller.dayTextController,controller.dayFocus),
+      leadTimeDayField(controller,controller.dayTextController,controller.dayFocus),
       Text('일')
     ],
   );
 }
 
 /** leadTimeDay TextField */
-leadTimeDayField(textController,focus) {
+leadTimeDayField(controller,textController,focus) {
+  final controller = WriteController.to;
   return SizedBox(
       width: 50,
       height: 50,

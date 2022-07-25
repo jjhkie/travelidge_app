@@ -24,14 +24,12 @@ Widget wrapScrollTag({required int index, required Widget child}) {
               ? EdgeInsets.only(
                   top: (height -
                               controller.paddingWidgetValue.value -
-                              controller.paddingHalfValue.value) /
-                          2 -
+                              controller.paddingHalfValue.value)/2 -
                       60-controller.keyboardInsetBottom.value,
                       //-(MediaQuery.of(context).viewInsets.bottom/2)
                   bottom: (height -
                               controller.paddingWidgetValue.value -
-                              controller.paddingHalfValue.value) /
-                          2 +
+                              controller.paddingHalfValue.value)/2+
                       60+controller.keyboardInsetBottom.value,
                   left: 20,
                   right: 20)

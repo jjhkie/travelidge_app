@@ -78,18 +78,12 @@ class Writing extends GetView<WriteController> {
                           width: MediaQuery.of(context).size.width,
                           height: 3,
                             child:Obx(()=>LinearProgressIndicator(
-                              // value:(controller.writeComplete.lastIndexOf(true)+1)/(controller.maxCounter+1),
-                              // valueColor: controller.colorAnimation,
-                              // backgroundColor: controller.colorAnimation.value?.withOpacity(0.4),
+
                               valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
                               value: (controller.writeComplete.lastIndexOf(true)+1)/(controller.maxCounter+1),
                             )),
                           )),
-                  // Positioned(
-                  //   bottom:0,
-                  //   left:0,
-                  //   child:bottomFixedSheet()
-                  // )
+
                 ]))),
         bottomSheet:bottomFixedSheet()
     );

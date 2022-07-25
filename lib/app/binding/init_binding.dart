@@ -11,15 +11,10 @@ import 'package:travelidge/app/ui/pages/notice/controller/notice_controller.dart
 class InitBinding implements Bindings{
   @override
   void dependencies() {
-   //Get.put(NavController());
-    //Get.put(FcmController());
-    Get.lazyPut(() => NoticeController(NoticeRepository(ApiClient())));
-    //Get.lazyPut(() => DeclareController());
-    //Get.lazyPut(() => ChatListController());
+    //Get.lazyPut(() => NoticeController(NoticeRepository(ApiClient())));
     Get.lazyPut(() => NavController());
-    //Get.lazyPut(() => WriteController());
-    Get.lazyPut(() => HomeController(HomeRepository(ApiClient())));
-    //Get.lazyPut(() => InfiniteScrollController(UserRepository(ApiClient())));
+    //Get.lazyPut(() => HomeController(HomeRepository(ApiClient())));
+
   }
 
 }
