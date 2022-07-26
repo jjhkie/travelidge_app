@@ -1,13 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:travelidge/app/translations/app_translations.dart';
 import 'package:travelidge/app/binding/init_binding.dart';
 import 'package:travelidge/app/routes/app_pages.dart';
 import 'package:travelidge/app/routes/app_routes.dart';
+import 'package:travelidge/app/translations/app_translations.dart';
 import 'package:travelidge/app/ui/theme/app_theme.dart';
 import 'package:travelidge/app_config.dart';
-
 void main() {
   var configuredApp = AppConfig(
     appName: 'Build flavors DEV',

@@ -1,6 +1,39 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelidge/app/ui/pages/write/components/destination_bottom_sheet.dart';
+import 'package:table_calendar/table_calendar.dart';
+
+class Event {
+final String title;
+
+const Event(this.title);
+
+@override
+String toString() => title;
+}
+
+int getHashCode(DateTime key) {
+  return key.day * 1000000 + key.month * 10000 + key.year;
+}
+
+
+final _kEventSource = Map.fromIterable(List.generate(50, (index) => index),
+    key: (item) => DateTime.utc(kFirstDay.year, kFirstDay.month, item * 5),
+    value: (item) => List.generate(
+        item % 4 + 1, (index) => Event('Event $item | ${index + 1}')))
+  ..addAll({
+    kToday: [
+      Event('Today\'s Event 1'),
+      Event('Today\'s Event 2'),
+    ],
+  });
+final kToday = DateTime.now();
+final kFirstDay = DateTime(kToday.year, kToday.month - 3, kToday.day);
+final kLastDay = DateTime(kToday.year, kToday.month + 3, kToday.day);
+
+
 
 class WriteController extends GetxController {
   static WriteController get to => Get.find<WriteController>();
@@ -41,7 +74,6 @@ class WriteController extends GetxController {
   var maxCounter = 7;
   var keyboardInsetBottom = 0.obs;
 
-
   /** Title Text Controller */
   late TextEditingController titleTextController;
 
@@ -53,6 +85,50 @@ class WriteController extends GetxController {
   FocusNode nightFocus = FocusNode();
   FocusNode dayFocus = FocusNode();
 
+
+  /** Calendar */
+
+  Rx<DateTime> focusedDay= DateTime.now().obs;
+  Rxn<DateTime> selectedDay = Rxn<DateTime>();
+  //late DateTime? selectedDay;
+
+
+
+  final Rx<LinkedHashSet<DateTime>> selectedDays = LinkedHashSet<DateTime>(
+    equals: isSameDay,
+    hashCode: getHashCode
+  ).obs;
+  final ValueNotifier<List<Event>> _selectedEvents = ValueNotifier([]);
+
+  /** */
+  void onDaySelected(DateTime selected, DateTime focused) {
+
+      focusedDay.value = focused;
+      // Update values in a Set
+      if (selectedDays.value.contains(selectedDay)) {
+        selectedDays.value.remove(selectedDay);
+      } else {
+        selectedDays.value.add(selected);
+      }
+    _selectedEvents.value = _getEventsForDays(selectedDays.value);
+  }
+
+  List<Event> _getEventsForDay(DateTime day) {
+    // Implementation example
+    return kEvents[day] ?? [];
+  }
+  final kEvents = LinkedHashMap<DateTime, List<Event>>(
+    equals: isSameDay,
+    hashCode: getHashCode,
+  )..addAll(_kEventSource);
+
+  List<Event> _getEventsForDays(Set<DateTime> days) {
+    // Implementation example
+    // Note that days are in selection order (same applies to events)
+    return [
+      for (final d in days) ..._getEventsForDay(d),
+    ];
+  }
 
   @override
   void onInit() {
