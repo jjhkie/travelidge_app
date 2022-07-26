@@ -2,22 +2,22 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:travelidge/app/ui/pages/write/components/destination_bottom_sheet.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class Event {
-final String title;
+  final String title;
 
-const Event(this.title);
+  const Event(this.title);
 
-@override
-String toString() => title;
+  @override
+  String toString() => title;
 }
 
 int getHashCode(DateTime key) {
   return key.day * 1000000 + key.month * 10000 + key.year;
 }
-
 
 final _kEventSource = Map.fromIterable(List.generate(50, (index) => index),
     key: (item) => DateTime.utc(kFirstDay.year, kFirstDay.month, item * 5),
@@ -32,8 +32,6 @@ final _kEventSource = Map.fromIterable(List.generate(50, (index) => index),
 final kToday = DateTime.now();
 final kFirstDay = DateTime(kToday.year, kToday.month - 3, kToday.day);
 final kLastDay = DateTime(kToday.year, kToday.month + 3, kToday.day);
-
-
 
 class WriteController extends GetxController {
   static WriteController get to => Get.find<WriteController>();
@@ -85,38 +83,90 @@ class WriteController extends GetxController {
   FocusNode nightFocus = FocusNode();
   FocusNode dayFocus = FocusNode();
 
-
   /** Calendar */
 
-  Rx<DateTime> focusedDay= DateTime.now().obs;
-  Rxn<DateTime> selectedDay = Rxn<DateTime>();
+  Rx<DateTime> focusedDay = DateTime.now().obs;
+  Rxn<DateTime?> selectedDay = Rxn<DateTime>();
+
   //late DateTime? selectedDay;
 
+  final Rx<LinkedHashSet<DateTime>> selectedDays =
+      LinkedHashSet<DateTime>(equals: isSameDay, hashCode: getHashCode).obs;
 
-
-  final Rx<LinkedHashSet<DateTime>> selectedDays = LinkedHashSet<DateTime>(
-    equals: isSameDay,
-    hashCode: getHashCode
-  ).obs;
-  final ValueNotifier<List<Event>> _selectedEvents = ValueNotifier([]);
+  //final ValueNotifier<List<Event>> _selectedEvents = ValueNotifier([]);
 
   /** */
   void onDaySelected(DateTime selected, DateTime focused) {
-
-      focusedDay.value = focused;
-      // Update values in a Set
-      if (selectedDays.value.contains(selectedDay)) {
-        selectedDays.value.remove(selectedDay);
-      } else {
-        selectedDays.value.add(selected);
+    focusedDay.value = DateTime.now();
+    focusedDay.value = focused;
+    // Update values in a Set
+    if (selectedDays.value.contains(selected)) {
+      selectedDays.value.remove(selected);
+      if (weekToggle[selected.weekday-1].value == true) {
+        weekToggle[selected.weekday-1].value = false;
       }
-    _selectedEvents.value = _getEventsForDays(selectedDays.value);
+    } else {
+      selectedDays.value.add(selected);
+    }
+
+    //_selectedEvents.value = _getEventsForDays(selectedDays.value);
   }
+
+  RxList<Rx<bool>> weekToggle = List.generate(7, (index) => false.obs).obs;
+
+  void onWeekSelected(DateTime date) {
+    weekToggle[date.weekday - 1].value = !weekToggle[date.weekday - 1].value;
+    print(DateFormat('EEEE').format(date));
+    var choiceWeekFirstDay = date;
+    if (weekToggle[date.weekday - 1].value) {
+      if (date.day > 10) {
+        /** 첫 번째 주가 저번 달인 경우 */
+
+        choiceWeekFirstDay = date.add(Duration(days: 7)); //
+
+        while (choiceWeekFirstDay.month - date.month == 1) {
+          focusedDay.value = choiceWeekFirstDay;
+          if (!selectedDays.value.contains(choiceWeekFirstDay)) {
+            selectedDays.value.add(choiceWeekFirstDay);
+          }
+          choiceWeekFirstDay = choiceWeekFirstDay.add(Duration(days: 7));
+        }
+      } else {
+        while (choiceWeekFirstDay.month - date.month == 0) {
+          focusedDay.value = choiceWeekFirstDay;
+          selectedDays.value.add(choiceWeekFirstDay);
+          choiceWeekFirstDay = choiceWeekFirstDay.add(Duration(days: 7));
+        }
+      }
+    } else {
+      if (date.day > 10) {
+        /** 첫 번째 주가 저번 달인 경우 */
+        choiceWeekFirstDay = date.add(Duration(days: 7)); //
+
+        while (choiceWeekFirstDay.month - date.month == 1) {
+          focusedDay.value = choiceWeekFirstDay;
+          if (selectedDays.value.contains(choiceWeekFirstDay)) {
+            selectedDays.value.remove(choiceWeekFirstDay);
+          }
+          choiceWeekFirstDay = choiceWeekFirstDay.add(Duration(days: 7));
+        }
+      } else {
+        while (choiceWeekFirstDay.month - date.month == 0) {
+          focusedDay.value = choiceWeekFirstDay;
+          selectedDays.value.remove(choiceWeekFirstDay);
+          choiceWeekFirstDay = choiceWeekFirstDay.add(Duration(days: 7));
+        }
+      }
+    }
+  }
+
+  repeatSelected(DateTime choiceWeekFirstDay) {}
 
   List<Event> _getEventsForDay(DateTime day) {
     // Implementation example
     return kEvents[day] ?? [];
   }
+
   final kEvents = LinkedHashMap<DateTime, List<Event>>(
     equals: isSameDay,
     hashCode: getHashCode,
@@ -155,23 +205,23 @@ class WriteController extends GetxController {
           FocusManager.instance.primaryFocus?.unfocus();
         });
       }
-
-
     });
   }
 
   /** 뒤로가기 두번클릭 */
   DateTime? currentBackPressTime;
+
   onWillPop() {
     DateTime now = DateTime.now();
     if (currentBackPressTime == null ||
         now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
       currentBackPressTime = now;
-      Get.snackbar('경고', '한번 더 누르면 페이지가 종료됩니다.',snackPosition: SnackPosition.BOTTOM,duration: Duration(milliseconds: 2000));
-    }else {
+      Get.snackbar('경고', '한번 더 누르면 페이지가 종료됩니다.',
+          snackPosition: SnackPosition.BOTTOM,
+          duration: Duration(milliseconds: 2000));
+    } else {
       Get.closeAllSnackbars();
       Get.offAllNamed('/');
-
     }
   }
 
@@ -234,20 +284,19 @@ class WriteController extends GetxController {
   }
 
   /** */
-  scrollLastFun(time){
+  scrollLastFun(time) {
     Future.delayed(Duration(milliseconds: time), () {
       scrollType.value = false;
       effectiveCheck.value = false;
-      if(counter.value ==1){
+      if (counter.value == 1) {
         titleFocus.requestFocus();
-      }
-      else if(counter.value ==4) {
+      } else if (counter.value == 4) {
         if (leadTimeDay.value == true) {
           timeFocus.requestFocus();
         } else {
           nightFocus.requestFocus();
         }
-      }else if(counter.value == 7){
+      } else if (counter.value == 7) {
         contentFocus.requestFocus();
       }
     });
@@ -262,7 +311,7 @@ class WriteController extends GetxController {
           curve: Curves.easeOut);
     });
 
-    scrollLastFun(time+1250);
+    scrollLastFun(time + 1250);
   }
 
   /** 스크롤 제일 상단으로 이동*/
@@ -287,16 +336,16 @@ class WriteController extends GetxController {
   /** Content Text Controller*/
   TextEditingController contentTextController = TextEditingController();
   FocusNode contentFocus = FocusNode();
+
   /** type 에 따른 실행*/
   typeEffective(type) {
     if (type == 'next') {
       nextCounter();
     } else if (type == 'scroll') {
       effectiveCheck.value = true;
-    }else if(type == 'topTouch'){
-      widgetClickCounter(counter.value-1);
+    } else if (type == 'topTouch') {
+      widgetClickCounter(counter.value - 1);
     }
-
   }
 
   /** snackbar */
@@ -312,7 +361,6 @@ class WriteController extends GetxController {
       case 0:
         if (categoryButton.value.contains(true)) {
           typeEffective(type);
-
         } else {
           snackBarEffective('버튼', '하나라도 선택해주세요');
         }
@@ -321,7 +369,7 @@ class WriteController extends GetxController {
         if (titleTextController.text.isEmpty) {
           snackBarEffective('제목', '제목을 입력해주세요');
         } else {
-           typeEffective(type);
+          typeEffective(type);
           //titleFocus.requestFocus();
         }
         break;
@@ -371,10 +419,9 @@ class WriteController extends GetxController {
         } else {
           if (priceTextController.text.isEmpty) {
             snackBarEffective('x', '가격을 적어주세요');
-          }else if(priceTextController.text[0] == 0){
+          } else if (priceTextController.text[0] == 0) {
             print('0dld');
-          }
-          else {
+          } else {
             typeEffective(type);
           }
         }

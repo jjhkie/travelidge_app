@@ -32,6 +32,7 @@ class Writing extends GetView<WriteController> {
         body: SafeArea(
             child: GestureDetector(
                 onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+                //onHorizontalDragUpdate:(detail){controller.scrollType.value = true;},
                 onVerticalDragUpdate: (detail){controller.effectiveFunc('scroll');},
                 child: Stack(children: [
                   Obx(()=> AbsorbPointer(
