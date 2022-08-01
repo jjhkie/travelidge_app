@@ -56,7 +56,6 @@ class Page extends GetView<NavController> {
         color: const Color(0xFFFFC000)
       ),
       child: InkWell(
-
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[

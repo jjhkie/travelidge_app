@@ -16,36 +16,77 @@ class Writing extends GetView<WriteController> {
 
   @override
   Widget build(BuildContext context) {
+    var controller = WriteController.to;
     return Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(40),
-          child: Container(
-            decoration: BoxDecoration(color: Colors.white),
-          ),
-        ),
-        body: Obx(() => SingleChildScrollView(
-              controller: controller.autoController,
-              physics: controller.scrollType.value
-                  ? null
-                  : NeverScrollableScrollPhysics(),
-              scrollDirection: Axis.vertical,
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    writeCategoryPage(0, controller.contextHeight), //카테고리
-                    titlePage(1, controller.contextHeight), //제목
-                    destinationPage(2, controller.contextHeight), //목적지
-                    calendarPage(3, controller.contextHeight),
-                    leadTimeDayPage(4, controller.contextHeight),
-                    maximumPeople(5, controller.contextHeight),
-                    pricePage(6, controller.contextHeight),
-                    contentPage(7, controller.contextHeight)
-                  ],
-                ),
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+            backgroundColor: Colors.white,
+            leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: Colors.black,
+                size: 20,
               ),
+              onPressed: () => controller.prevPage(),
             )),
-        bottomSheet: bottomFixedSheet());
+        body: SafeArea(
+            child: GestureDetector(
+                onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+                //onHorizontalDragUpdate:(detail){controller.scrollType.value = true;},
+                onVerticalDragUpdate: (detail){controller.effectiveFunc('scroll');},
+                child: Stack(children: [
+                  Obx(()=> AbsorbPointer(
+                    absorbing: controller.scrollType.value?true:false,
+                    child: SingleChildScrollView(
+                        controller: controller.scrollController.value,
+                        physics:controller.scrollType.value?ClampingScrollPhysics():controller.effectiveCheck.value?ClampingScrollPhysics():NeverScrollableScrollPhysics(),
+                        child: Column(children: [
+                              writeCategoryPage(0),
+                              titlePage(1),
+                              destinationPage(2),
+                              calendarPage(3),
+                              leadTimeDayPage(4),
+                              maximumPeople(5),
+                              pricePage(6),
+                              contentPage(7),
+                            ])),
+                  )),
+                  Positioned(
+                      top: 0,
+                      left: 0,
+                      child: Obx(() => Offstage(
+                        offstage: controller.scrollTap.value.contains(true)?false:true,
+                        child: GestureDetector(
+                          onTap: ()=> controller.effectiveFunc('topTouch'),
+                          child: SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              height: controller.paddingHalfValue.value,
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                          colors: [
+                                    Colors.white,
+                                    Colors.white60.withOpacity(0.1)
+                                  ])))),
+                        ),
+                      ))),
+                  Positioned(
+                      top: 0,
+                      left: 0,
+                      child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          height: 3,
+                            child:Obx(()=>LinearProgressIndicator(
+
+                              valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
+                              value: (controller.writeComplete.lastIndexOf(true)+1)/(controller.maxCounter+1),
+                            )),
+                          )),
+
+                ]))),
+        bottomSheet:bottomFixedSheet()
+    );
   }
 }

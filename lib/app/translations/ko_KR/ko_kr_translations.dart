@@ -6,7 +6,22 @@ final Map<String, String> koKR = {
   'calendarBs': '얼마나 여행하세요',
 
   //목적지
-
+  'destination0':'서울',
+  'destination1':'경기도',
+  'destination2':'강원도',
+  'destination3':'충청남도',
+  'destination4':'부산',
+  'destination5':'대구',
+  'destination6':'인천',
+  'destination7':'광주',
+  'destination8':'대전',
+  'destination9':'울산',
+  'destination10':'강원도',
+  'destination11':'전라남도',
+  'destination12':'전라북도',
+  'destination13':'경상북도',
+  'destination14':'경상남도',
+  'destination15':'제주도',
   //Home - AppBar
   'ContentFun_1': '현지인 상품',
   'ContentFun_2': '같이가요',
@@ -16,6 +31,7 @@ final Map<String, String> koKR = {
   'SummaryFun_3': '요청',
 
   'ContentGen': '전체',
+  'ContentGen_0': '문화/공연',
   'ContentGen_1': '액티비티',
   'ContentGen_2': '박물관/전시회',
   'ContentGen_3': '이색체험',
@@ -23,11 +39,12 @@ final Map<String, String> koKR = {
   'ContentGen_5': '관광',
   'ContentGen_6': '자연/휴식',
   //writing
-  'category_t': '카테고리',
+  'category_t': '어떤 여행인가요?',
   'category_content': '하나만 고를 수 있어요',
   'title_t': '어떤 여행인가요?',
   'title_hint_text': '여행명을 입력하세요',
   'destination_t': '목적지',
+  'calendar_title':'여행 일정을 알려주세요',
   'maximum_people_title': '스케줄당 최대 모집 인원',
   'price_title': '예상비용',
   'price_free': '무료',
@@ -36,7 +53,7 @@ final Map<String, String> koKR = {
   'content_title': '여행 내용',
   'content_subtitle': '방문장소와 체험내용 등 최대한 구체적으로 계획을 알려주세요',
   'content_hint_text': '방문장소와 체험내용 등 최대한 구체적으로 계획을 알려주세요',
-  'lead_t': '상품 소요시간',
+  'lead_t': '상품의 체험시간을 알려주세요',
   'lead_time': '시간',
   'lead_day': '1박 이상',
   //Common

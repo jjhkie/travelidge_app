@@ -5,23 +5,29 @@ import 'package:travelidge/app/ui/theme/app_colors.dart';
 
 /**Bottom 고정 화면 */
 Widget bottomFixedSheet() {
-  return Container(
-    decoration: BoxDecoration(
-        border: Border(
-            top: BorderSide(
-      color: Color(0xff9E9E9E),
-      width: 1.0,
-    ))),
-    child: Obx(() => Padding(
-        padding: EdgeInsets.only(
-            top: (WriteController.to.deviceHeight * 0.02),
-            left: 20,
-            right: 20,
-            bottom: 30),
-        child: WriteController.to.scrollType.value
-            ? registerButton()
-            : nextButton())),
-  );
+  return Obx(() => Offstage(
+      offstage: WriteController.to.bottomState.value ? false : true,
+      child: AnimatedSize(
+        duration: Duration(milliseconds: 100),
+        curve: Curves.fastOutSlowIn,
+        child: Container(
+          width:WriteController.to.context!.width,
+          height: WriteController.to.bottomState.value ? 80 : 0,
+          //padding: EdgeInsets.only(bottom:WriteController.to.context.mediaQueryViewInsets.bottom),
+          decoration: BoxDecoration(
+              border: Border(
+                  top: BorderSide(
+            color: Color(0xff9E9E9E),
+            width: 1.0
+          ))),
+          child: Padding(
+              padding:
+                  EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 30),
+              child: WriteController.to.pageFinal.value
+                  ? registerButton()
+                  : nextButton())
+        )
+      )));
 }
 
 registerButton() {
@@ -57,7 +63,7 @@ nextButton() {
     children: [
       Expanded(
         child: GestureDetector(
-          onTap: () => WriteController.to.nextCounter(),
+          onTap: () => WriteController.to.effectiveFunc('next'),
           child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),

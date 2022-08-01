@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:travelidge/app/routes/app_routes.dart';
+import 'package:travelidge/app/ui/pages/write/controller/write_controller.dart';
 
 enum RouteName { home, community,writing,chat, user }
 
@@ -10,6 +11,7 @@ class NavController extends GetxService {// 동일한 인스턴스에 접근할 
 
   void changePageIndex(int index) {
     if(RouteName.values[index] == RouteName.writing){
+
      Get.toNamed(Routes.WRITING);
     }else{
       currentIndex(index);
