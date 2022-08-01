@@ -7,6 +7,8 @@ import 'package:travelidge/app/routes/app_routes.dart';
 import 'package:travelidge/app/translations/app_translations.dart';
 import 'package:travelidge/app/ui/theme/app_theme.dart';
 import 'package:travelidge/app_config.dart';
+import 'package:intl/date_symbol_data_local.dart';
+
 void main() {
   var configuredApp = AppConfig(
     appName: 'Build flavors DEV',
@@ -15,7 +17,7 @@ void main() {
     child: FlavorApp(),
   );
 
-  runApp(configuredApp);
+  initializeDateFormatting().then((_) => runApp(configuredApp));
 }
 
 

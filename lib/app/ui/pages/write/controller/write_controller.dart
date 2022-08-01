@@ -30,8 +30,8 @@ final _kEventSource = Map.fromIterable(List.generate(50, (index) => index),
     ],
   });
 final kToday = DateTime.now();
-final kFirstDay = DateTime(kToday.year, kToday.month - 3, kToday.day);
-final kLastDay = DateTime(kToday.year, kToday.month + 3, kToday.day);
+final kFirstDay = DateTime(kToday.year, kToday.month - 6, kToday.day);
+final kLastDay = DateTime(kToday.year, kToday.month + 6, kToday.day);
 
 class WriteController extends GetxController {
   static WriteController get to => Get.find<WriteController>();
@@ -97,19 +97,47 @@ class WriteController extends GetxController {
 
   /** */
   void onDaySelected(DateTime selected, DateTime focused) {
-    focusedDay.value = DateTime.now();
+    //focusedDay.value = DateTime.now(); //필요한가
     focusedDay.value = focused;
     // Update values in a Set
     if (selectedDays.value.contains(selected)) {
       selectedDays.value.remove(selected);
-      if (weekToggle[selected.weekday-1].value == true) {
-        weekToggle[selected.weekday-1].value = false;
+      if (weekToggle[selected.weekday - 1].value == true) {
+        weekToggle[selected.weekday - 1].value = false;
       }
     } else {
-      selectedDays.value.add(selected);
-    }
+      if (selectedDays.value.length < 30) {
+        selectedDays.value.add(selected);
+        if (weekToggle[selected.weekday - 1].value == false) {
+          int subDay;
+          if (selected.day % 7 == 0) {
+            subDay = ((selected.day ~/ 7) - 1) * 7;
+          } else {
+            subDay = (selected.day ~/ 7) * 7;
+          }
 
-    //_selectedEvents.value = _getEventsForDays(selectedDays.value);
+          var choiceDayFirstWeek = selected.subtract(Duration(days: subDay));
+
+          checkContain(choiceDayFirstWeek);
+        }
+      }
+      print('30개가 넘었습니다.');
+    }
+  }
+
+  checkContain(DateTime firstDay){
+    bool containDay = false;
+    var nextDay = firstDay;
+    while(nextDay.month - firstDay.month == 0){
+      if(selectedDays.value.contains(nextDay)){
+        containDay = true;
+        nextDay = nextDay.add(Duration(days:7));
+      }else{
+        containDay = false;
+        break;
+      }
+    }
+    weekToggle[firstDay.weekday - 1].value = containDay;
   }
 
   RxList<Rx<bool>> weekToggle = List.generate(7, (index) => false.obs).obs;
@@ -127,6 +155,10 @@ class WriteController extends GetxController {
         while (choiceWeekFirstDay.month - date.month == 1) {
           focusedDay.value = choiceWeekFirstDay;
           if (!selectedDays.value.contains(choiceWeekFirstDay)) {
+            if (selectedDays.value.length == 30) {
+              checkContain(choiceWeekFirstDay);
+              break;
+            }
             selectedDays.value.add(choiceWeekFirstDay);
           }
           choiceWeekFirstDay = choiceWeekFirstDay.add(Duration(days: 7));
@@ -134,6 +166,10 @@ class WriteController extends GetxController {
       } else {
         while (choiceWeekFirstDay.month - date.month == 0) {
           focusedDay.value = choiceWeekFirstDay;
+          if (selectedDays.value.length == 30) {
+            checkContain(choiceWeekFirstDay);
+            break;
+          }
           selectedDays.value.add(choiceWeekFirstDay);
           choiceWeekFirstDay = choiceWeekFirstDay.add(Duration(days: 7));
         }
