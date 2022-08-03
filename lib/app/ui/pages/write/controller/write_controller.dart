@@ -2,36 +2,8 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:travelidge/app/ui/pages/write/components/destination_bottom_sheet.dart';
 import 'package:table_calendar/table_calendar.dart';
-
-class Event {
-  final String title;
-
-  const Event(this.title);
-
-  @override
-  String toString() => title;
-}
-
-int getHashCode(DateTime key) {
-  return key.day * 1000000 + key.month * 10000 + key.year;
-}
-
-final _kEventSource = Map.fromIterable(List.generate(50, (index) => index),
-    key: (item) => DateTime.utc(kFirstDay.year, kFirstDay.month, item * 5),
-    value: (item) => List.generate(
-        item % 4 + 1, (index) => Event('Event $item | ${index + 1}')))
-  ..addAll({
-    kToday: [
-      Event('Today\'s Event 1'),
-      Event('Today\'s Event 2'),
-    ],
-  });
-final kToday = DateTime.now();
-final kFirstDay = DateTime(kToday.year, kToday.month - 6, kToday.day);
-final kLastDay = DateTime(kToday.year, kToday.month + 6, kToday.day);
 
 class WriteController extends GetxController {
   static WriteController get to => Get.find<WriteController>();
@@ -63,8 +35,7 @@ class WriteController extends GetxController {
   var counter = 0.obs;
 
   /** 카테고리 버튼 */
-  late RxList<Rx<bool>> categoryButton =
-      List.generate(6, (index) => false.obs).obs;
+  late RxList<Rx<bool>> categoryButton;
   int buttonIndex = 0;
 
   /** 글작성 완료 변수*/
@@ -77,29 +48,71 @@ class WriteController extends GetxController {
 
   /** LeadTime Text Controller*/
   late TextEditingController timeTextController;
-  TextEditingController nightTextController = TextEditingController();
-  TextEditingController dayTextController = TextEditingController();
-  FocusNode timeFocus = FocusNode();
-  FocusNode nightFocus = FocusNode();
-  FocusNode dayFocus = FocusNode();
+  late TextEditingController nightTextController;
+  late TextEditingController dayTextController;
+  late FocusNode timeFocus;
+  late FocusNode nightFocus;
+  late FocusNode dayFocus;
 
   /** Calendar */
-
-  Rx<DateTime> focusedDay = DateTime.now().obs;
+  late Rx<DateTime> focusedDay;
   Rxn<DateTime?> selectedDay = Rxn<DateTime>();
-
-  //late DateTime? selectedDay;
-
   final Rx<LinkedHashSet<DateTime>> selectedDays =
       LinkedHashSet<DateTime>(equals: isSameDay, hashCode: getHashCode).obs;
+  late RxList<Rx<bool>> weekToggle;
 
-  //final ValueNotifier<List<Event>> _selectedEvents = ValueNotifier([]);
+  /** Init */
+  @override
+  void onInit() {
+    super.onInit();
+    scrollTap = List.generate(8, (index) => false.obs).obs;
+    writeComplete = List.generate(8, (index) => false.obs).obs;
+    categoryButton = List.generate(6, (index) => false.obs).obs;
+    weekToggle = List.generate(7, (index) => false.obs).obs;
+    scrollTap[0].value = true;
+    writeComplete[0].value = true;
+    paddingWidgetValue.value = 152;
+    focusedDay = DateTime.now().obs;
+    titleTextController = TextEditingController();
+    timeTextController = TextEditingController();
+    nightTextController = TextEditingController();
+    dayTextController = TextEditingController();
+    timeFocus = FocusNode();
+    nightFocus = FocusNode();
+    dayFocus = FocusNode();
+    /** 스크롤할 때*/
+    scrollController.value.addListener(() {
+      if (scrollController.value.position.pixels ==
+          scrollController.value.position.maxScrollExtent) {
+        bottomState.value = true;
+      } else {
+        bottomState.value = false;
+      }
+      if (!scrollType.value && scrollTap.value.contains(true)) {
+        Future.delayed(Duration(milliseconds: 100), () {
+          scrollTap[counter.value].value = false;
+          FocusManager.instance.primaryFocus?.unfocus();
+        });
+      }
+    });
+  }
 
-  /** */
+  /** 월 기준 변경 코드 */
+  checkWeekPoint(DateTime day){
+    day = DateTime(day.year, day.month, 01);
+    weekToggle.value = List.generate(7, (index) => true.obs).obs;
+    DateTime _day = day;
+    while(_day.month - day.month == 0){
+      if(!selectedDays.value.contains(_day)){
+        weekToggle[_day.weekday -1 ].value = false;
+      }
+      _day = _day.add(Duration(days:1));
+    }
+  }
+
+  /** 날짜 클릭 코드 */
   void onDaySelected(DateTime selected, DateTime focused) {
-    //focusedDay.value = DateTime.now(); //필요한가
     focusedDay.value = focused;
-    // Update values in a Set
     if (selectedDays.value.contains(selected)) {
       selectedDays.value.remove(selected);
       if (weekToggle[selected.weekday - 1].value == true) {
@@ -115,13 +128,10 @@ class WriteController extends GetxController {
           } else {
             subDay = (selected.day ~/ 7) * 7;
           }
-
           var choiceDayFirstWeek = selected.subtract(Duration(days: subDay));
-
           checkContain(choiceDayFirstWeek);
         }
       }
-      print('30개가 넘었습니다.');
     }
   }
 
@@ -140,18 +150,15 @@ class WriteController extends GetxController {
     weekToggle[firstDay.weekday - 1].value = containDay;
   }
 
-  RxList<Rx<bool>> weekToggle = List.generate(7, (index) => false.obs).obs;
+
 
   void onWeekSelected(DateTime date) {
     weekToggle[date.weekday - 1].value = !weekToggle[date.weekday - 1].value;
-    print(DateFormat('EEEE').format(date));
     var choiceWeekFirstDay = date;
     if (weekToggle[date.weekday - 1].value) {
       if (date.day > 10) {
         /** 첫 번째 주가 저번 달인 경우 */
-
         choiceWeekFirstDay = date.add(Duration(days: 7)); //
-
         while (choiceWeekFirstDay.month - date.month == 1) {
           focusedDay.value = choiceWeekFirstDay;
           if (!selectedDays.value.contains(choiceWeekFirstDay)) {
@@ -170,6 +177,7 @@ class WriteController extends GetxController {
             checkContain(choiceWeekFirstDay);
             break;
           }
+
           selectedDays.value.add(choiceWeekFirstDay);
           choiceWeekFirstDay = choiceWeekFirstDay.add(Duration(days: 7));
         }
@@ -196,53 +204,11 @@ class WriteController extends GetxController {
     }
   }
 
-  repeatSelected(DateTime choiceWeekFirstDay) {}
-
-  List<Event> _getEventsForDay(DateTime day) {
-    // Implementation example
-    return kEvents[day] ?? [];
-  }
-
   final kEvents = LinkedHashMap<DateTime, List<Event>>(
     equals: isSameDay,
     hashCode: getHashCode,
   )..addAll(_kEventSource);
 
-  List<Event> _getEventsForDays(Set<DateTime> days) {
-    // Implementation example
-    // Note that days are in selection order (same applies to events)
-    return [
-      for (final d in days) ..._getEventsForDay(d),
-    ];
-  }
-
-  @override
-  void onInit() {
-    super.onInit();
-
-    scrollTap = List.generate(8, (index) => false.obs).obs;
-    writeComplete = List.generate(8, (index) => false.obs).obs;
-    scrollTap[0].value = true;
-    writeComplete[0].value = true;
-    paddingWidgetValue.value = 152;
-    titleTextController = TextEditingController();
-    timeTextController = TextEditingController();
-    /** 스크롤할 때*/
-    scrollController.value.addListener(() {
-      if (scrollController.value.position.pixels ==
-          scrollController.value.position.maxScrollExtent) {
-        bottomState.value = true;
-      } else {
-        bottomState.value = false;
-      }
-      if (!scrollType.value && scrollTap.value.contains(true)) {
-        Future.delayed(Duration(milliseconds: 100), () {
-          scrollTap[counter.value].value = false;
-          FocusManager.instance.primaryFocus?.unfocus();
-        });
-      }
-    });
-  }
 
   /** 뒤로가기 두번클릭 */
   DateTime? currentBackPressTime;
@@ -605,3 +571,29 @@ class WriteController extends GetxController {
     onWillPop();
   }
 }
+
+/** */
+class Event {
+  final String title;
+  const Event(this.title);
+  @override
+  String toString() => title;
+}
+
+int getHashCode(DateTime key) {
+  return key.day * 1000000 + key.month * 10000 + key.year;
+}
+
+final _kEventSource = Map.fromIterable(List.generate(50, (index) => index),
+    key: (item) => DateTime.utc(kFirstDay.year, kFirstDay.month, item * 5),
+    value: (item) => List.generate(
+        item % 4 + 1, (index) => Event('Event $item | ${index + 1}')))
+  ..addAll({
+    kToday: [
+      Event('Today\'s Event 1'),
+      Event('Today\'s Event 2'),
+    ],
+  });
+final kToday = DateTime.now();
+final kFirstDay = DateTime(kToday.year, kToday.month - 6, kToday.day);
+final kLastDay = DateTime(kToday.year, kToday.month + 6, kToday.day);
