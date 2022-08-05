@@ -1,10 +1,10 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:flutter/material.dart';
-// import 'package:flutter/src/widgets/framework.dart';
+// import 'package:flutter/src/components/framework.dart';
 // import 'package:get/get.dart';
 // import 'package:travelidge/ui/login/controller/auth_controller.dart';
 // import 'package:travelidge/ui/chat_list/controllers/chat_list_controller.dart';
-// import 'package:travelidge/ui/declare/screen/declare_page.dart';
+// import 'package:travelidge/ui/declare/page/declare_page.dart';
 //
 // class declare extends GetView<ChatListController> {
 //   final authC = Get.find<AuthController>();

@@ -3,8 +3,8 @@
 // import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
 // import 'package:travelidge/data/model/user_model.dart';
-// import 'package:travelidge/ui/nav/screen/nav_bottom.dart';
-// import 'package:travelidge/ui/sign/screen/login_main_page.dart';
+// import 'package:travelidge/ui/nav/page/nav_bottom.dart';
+// import 'package:travelidge/ui/sign/page/login_main_page.dart';
 //
 // class AuthController extends GetxService {
 //   late Rx<User?> _user;

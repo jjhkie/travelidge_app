@@ -10,21 +10,23 @@ import 'package:travelidge/app/ui/pages/home/components/popular_item.dart';
 import 'package:travelidge/app/ui/pages/home/components/recent_item.dart';
 import 'package:travelidge/app/ui/pages/home/controller/home_controller.dart';
 
-
 class Home extends GetView<HomeController> {
   final double sliverMinHeight = 60.0, sliverMaxHeight = 280.0;
 
   const Home({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(0), child: AppBar(),
-          ),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(0),
+        child: AppBar(),
+      ),
       body: NestedScrollView(
           controller: controller.scrollController,
           headerSliverBuilder: headerSliverBuilder,
+
           body: CustomScrollView(
             slivers: [
               SliverList(
@@ -63,7 +65,7 @@ class Home extends GetView<HomeController> {
 
 Widget _homeList(controller) {
   return Padding(
-    padding: const EdgeInsets.only(top: 25.0),
+    padding: const EdgeInsets.only(top: 60.0),
     child: FutureBuilder<HomeListModel>(
       future: controller.getData(),
       builder: (context, snapshot) {
@@ -79,18 +81,22 @@ Widget _homeList(controller) {
           return const Center(child: Text('error'));
         }
         return Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              children: [
-                popularList(popularLocalList),
-                const SizedBox(height: 30),
-                recentList(recentTravelList),
-                const SizedBox(height: 30),
-                categoryList(categoryTravelList),
-                const SizedBox(height: 30),
-                friendList(friendTravelList)
-              ],
-            ));
+          padding: EdgeInsets.all(10.0),
+          child: popularList(popularLocalList),
+        );
+        // return Padding(
+        //     padding: const EdgeInsets.all(10.0),
+        //     child: Column(
+        //       children: [
+        //         popularList(popularLocalList),
+        //         const SizedBox(height: 30),
+        //         recentList(recentTravelList),
+        //         const SizedBox(height: 30),
+        //         categoryList(categoryTravelList),
+        //         const SizedBox(height: 30),
+        //         friendList(friendTravelList)
+        //       ],
+        //     ));
       },
     ),
   );

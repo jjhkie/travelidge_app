@@ -3,7 +3,7 @@
 // import 'package:get/get.dart';
 // import 'package:travelidge/data/model/travel_model.dart';
 // import 'package:travelidge/data/repository/user_repository.dart';
-// import 'package:travelidge/ui/sign/screen/login_main_page.dart';
+// import 'package:travelidge/ui/sign/page/login_main_page.dart';
 //
 // class InfiniteScrollController extends GetxController {
 //   final UserRepository _repository;

@@ -1,8 +1,8 @@
 // import 'package:flutter/material.dart';
-// import 'package:flutter/src/widgets/framework.dart';
+// import 'package:flutter/src/components/framework.dart';
 // import 'package:get/get.dart';
 // import 'package:travelidge/ui/login/controller/auth_controller.dart';
-// import 'package:travelidge/ui/sign/screen/singup_page.dart';
+// import 'package:travelidge/ui/sign/page/singup_page.dart';
 //
 // class LoginPage extends GetView<AuthController> {
 //   var emailC = TextEditingController();
