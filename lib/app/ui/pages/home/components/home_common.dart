@@ -11,6 +11,7 @@ Widget listTitle(title){
 //List Image Item
 Widget backgroundImage(data, index) {
   return Container(
+
     child: Image.network(
       '${data![index].thumbnailUrl}',
       errorBuilder: (context, url, error) => Container(

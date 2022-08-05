@@ -53,14 +53,6 @@ class HomeController extends GetxController {
   RxList<Rx<bool>> selection_1 = [true.obs, true.obs, true.obs].obs;
   RxList<Rx<bool>> selection_2 = List.generate(6, (index) => false.obs).obs;
 
-  // RxList<Rx<bool>> selection_2 = [
-  //   false.obs,
-  //   false.obs,
-  //   false.obs,
-  //   false.obs,
-  //   false.obs,
-  //   false.obs
-  // ].obs;
 
   /** 목적지 입력*/
   locationClick(index){
