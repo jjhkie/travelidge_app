@@ -84,19 +84,19 @@ CalendarBuilders calendarBuilder() {
     dowBuilder: (context, day) {
       switch (day.weekday) {
         case 1:
-          return borderTextCommon('월', Colors.black, day);
+          return borderTextCommon('mon'.tr, Colors.black, day);
         case 2:
-          return borderTextCommon('화', Colors.black, day);
+          return borderTextCommon('tues'.tr, Colors.black, day);
         case 3:
-          return borderTextCommon('수', Colors.black, day);
+          return borderTextCommon('wed'.tr, Colors.black, day);
         case 4:
-          return borderTextCommon('목', Colors.black, day);
+          return borderTextCommon('thurs'.tr, Colors.black, day);
         case 5:
-          return borderTextCommon('금', Colors.black, day);
+          return borderTextCommon('fri'.tr, Colors.black, day);
         case 6:
-          return borderTextCommon('토', Colors.blue, day);
+          return borderTextCommon('sat'.tr, Colors.blue, day);
         case 7:
-          return borderTextCommon('일', Colors.red, day);
+          return borderTextCommon('sun'.tr, Colors.red, day);
       }
     },
     outsideBuilder: ((_, day, ___) {

@@ -3,6 +3,8 @@ import 'package:flutter/painting.dart';
 
 class Palette{
 
+  static const mainColor = Color(0xFFFFC000);
+
   static const black = Color(0xFF000000);
   static const white = Color(0xFFFFFFFF);
 

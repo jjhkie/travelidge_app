@@ -6,6 +6,7 @@ import 'package:travelidge/app/ui/theme/app_colors.dart';
 
 FunctionButton(title, color, textColor, int index) {
   return Container(
+    padding: EdgeInsets.all(5),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
@@ -16,19 +17,16 @@ FunctionButton(title, color, textColor, int index) {
           color: HomeController.to.selection_1[index].value
               ? color
               : Palette.white),
-      child: Padding(
-        padding: const EdgeInsets.all(5.0),
-        child: Text(
-          '$title',
-          style: TextStyle(
-              color: HomeController.to.selection_1[index].value
-                  ? textColor
-                  : Palette.lightGrey,
-              fontSize: 16,
-              fontWeight: HomeController.to.selection_1[index].value
-                  ? FontWeight.w600
-                  : FontWeight.normal),
-        ),
+      child: Text(
+        '$title',
+        style: TextStyle(
+            color: HomeController.to.selection_1[index].value
+                ? textColor
+                : Palette.lightGrey,
+            fontSize: 16,
+            fontWeight: HomeController.to.selection_1[index].value
+                ? FontWeight.w600
+                : FontWeight.normal),
       ));
 }
 

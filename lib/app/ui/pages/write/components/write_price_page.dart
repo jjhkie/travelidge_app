@@ -92,7 +92,7 @@ payPage(controller) {
             ),
             Expanded(
                 flex:1,
-                child: Text("원"))
+                child: Text("won".tr))
           ],
         ),
       ),

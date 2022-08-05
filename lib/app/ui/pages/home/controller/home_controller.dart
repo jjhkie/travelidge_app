@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelidge/app/data/model/home_model.dart';
 import 'package:travelidge/app/data/repository/home_repository.dart';
-import 'package:travelidge/app/ui/pages/home/components/appbar/calendar_bottom_sheet.dart';
-import 'package:travelidge/app/ui/pages/home/components/appbar/location_bottom_sheet.dart';
-
+import 'package:travelidge/app/ui/pages/home/components/home_components.dart';
 class HomeController extends GetxController {
   static HomeController get to => Get.find<HomeController>();
-
   HomeController(this._repository);
+
 
   final HomeRepository _repository;
   var popular = <PopularLocal>[].obs;

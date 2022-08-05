@@ -1,9 +1,18 @@
 final Map<String, String> koKR = {
+
+  //Navigation
+  'home' : '홈',
+  'community': '커뮤니티',
+  'writing':'글쓰기',
+  'chat':'채팅',
+  'myPage':'내 정보',
+
 //Home
   'logo': 'Logo',
   'appBarTitle': '언제 어디로 떠나세요?',
   'locationBs': '어디로 떠나세요',
   'calendarBs': '얼마나 여행하세요',
+  'calendar':'일정',
 
   //목적지
   'destination0':'서울',
@@ -56,7 +65,33 @@ final Map<String, String> koKR = {
   'lead_t': '상품의 체험시간을 알려주세요',
   'lead_time': '시간',
   'lead_day': '1박 이상',
+  'night':'박',
+  'day':'일',
+  'won':'원',
+  'Preview' : '미리보기',
+  'register' : '등록하기',
+  'conference':'협의 가능',
+  'next' : '다음',
+  'mon':'월',
+  'tues':'화',
+  'wed':'수',
+  'thurs':'목',
+  'fri':'금',
+  'sat':'토',
+  'sun':'일',
+
+  //user
+  'setting':'설정',
+  'manner':'매너점수',
+  'pro_modify':'프로필수정',
+  'fri_management':'친구관리',
+  'wishList':'위시리스트',
+  'tourList':'내 투어',
+  'photo_album':'사진첩',
   //Common
   'CheckOn': '확인',
-  'Cancel': '나중에 하기'
+  'Cancel': '나중에 하기',
+  'all_show':' 더보기'
+
+
 };
