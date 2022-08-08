@@ -5,9 +5,8 @@ import 'package:travelidge/app/ui/pages/write/components/wrap_Scroll_Tag.dart';
 import 'package:travelidge/app/ui/pages/write/controller/write_controller.dart';
 
 /** 소요 시간 기간*/
-
+final controller = WriteController.to;
 Widget leadTimeDayPage(int index) {
-  final controller = WriteController.to;
   return wrapScrollTag(
       index: index,
       child: Obx(() => Column(
@@ -51,7 +50,7 @@ Widget leadTimeDayPage(int index) {
                       value: controller.timeDayConference.value,
                       onChanged: (_) =>
                           controller.timeDayConferenceToggle()),
-                  Text('협의 가능')
+                  Text('conference'.tr)
                 ])
               ])));
 }
@@ -69,17 +68,16 @@ leadDay(controller) {
     children: [
       leadTimeDayField(controller,controller.nightTextController,controller.nightFocus),
       SizedBox(width: 12),
-      Text('박'),
+      Text('night'.tr),
       SizedBox(width: 12),
       leadTimeDayField(controller,controller.dayTextController,controller.dayFocus),
-      Text('일')
+      Text('day'.tr)
     ],
   );
 }
 
 /** leadTimeDay TextField */
 leadTimeDayField(controller,textController,focus) {
-  final controller = WriteController.to;
   return SizedBox(
       width: 50,
       height: 50,

@@ -12,6 +12,6 @@ class AppPages{
   static final pages = [
     GetPage(name: Routes.INITIAL, page: () => const Page(),binding: HomeBinding()),
     GetPage(name: Routes.WRITING, page: () =>  Writing(),binding:WriteBinding()),
-    GetPage(name: Routes.DETAIL, page: () =>  Detail(),binding:DetailBinding())
+    GetPage(name: Routes.DETAIL, page: () =>  Detail(),binding:DetailBinding()),
   ];
 }

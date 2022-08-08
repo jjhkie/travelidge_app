@@ -10,5 +10,4 @@ class WriteBinding implements Bindings{
       return WriteController();
     });
   }
-
 }

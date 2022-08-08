@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:travelidge/app/ui/pages/home/components/appbar/toggle_button_ui.dart';
+import 'package:travelidge/app/ui/pages/home/components/toggle_button_ui.dart';
 import 'package:travelidge/app/ui/pages/home/controller/home_controller.dart';
 import 'package:travelidge/app/ui/theme/app_colors.dart';
 
 
 class SliverHeaderData extends StatelessWidget {
-  const SliverHeaderData({Key? key, required this.controller})
-      : super(key: key);
-  final HomeController controller;
 
+  final controller = HomeController.to;
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
@@ -134,8 +132,8 @@ class SliverHeaderData extends StatelessWidget {
                     size: 20,
                     color: Colors.grey.withOpacity(0.7),
                   )),
-              const Expanded(
-                  flex: 4, child: Text('일정', style: TextStyle(fontSize: 18)))
+              Expanded(
+                  flex: 4, child: Text('calendar'.tr, style: TextStyle(fontSize: 18)))
             ],
           ),
         ),
@@ -151,12 +149,12 @@ Widget _mainAppbar() {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text('logo'.tr, style: TextStyle(color: Colors.black, fontSize: 20)),
+        Text('logo'.tr, style: TextStyle(color: Palette.black, fontSize: 20)),
         Row(
           children: const [
-            Icon(Icons.search, color: Colors.black),
+            Icon(Icons.search, color: Palette.black),
             SizedBox(width: 20),
-            Icon(Icons.notifications_none, color: Colors.black)
+            Icon(Icons.notifications_none, color: Palette.black)
           ],
         )
       ],

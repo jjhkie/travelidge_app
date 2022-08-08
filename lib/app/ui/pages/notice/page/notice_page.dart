@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:travelidge/app/ui/pages/notice/components/notice_widget.dart';
 import 'package:travelidge/app/ui/pages/notice/controller/notice_controller.dart';
-import 'package:travelidge/app/ui/pages/notice/widgets/notice_widget.dart';
 
-class notice extends GetView<NoticeController> {
+class Notice extends GetView<NoticeController> {
+  const Notice({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
