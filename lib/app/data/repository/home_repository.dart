@@ -12,4 +12,5 @@ class HomeRepository{
   getHomeData(){
     return apiClient.getHomeData();
   }
+
 }

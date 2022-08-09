@@ -170,6 +170,68 @@ Widget homeList() {
         if (snapshot.hasError) {
           return const Center(child: Text('error'));
         }
+        if(snapshot.data == null){
+          return ListView.separated(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: 3,
+            itemBuilder: (BuildContext context, int index) {
+              return GestureDetector(
+                onTap: () => Get.toNamed(Routes.DETAIL, arguments: index+1),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                  child: Row(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(8.0),
+                            bottomLeft: Radius.circular(8.0)),
+                        child: Image.network(
+                          'http://www.gapyeongnow.kr/news/photo/201406/5584_5678_3211.jpg',
+                          width: 100,
+                          height: 130,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, url, error) => Container(
+                            child: Image.network(
+                              'http://www.gapyeongnow.kr/news/photo/201406/5584_5678_3211.jpg',
+                              width: 100,
+                              height:130,
+                              fit: BoxFit.cover,),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: 130,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text('유럽 배낭여행 6-7월 중에 가실 분'),
+                                Text('한라산 입구 6/2 - 8/30'),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10)
+                    ],
+                  ),
+                ),
+              );
+            },
+
+            separatorBuilder: (BuildContext context, int index) { return Container(
+              height: 1,
+              color: Colors.grey,
+            ); },
+
+
+          );
+        }
         return Container(
           child: Column(
             children: <Widget>[
@@ -180,7 +242,7 @@ Widget homeList() {
                 shrinkWrap: true,
                 itemBuilder: (context, int index) {
                   return GestureDetector(
-                    onTap: () => Get.toNamed(Routes.DETAIL),
+                    onTap: () => Get.toNamed(Routes.DETAIL, arguments: 1),//argument 로 해당 게시물 번호 보내주기
                     child: Card(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8.0))),
@@ -318,29 +380,29 @@ class CalendarBottomSheet extends StatelessWidget {
                 Center(
                   child: Text('calendarBs'.tr),
                 ),
-                SizedBox(
-                  width: double.infinity,
-                  height: 300,
-                  child: TableCalendar(
-                      lastDay: DateTime(2022, 12, 31),
-                      focusedDay: DateTime.now(),
-                      firstDay: DateTime(2022, 1, 1)),
+                Expanded(
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 300,
+                    child: TableCalendar(
+                      shouldFillViewport: true,
+                        lastDay: DateTime(2022, 12, 31),
+                        focusedDay: DateTime.now(),
+                        firstDay: DateTime(2022, 1, 1)),
+                  ),
                 ),
                 const SizedBox(height: 10),
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: roundBoxGesture('CheckOn'.tr, Palette.lightGrey,
-                        Palette.lightGrey, Palette.black, 10),
-                  ),
+                GestureDetector(
+                  onTap: () {},
+                  child: roundBoxGesture('CheckOn'.tr, Palette.lightGrey,
+                      Palette.lightGrey, Palette.black, 10),
                 ),
+
                 const SizedBox(height: 2),
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () => Get.back(),
-                    child: roundBoxGesture('Cancel'.tr, Palette.white,
-                        Palette.lightGrey, Palette.lightGrey, 10),
-                  ),
+                GestureDetector(
+                  onTap: () => Get.back(),
+                  child: roundBoxGesture('Cancel'.tr, Palette.white,
+                      Palette.lightGrey, Palette.lightGrey, 10),
                 ),
               ],
             ),
