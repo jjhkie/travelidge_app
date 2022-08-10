@@ -1,5 +1,6 @@
 
 import 'package:http/http.dart' as http;
+import 'package:travelidge/app/data/model/detail_model.dart';
 import 'package:travelidge/app/data/model/home_model.dart';
 import 'dart:convert';
 import 'package:travelidge/app/data/model/notice.dart';
@@ -46,6 +47,20 @@ class ApiClient {
       var body = jsonDecode(toutf);
 
       return HomeListModel.fromJson(body);
+    }
+  }
+
+  /**
+   * Detail 정보 가져오기
+   * */
+  getDetailData(int docNo) async{
+    var response = await http.get(Uri.parse('$base_url/v1/api/boardContents/$docNo'));
+    print('$base_url/v1/api/boardContents/$docNo');
+    if(response.statusCode == 200){
+      String toutf = utf8.decode(response.bodyBytes);
+      var body = jsonDecode(toutf);
+
+      return DetailModel.fromJson(body);
     }
 
   }

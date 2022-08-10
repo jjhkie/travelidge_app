@@ -31,7 +31,7 @@ final Map<String, String> koKR = {
   'destination13':'경상북도',
   'destination14':'경상남도',
   'destination15':'제주도',
-  //Home - AppBar
+  //Category
   'ContentFun_1': '현지인 상품',
   'ContentFun_2': '같이가요',
   'ContentFun_3': '현지인 요청',
@@ -63,8 +63,10 @@ final Map<String, String> koKR = {
   'content_subtitle': '방문장소와 체험내용 등 최대한 구체적으로 계획을 알려주세요',
   'content_hint_text': '방문장소와 체험내용 등 최대한 구체적으로 계획을 알려주세요',
   'lead_t': '상품의 체험시간을 알려주세요',
+  'leadTime':'소요시간',
   'lead_time': '시간',
   'lead_day': '1박 이상',
+  'recruit':'모집 인원',
   'night':'박',
   'day':'일',
   'won':'원',
@@ -91,7 +93,9 @@ final Map<String, String> koKR = {
   //Common
   'CheckOn': '확인',
   'Cancel': '나중에 하기',
-  'all_show':' 더보기'
+  'all_show':' 더보기',
+  'participation':'참여하기',
+  'enquire' : '문의하기'
 
 
 };

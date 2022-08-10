@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:travelidge/app/ui/theme/app_colors.dart';
 
 /** appbar 제거 */
 class EmptyAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -44,5 +43,3 @@ Widget roundElevatedButton(String label,Color boxColor,Color borderColor,Color t
         onPressed: () {},
       ));
 }
-
-
