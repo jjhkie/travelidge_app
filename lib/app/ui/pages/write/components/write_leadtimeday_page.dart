@@ -5,8 +5,10 @@ import 'package:travelidge/app/ui/pages/write/components/wrap_Scroll_Tag.dart';
 import 'package:travelidge/app/ui/pages/write/controller/write_controller.dart';
 
 /** 소요 시간 기간*/
-final controller = WriteController.to;
+
+
 Widget leadTimeDayPage(int index) {
+  final controller = WriteController.to;
   return wrapScrollTag(
       index: index,
       child: Obx(() => Column(
@@ -19,7 +21,7 @@ Widget leadTimeDayPage(int index) {
                       onTap: () => controller.leadTimeToggle('time'),
                       child: Container(
                           padding:
-                              EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                              const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                           decoration: BoxDecoration(
                               color: controller.leadTimeDay.value
                                   ? Colors.grey
@@ -28,7 +30,7 @@ Widget leadTimeDayPage(int index) {
                                   Border.all(width: 0.5, color: Colors.grey),
                               borderRadius: BorderRadius.circular(20)),
                           child: Text('lead_time'.tr))),
-                  SizedBox(width: 12),
+                  const SizedBox(width: 12),
                   GestureDetector(
                       onTap: () => controller.leadTimeToggle('day'),
                       child: Container(

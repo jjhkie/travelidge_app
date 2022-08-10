@@ -218,12 +218,15 @@ class WriteController extends GetxController {
     if (currentBackPressTime == null ||
         now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
       currentBackPressTime = now;
+      Get.closeAllSnackbars();
       Get.snackbar('경고', '한번 더 누르면 페이지가 종료됩니다.',
           snackPosition: SnackPosition.BOTTOM,
-          duration: Duration(milliseconds: 2000));
+          duration: Duration(milliseconds: 1000));
     } else {
+      Get.back();
+
       Get.closeAllSnackbars();
-      Get.offAllNamed('/');
+      Get.closeCurrentSnackbar();
     }
   }
 

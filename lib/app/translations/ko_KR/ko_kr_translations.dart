@@ -90,12 +90,15 @@ final Map<String, String> koKR = {
   'wishList':'위시리스트',
   'tourList':'내 투어',
   'photo_album':'사진첩',
+  //detail
+  'review':'관련된 후기',
   //Common
   'CheckOn': '확인',
   'Cancel': '나중에 하기',
   'all_show':' 더보기',
   'participation':'참여하기',
-  'enquire' : '문의하기'
-
+  'enquire' : '문의하기',
+  'Lookup' : '조회',
+  'totalPage':'전체보기'
 
 };
