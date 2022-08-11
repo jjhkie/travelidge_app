@@ -30,7 +30,6 @@ class FlavorApp extends StatelessWidget {
       locale: Locale('ko','KR'),
       translationsKeys: AppTranslation.translations,
       title: config.appName,
-      theme: appThemeData,
       initialBinding: InitBinding(),
       initialRoute: Routes.INITIAL,
       getPages: AppPages.pages,

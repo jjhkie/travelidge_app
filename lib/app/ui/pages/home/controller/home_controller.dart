@@ -84,6 +84,7 @@ class HomeController extends GetxController {
 
   /** 스낵바 이벤트*/
   void snackBarEvent(){
+    Get.closeAllSnackbars();
     Get.snackbar( 'Error',
       '하나는 선택해야합니다.',
       snackPosition: SnackPosition.BOTTOM,

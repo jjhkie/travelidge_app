@@ -32,7 +32,7 @@ List<Widget> headerSliverBuilder(
   ];
 }
 
-/** 스크롤한 후 appBar */
+/// 스크롤한 후 appBar
 Widget afterScrolling() {
   return Padding(
       padding: const EdgeInsets.only(left: 16.0),
@@ -40,49 +40,46 @@ Widget afterScrolling() {
         scrollDirection: Axis.horizontal,
         child: Row(
           children: [
-            IconButton(
-              icon: Icon(Icons.keyboard_arrow_down),
-              onPressed: () {},
-            ),
-            SizedBox(width: 3),
+            iconButtonTheme(Icons.keyboard_arrow_down, Palette.black, 18, () { }),
+            const SizedBox(width: 3),
             hideFunctionButton('SummaryFun_1'.tr, Palette.lightYellow,
                 Palette.strongYellow, 0),
-            SizedBox(width: 4),
+            const SizedBox(width: 4),
             hideFunctionButton('SummaryFun_2'.tr, Palette.lightPurple,
                 Palette.strongPurple, 1),
-            SizedBox(width: 4),
+            const SizedBox(width: 4),
             hideFunctionButton(
                 'SummaryFun_3'.tr, Palette.lightBlue, Palette.strongBlue, 2),
-            SizedBox(width: 12),
+            const SizedBox(width: 12),
             hideGenreButton(
                 'ContentGen_1'.tr, Palette.lightGrey, Palette.black, 0),
-            SizedBox(width: 4),
+            const SizedBox(width: 4),
             hideGenreButton(
                 'ContentGen_2'.tr, Palette.lightGrey, Palette.black, 1),
-            SizedBox(width: 4),
+            const SizedBox(width: 4),
             hideGenreButton(
                 'ContentGen_3'.tr, Palette.lightGrey, Palette.black, 2),
-            SizedBox(width: 4),
+            const SizedBox(width: 4),
             hideGenreButton(
                 'ContentGen_4'.tr, Palette.lightGrey, Palette.black, 3),
-            SizedBox(width: 4),
+            const SizedBox(width: 4),
             hideGenreButton(
                 'ContentGen_5'.tr, Palette.lightGrey, Palette.black, 4),
-            SizedBox(width: 4),
+            const SizedBox(width: 4),
             hideGenreButton(
                 'ContentGen_6'.tr, Palette.lightGrey, Palette.black, 5),
-            SizedBox(width: 3),
+            const SizedBox(width: 3),
           ],
         ),
       ));
 }
 
-/** 스크롤 하기 전 appBar */
+///스크롤 하기 전 appBar
 Widget beforeScrolling() {
   return SliverHeaderData();
 }
 
-/** appbar 작업 Class  */
+/// appbar 작업 Class
 class SliverHeaderDelegateCS extends SliverPersistentHeaderDelegate {
   final double minHeight, maxHeight;
   final Widget maxChild, minChild;
@@ -123,7 +120,7 @@ class SliverHeaderDelegateCS extends SliverPersistentHeaderDelegate {
     return Container(
         height: visibleMainHeight,
         width: MediaQuery.of(context).size.width,
-        color: const Color(0xFFFFFFFF),
+        color: Palette.white,
         child: Stack(
           children: <Widget>[
             getMinTop(),
@@ -150,7 +147,7 @@ class SliverHeaderDelegateCS extends SliverPersistentHeaderDelegate {
     return Opacity(
       opacity: 1 - animationVal,
       child:
-          Container(height: visibleMainHeight, width: width, child: minChild),
+          SizedBox(height: visibleMainHeight, width: width, child: minChild),
     );
   }
 }
@@ -164,27 +161,23 @@ Widget homeList() {
       builder: (context, snapshot) {
         final data = controller.popular;
 
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator()); //로딩 애니메이션
-        }
-        if (snapshot.hasError) {
-          return const Center(child: Text('error'));
-        }
-        if(snapshot.data == null){
+        //snapshotCheck(snapshot);
+        //TODO list api 작업 후 수정
+        if(true){
           return ListView.separated(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: 3,
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
                 onTap: () => Get.toNamed(Routes.DETAIL, arguments: index+1),
                 child: Card(
-                  shape: RoundedRectangleBorder(
+                  shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(8.0))),
                   child: Row(
                     children: [
                       ClipRRect(
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(8.0),
                             bottomLeft: Radius.circular(8.0)),
                         child: Image.network(
@@ -192,17 +185,15 @@ Widget homeList() {
                           width: 100,
                           height: 130,
                           fit: BoxFit.cover,
-                          errorBuilder: (context, url, error) => Container(
-                            child: Image.network(
-                              'http://www.gapyeongnow.kr/news/photo/201406/5584_5678_3211.jpg',
-                              width: 100,
-                              height:130,
-                              fit: BoxFit.cover,),
-                          ),
+                          errorBuilder: (context, url, error) => Image.network(
+                            'http://www.gapyeongnow.kr/news/photo/201406/5584_5678_3211.jpg',
+                            width: 100,
+                            height:130,
+                            fit: BoxFit.cover,),
                         ),
                       ),
                       Expanded(
-                        child: Container(
+                        child: SizedBox(
                           height: 130,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 20.0),
@@ -217,7 +208,7 @@ Widget homeList() {
                           ),
                         ),
                       ),
-                      SizedBox(width: 10)
+                      const SizedBox(width: 10)
                     ],
                   ),
                 ),
@@ -228,69 +219,8 @@ Widget homeList() {
               height: 1,
               color: Colors.grey,
             ); },
-
-
           );
         }
-        return Container(
-          child: Column(
-            children: <Widget>[
-              ListView.separated(
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: data.length,
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemBuilder: (context, int index) {
-                  return GestureDetector(
-                    onTap: () => Get.toNamed(Routes.DETAIL, arguments: 1),//argument 로 해당 게시물 번호 보내주기
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                      child: Row(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(8.0),
-                                bottomLeft: Radius.circular(8.0)),
-                            child: Image.network(
-                              '${data[index].thumbnailUrl}',
-                              width: 100,
-                              height: 130,
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, url, error) => Container(
-                                child: Image.network(
-                                    'http://www.gapyeongnow.kr/news/photo/201406/5584_5678_3211.jpg'),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              height: 130,
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 20.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text('${data[index].preTitle}'),
-                                    Text('${data[index].postTitle}'),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 10)
-                        ],
-                      ),
-                    ),
-                  );
-                },
-                separatorBuilder: (BuildContext context, int index) =>
-                    Divider(height: 1, color: Palette.white),
-              )
-            ],
-          ),
-        );
       },
     ),
   );
@@ -303,7 +233,7 @@ class LocationBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.only(
+      borderRadius: const BorderRadius.only(
           topRight: Radius.circular(20), topLeft: Radius.circular(20)),
       child: Container(
         height: 800,
@@ -316,7 +246,7 @@ class LocationBottomSheet extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(Icons.search),
+                  const Icon(Icons.search),
                   Expanded(
                     child: TextField(
                       decoration: InputDecoration(

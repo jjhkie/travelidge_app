@@ -11,6 +11,7 @@ class DetailController extends GetxController{
 
   final DetailRepository _repository;
   //RxMap board = <String,dynamic>{}.obs;
+  var detailData = DetailModel().obs;
   var board = BoardContents().obs;
   final review = <ReviewList>[].obs;
   final member = <TravelMemberList>[].obs;
@@ -59,15 +60,17 @@ class DetailController extends GetxController{
 
 
   /** API  정보 가져오기 */
-  getData(int docNo){
-    print('---a : $docNo');
+  Future<DetailModel> getData(int docNo) async{
     _repository.getBoardData(docNo).then((data){
       board.value = data.boardContents;
       review.value = data.reviewList;
       member.value = data.travelMemberList;
       //member 승인 내역
       checkAcceptMember();
-      print('review : ${review.value}');
+      detailData.value = data;
+      print('${detailData.value.boardContents}');
     });
+    return detailData.value;
   }
+
 }
