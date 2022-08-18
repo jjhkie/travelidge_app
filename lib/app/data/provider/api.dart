@@ -4,6 +4,7 @@ import 'package:travelidge/app/data/model/detail_model.dart';
 import 'package:travelidge/app/data/model/home_model.dart';
 import 'dart:convert';
 import 'package:travelidge/app/data/model/notice.dart';
+import 'package:travelidge/app/data/model/review_model.dart';
 import 'package:travelidge/app/data/model/travel_model.dart';
 
 
@@ -63,5 +64,25 @@ class ApiClient {
       return DetailModel.fromJson(body);
     }
 
+  }
+
+  putIndividualReview(Review data) async {
+    try {
+      var body = json.encode(data);
+      var response = await http.post(Uri.parse('$base_url/v1/api/reviews'),
+          headers: {"Content-Type": "application/json"}, body: body);
+      print(response.body);
+      if (response.statusCode == 201) {
+        print('ok201');
+      } else if (response.statusCode == 200) {
+        print('ok');
+      } else {
+        throw Exception('Error while integrating post http method.');
+      }
+    } catch (e) {
+      print('aaaa');
+      print(e);
+      return null;
+    }
   }
 }

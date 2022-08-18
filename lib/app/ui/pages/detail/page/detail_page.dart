@@ -146,7 +146,7 @@ class Detail extends GetView<DetailController> {
                       ),
                       Text('${board.value.title}',
                           style: CustomTextStyle
-                              .size24Font),
+                              .size24),
                       const SizedBox(height: 20),
                       contentTextBox('destination_t'.tr,
                           '${board.value.location}'),
@@ -168,7 +168,7 @@ class Detail extends GetView<DetailController> {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
                     '${board.value.contents}',
-                    style: CustomTextStyle.size16Font,
+                    style: CustomTextStyle.size16,
                   ),
                 ),
                 const SizedBox(height: 30),
@@ -208,7 +208,7 @@ class Detail extends GetView<DetailController> {
                 width: 90,
                 child: Text('$title',
                     textAlign: TextAlign.start,
-                    style: CustomTextStyle.size16Font)),
+                    style: CustomTextStyle.size16)),
             Flexible(
                 fit: FlexFit.tight,
                 child: title == 'destination_t'.tr

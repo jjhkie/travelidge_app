@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:travelidge/app/ui/pages/community/page/community_page.dart';
 import 'package:travelidge/app/ui/pages/home/page/home_page.dart';
 import 'package:travelidge/app/ui/pages/nav/components/nav_components.dart';
 import 'package:travelidge/app/ui/pages/nav/controller/nav_controller.dart';
-import 'package:travelidge/app/ui/pages/notice/page/notice_page.dart';
 import 'package:travelidge/app/ui/pages/user/page/user_page.dart';
-import 'package:travelidge/app/ui/pages/write/page/writing_page.dart';
 import 'package:travelidge/app/ui/theme/app_colors.dart';
 
 class Page extends GetView<NavController> {
@@ -20,7 +19,7 @@ class Page extends GetView<NavController> {
               case RouteName.home:
                 return const Home();
               case RouteName.community:
-                return Notice();
+                return Community();
               case RouteName.write:
                 return Container();
               case RouteName.chat:
