@@ -66,6 +66,10 @@ class ApiClient {
 
   }
 
+  getIndividualTotalReview(int userNo){
+
+  }
+
   putIndividualReview(Review data) async {
     try {
       var body = json.encode(data);

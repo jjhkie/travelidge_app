@@ -8,25 +8,7 @@ final ThemeData appThemeData = ThemeData(
   ),
 );
 
-<<<<<<< Updated upstream
 
-class CustomTextStyle{
-
-  static const TextStyle size14LightGreyFont = TextStyle(  fontSize: 14,
-      color: Palette.lightGrey);
-
-  static const TextStyle size14WhiteFont = TextStyle(  fontSize: 14,
-      color: Palette.white);
-
-  static const TextStyle size16Font = TextStyle(  fontSize: 16);
-  static const TextStyle size16GreyFont = TextStyle(  fontSize: 16,color:Palette.strongGrey);
-
-
-
-  static const TextStyle size24Font = TextStyle(  fontSize: 24);
-
-}
-=======
 class CustomTextStyle {
   static const TextStyle size12 = TextStyle(fontSize: 12);
   static const TextStyle size14 = TextStyle(fontSize: 14);
@@ -51,4 +33,4 @@ class CustomTextStyle {
   static const TextStyle size16SpacingHalfHeight =
   TextStyle(fontSize: 16, letterSpacing: 0.5,height: 1.5);
 }
->>>>>>> Stashed changes
+

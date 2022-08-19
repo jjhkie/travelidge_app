@@ -64,6 +64,10 @@ class UploadController extends GetxController {
     Get.to(() => uploadDescriptionPage(), transition: Transition.rightToLeftWithFade);
   }
 
+  backPage() {
+    Get.back();
+  }
+
   unfocusKeyboard(){
     FocusManager.instance.primaryFocus?.unfocus();
   }
