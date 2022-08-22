@@ -61,7 +61,8 @@ class User extends GetView<UserController> {
                                 crossAxisSpacing: 10),
                             itemCount: 10,
                             itemBuilder: (context, index) {
-                              return ListTile(title: Text('aaaa'));
+                              return ListTile(
+                                  tileColor:Palette.lightGrey,title: Text('aaaa'));
                             },
                           )),
                     ],

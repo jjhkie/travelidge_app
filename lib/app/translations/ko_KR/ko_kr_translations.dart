@@ -92,6 +92,25 @@ final Map<String, String> koKR = {
   'photo_album':'사진첩',
   //detail
   'review':'관련된 후기',
+
+  //Community
+  "search_hint_text":"찾고 싶은 키워드를 검색해 보세요.",
+  "popularOrder":"인기순",
+  "recentOrder":"최신순",
+  "my":"MY",
+  "total":"전체",
+  "travel":"여행",
+  "love":"연애&썸",
+  "postscript":"후기",
+  "free":"자유",
+  "regis":"등록",
+  "title_register_text":"제목을 작성하세요",
+  "content_register_text":"내용을 입력하세요,",
+  "category_register_text":"카테고리를 선택해주세요,",
+  "myBoard":"나의 게시글",
+  "myComment":"나의 댓글",
+
+
   //Common
   'CheckOn': '확인',
   'Cancel': '나중에 하기',

@@ -13,27 +13,32 @@ class Upload extends GetView<UploadController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          elevation: 0.0,
-          leading: Padding(
-            padding: EdgeInsets.all(0),
-            child: iconButtonTheme(Icons.close, Palette.black, 20, ()=>Get.back()),
+    return GestureDetector(
+      onTap: (){
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+          appBar: AppBar(
+            elevation: 0.0,
+            leading: Padding(
+              padding: EdgeInsets.all(0),
+              child: iconButtonTheme(Icons.close, Palette.black, 20, ()=>Get.back()),
+            ),
+            title: Text('새 게시물'),
+            centerTitle: true,
+            actions: [
+              Padding(
+                  padding: EdgeInsets.all(0),
+                  child: iconButtonTheme(
+                      Icons.arrow_forward, Palette.black, 20, ()=> controller.nextPage()))
+            ],
           ),
-          title: Text('새 게시물'),
-          centerTitle: true,
-          actions: [
-            Padding(
-                padding: EdgeInsets.all(0),
-                child: iconButtonTheme(
-                    Icons.arrow_forward, Palette.black, 20, ()=> controller.nextPage()))
-          ],
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [imagePreview(), uploadTypeSelect(), imageSelectList()],
-          ),
-        ));
+          body: SingleChildScrollView(
+            child: Column(
+              children: [imagePreview(), uploadTypeSelect(), imageSelectList()],
+            ),
+          )),
+    );
   }
 
   Widget imagePreview() {

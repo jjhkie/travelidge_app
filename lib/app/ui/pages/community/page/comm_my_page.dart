@@ -1,7 +1,6 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:travelidge/app/ui/pages/community/controller/community_controller.dart';
 import 'package:travelidge/app/ui/theme/app_colors.dart';
@@ -12,8 +11,8 @@ class CommMy extends GetView<CommunityController>{
   CommMy({Key? key}) : super(key: key);
 
   final myTabs = [
-    Tab(text: "나의게시글"),
-    Tab(text: "나의 댓글")
+    Tab(text: "myBoard".tr),
+    Tab(text: "myComment".tr)
   ];
 
   @override
@@ -23,7 +22,7 @@ class CommMy extends GetView<CommunityController>{
       appBar: AppBar(
         leading: iconButtonTheme(Icons.arrow_back_ios, Palette.black, 25, ()=> controller.backPage()),
         //leading: Icon(Icons.arrow_back_ios,color: Palette.black),
-        title: Text('My',style:TextStyle(color: Palette.black)),
+        title: Text('my'.tr,style:TextStyle(color: Palette.black)),
         centerTitle: true,
         backgroundColor: Palette.white,
       ),
