@@ -24,7 +24,6 @@ void main() {
 class FlavorApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     var config = AppConfig.of(context)!;
     return GetMaterialApp(
       locale: Locale('ko','KR'),

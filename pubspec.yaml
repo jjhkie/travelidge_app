@@ -46,6 +46,9 @@ dependencies:
   table_calendar: ^3.0.6
   intl: ^0.17.0
   readmore: ^2.2.0
+  photo_manager: ^2.2.0
+  image_picker: ^0.8.5+3
+  permission_handler: ^10.0.0
 
   #firebase_core: ^1.18.0
 

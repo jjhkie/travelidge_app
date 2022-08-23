@@ -9,8 +9,8 @@ class Palette{
 
   static const black = Color(0xFF000000);
   static const white = Color(0xFFFFFFFF);
-
-  static const lightGrey = Color(0xffd3d3d3);
+  static const grey = Color(0xFF9E9E9E);
+  static const lightGrey = Color(0xff8f8f8f);
   static const strongGrey = Color(0xff5b5b5b);
   static const lightYellow = Color(0xFFFFF6CB);
   static const strongYellow = Color(0xFFC38100);
