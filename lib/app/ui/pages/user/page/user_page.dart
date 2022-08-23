@@ -41,7 +41,6 @@ class User extends GetView<UserController> {
               headerSliverBuilder: (context, value) {
                 return [
                   SliverToBoxAdapter(child: userHeader()),
-                  SliverToBoxAdapter(),
                 ];
               },
               body: TabBarView(
