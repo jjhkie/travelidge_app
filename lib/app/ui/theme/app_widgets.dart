@@ -21,6 +21,20 @@ Widget iconButtonTheme(
       onPressed: func, icon: Icon(icon, color: color, size: size));
 }
 
+///Row Icon Button
+Widget rowIconButton(IconData icon,String text,VoidCallback func){
+  return GestureDetector(
+    onTap: func,
+    child: Row(
+      children: [
+        Icon(icon,size: 20,),
+        SizedBox(width:5),
+        Text(text)
+      ],
+    ),
+  );
+}
+
 /** appbar 제거 */
 class EmptyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override

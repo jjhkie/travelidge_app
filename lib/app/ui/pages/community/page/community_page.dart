@@ -10,7 +10,7 @@ class Community extends GetView<CommunityController> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
@@ -43,28 +43,35 @@ class Community extends GetView<CommunityController> {
               itemCount: 20,
               itemBuilder: (context, index) {
                 return GestureDetector(
-                  onTap: ()=> controller.getDetailMove(),
+                  onTap: () => controller.getDetailMove(),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 15),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('여행',style: CustomTextStyle.size12GreyFont),
+                        const Text('여행', style: CustomTextStyle.size12GreyFont),
                         const Text('내일부터 3일 휴가다 예에ㅔㅔㅔㅔ에에ㅔㅔㅔ'),
                         Row(
                           children: [
-                            const Text('조회수 12',style: CustomTextStyle.size12GreyFont),
+                            const Text('조회수 12',
+                                style: CustomTextStyle.size12GreyFont),
                             const SizedBox(width: 5),
-                            const Text('댓글 12',style: CustomTextStyle.size12GreyFont),
+                            const Text('댓글 12',
+                                style: CustomTextStyle.size12GreyFont),
                             const SizedBox(width: 5),
-                            const Text('16:42',style: CustomTextStyle.size12GreyFont),
+                            const Text('16:42',
+                                style: CustomTextStyle.size12GreyFont),
                           ],
                         )
                       ],
                     ),
                   ),
                 );
-              }, separatorBuilder: (BuildContext context, int index) { return const Divider(height: 1); }),
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return const Divider(height: 1);
+              }),
         ),
         ListView.builder(
           shrinkWrap: true,
@@ -93,16 +100,15 @@ class Community extends GetView<CommunityController> {
       ],
     );
   }
-
 }
 
 class TabBarItem extends SliverPersistentHeaderDelegate {
   final commTabs = [
-     Tab(text: "total".tr),
-     Tab(text: "travel".tr),
-     Tab(text: "love".tr),
-     Tab(text: "postscript".tr),
-     Tab(text: "free".tr),
+    Tab(text: "total".tr),
+    Tab(text: "travel".tr),
+    Tab(text: "love".tr),
+    Tab(text: "postscript".tr),
+    Tab(text: "free".tr),
   ];
 
   @override
@@ -126,11 +132,17 @@ class TabBarItem extends SliverPersistentHeaderDelegate {
                 )),
           ),
         ),
-        TabBar(
-            controller: CommunityController.to.tabController,
-            isScrollable: true,
-            labelColor: Palette.black,
-            tabs: commTabs),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: TabBar(
+              controller: CommunityController.to.tabController,
+              isScrollable: true,
+              indicatorColor: Colors.transparent,
+              unselectedLabelStyle: CustomTextStyle.size16BlackFont,
+              labelStyle: CustomTextStyle.size16BlackBoldFont,
+              labelColor: Palette.black,
+              tabs: commTabs),
+        ),
         Container(
           decoration: const BoxDecoration(
             color: Palette.white,
@@ -142,17 +154,17 @@ class TabBarItem extends SliverPersistentHeaderDelegate {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
-                  children:  [Text('popularOrder'.tr), SizedBox(width: 15), Text('recentOrder'.tr)],
+                  children: [
+                    Text('popularOrder'.tr),
+                    SizedBox(width: 15),
+                    Text('recentOrder'.tr)
+                  ],
                 ),
                 Row(
                   children: [
-                    GestureDetector(
-                        onTap: () => CommunityController.to.writePageMove(),
-                        child: Text('writing'.tr)),
+                    rowIconButton(Icons.mode_edit, 'writing'.tr, ()=> CommunityController.to.writePageMove()),
                     const SizedBox(width: 15),
-                    GestureDetector(
-                        onTap: () => CommunityController.to.myPageMove(),
-                        child:  Text('my'.tr))
+                    rowIconButton(Icons.person, 'my'.tr, ()=> CommunityController.to.myPageMove())
                   ],
                 ),
               ],
