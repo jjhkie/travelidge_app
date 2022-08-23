@@ -42,6 +42,7 @@ class UploadController extends GetxController {
     } else {
       //권한이 없다면 요청
       print('권한이 없네..');
+      await PhotoManager.openSetting();
     }
   }
 
