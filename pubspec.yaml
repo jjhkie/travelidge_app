@@ -49,6 +49,7 @@ dependencies:
   photo_manager: ^2.2.0
   image_picker: ^0.8.5+3
   permission_handler: ^10.0.0
+  flutter_svg: ^1.1.4
 
   #firebase_core: ^1.18.0
 
@@ -80,8 +81,8 @@ flutter:
       fonts:
         - asset: fonts/AppleSDGothicNeoSB.ttf
   # To add assets to your application, add an assets section, like this:
-  #assets:
-  # - assets/.env_dev
+  assets:
+   - assets/icons/
   # - assets/.env_prod
   #   - images/a_dot_ham.jpeg
 

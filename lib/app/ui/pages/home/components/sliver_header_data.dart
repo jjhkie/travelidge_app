@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:travelidge/app/ui/pages/home/components/toggle_button_ui.dart';
 import 'package:travelidge/app/ui/pages/home/controller/home_controller.dart';
 import 'package:travelidge/app/ui/theme/app_colors.dart';
+import 'package:travelidge/app/ui/theme/app_theme.dart';
 
 
 class SliverHeaderData extends StatelessWidget {
@@ -91,23 +93,18 @@ class SliverHeaderData extends StatelessWidget {
         onTap: () {
           controller.BottomSheet('location');
         },
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(children: [
-            Expanded(
-                flex: 1,
-                child: Icon(
-                  Icons.location_on_outlined,
-                  size: 20,
-                  color: Colors.grey.withOpacity(0.7),
-                )),
-            Expanded(
-                flex: 4, child: Obx(() =>Text(controller.bottomSheetLo.value, style: TextStyle(fontSize: 18))))
-          ]),
-        ),
+        child: Row(children: [
+          Expanded(
+              flex: 1,
+              child: Image.asset('assets/icons/locationGrey.png')),
+          Expanded(
+              flex: 4, child: Obx(() =>Text(controller.bottomSheetLo.value, style: TextStyle(fontSize: 18))))
+        ]),
       ),
     ));
   }
+
+
 
   /** Calendar page & bottomSheet*/
   Widget _calendarBox() {
@@ -120,22 +117,15 @@ class SliverHeaderData extends StatelessWidget {
         onTap: () {
           controller.BottomSheet('calendar');
         },
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                  flex: 1,
-                  child: Icon(
-                    Icons.calendar_today_outlined,
-                    size: 20,
-                    color: Colors.grey.withOpacity(0.7),
-                  )),
-              Expanded(
-                  flex: 4, child: Text('calendar'.tr, style: TextStyle(fontSize: 18)))
-            ],
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+                flex: 1,
+                child: Image.asset('assets/icons/calendarGrey.png')),
+            Expanded(
+                flex: 4, child: Text('calendar'.tr, style: TextStyle(fontSize: 18)))
+          ],
         ),
       ),
     ));
@@ -145,16 +135,16 @@ class SliverHeaderData extends StatelessWidget {
 /** Logo & Icon */
 Widget _mainAppbar() {
   return Padding(
-    padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+    padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text('logo'.tr, style: TextStyle(color: Palette.black, fontSize: 20)),
         Row(
-          children: const [
-            Icon(Icons.search, color: Palette.black),
-            SizedBox(width: 20),
-            Icon(Icons.notifications_none, color: Palette.black)
+          children: [
+            IconButton(icon: svgSearch,onPressed: (){}),
+
+            IconButton(icon: svgNotification, onPressed: (){})
           ],
         )
       ],

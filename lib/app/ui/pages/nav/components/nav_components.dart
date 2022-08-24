@@ -5,7 +5,7 @@ import 'package:travelidge/app/ui/theme/app_colors.dart';
 final controller = NavController.to;
 
 /** BottomNavigationbar Middle Button */
-Widget writeButton(IconData iconData, String text, int index) => Padding(
+Widget writeButton(String iconData, String text, int index) => Padding(
       padding: const EdgeInsets.only(top: 8.0, left: 10, right: 10),
       child: Container(
         width: double.infinity,
@@ -17,7 +17,7 @@ Widget writeButton(IconData iconData, String text, int index) => Padding(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Icon(iconData),
+                Image.asset(iconData),
                 Text(text,
                     style: const TextStyle(fontSize: 12, color: Palette.black))
               ],

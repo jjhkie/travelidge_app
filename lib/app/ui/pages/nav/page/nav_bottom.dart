@@ -33,13 +33,24 @@ class Page extends GetView<NavController> {
           () => BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             items: <BottomNavigationBarItem>[
-              BottomNavigationBarItem(icon: const Icon(Icons.home), label: 'home'.tr),
               BottomNavigationBarItem(
-                  icon: const Icon(Icons.notifications_none), label: 'community'.tr),
+                  icon: Image.asset('assets/icons/homeIcon.png',
+                      color: Colors.grey),
+                  activeIcon: Image.asset('assets/icons/homeIcon.png',
+                      color: Palette.mainColor),
+                  label: 'home'.tr),
               BottomNavigationBarItem(
-                  icon: writeButton(Icons.add, 'writing'.tr, 2), label: ''),
-              BottomNavigationBarItem(icon: const Icon(Icons.chat), label: 'chat'.tr),
-              BottomNavigationBarItem(icon: const Icon(Icons.people), label: 'myPage'.tr),
+                  icon: Image.asset('assets/icons/commIcon.png',
+                      color: Colors.grey),
+                  activeIcon: Image.asset('assets/icons/commIcon.png',
+                      color: Palette.mainColor),
+                  label: 'community'.tr),
+              BottomNavigationBarItem(
+                  icon: writeButton('assets/icons/addIcon.png', 'writing'.tr, 2), label: ''),
+              BottomNavigationBarItem(
+                  icon: const Icon(Icons.chat), label: 'chat'.tr),
+              BottomNavigationBarItem(
+                  icon: const Icon(Icons.people), label: 'myPage'.tr),
             ],
             currentIndex: controller.currentIndex.value,
             selectedItemColor: controller.currentIndex.value == 2
@@ -50,6 +61,4 @@ class Page extends GetView<NavController> {
           ),
         ));
   }
-
-
 }

@@ -126,10 +126,7 @@ class TabBarItem extends SliverPersistentHeaderDelegate {
                 fillColor: Palette.strongGrey,
                 hintText: "search_hint_text".tr,
                 border: InputBorder.none,
-                prefixIcon: const Icon(
-                  Icons.search,
-                  color: Palette.lightGrey,
-                )),
+                prefixIcon:Image.asset('assets/icons/searchGrey.png')),
           ),
         ),
         Align(
@@ -162,9 +159,9 @@ class TabBarItem extends SliverPersistentHeaderDelegate {
                 ),
                 Row(
                   children: [
-                    rowIconButton(Icons.mode_edit, 'writing'.tr, ()=> CommunityController.to.writePageMove()),
+                    rowIconButton('assets/icons/writeIcon.png', 'writing'.tr, ()=> CommunityController.to.writePageMove()),
                     const SizedBox(width: 15),
-                    rowIconButton(Icons.person, 'my'.tr, ()=> CommunityController.to.myPageMove())
+                    rowIconButton('assets/icons/my.png', 'my'.tr, ()=> CommunityController.to.myPageMove())
                   ],
                 ),
               ],

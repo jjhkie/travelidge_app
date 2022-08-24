@@ -246,7 +246,8 @@ class LocationBottomSheet extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const Icon(Icons.search),
+                  Image.asset('assets/icons/searchGrey.png'),
+                  SizedBox(width:15),
                   Expanded(
                     child: TextField(
                       decoration: InputDecoration(

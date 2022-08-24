@@ -16,8 +16,8 @@ class Detail extends GetView<DetailController> {
         appBar: AppBar(
             leading: iconButtonTheme(Icons.arrow_back_ios,Palette.white,24,Get.back),
             actions: [
-              iconButtonTheme(Icons.cloud_upload_outlined,Palette.white,24,() { }),
-              iconButtonTheme(Icons.alarm,Palette.white,24,() { }),
+              IconButton(onPressed: (){}, icon: svgShare),
+              IconButton(onPressed: (){}, icon: svgDeclaration),
             ],
             backgroundColor: Colors.transparent,
             elevation: 0.0),
@@ -242,7 +242,7 @@ class Detail extends GetView<DetailController> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            iconButtonTheme(Icons.favorite_outline_sharp,Palette.black,30,(){}),
+            IconButton(onPressed: (){}, icon: svgHeart),
             Flexible(
               fit: FlexFit.tight,
               child: Container(

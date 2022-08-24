@@ -22,12 +22,12 @@ Widget iconButtonTheme(
 }
 
 ///Row Icon Button
-Widget rowIconButton(IconData icon,String text,VoidCallback func){
+Widget rowIconButton(String image,String text,VoidCallback func){
   return GestureDetector(
     onTap: func,
     child: Row(
       children: [
-        Icon(icon,size: 20,),
+        Image.asset(image),
         SizedBox(width:5),
         Text(text)
       ],
