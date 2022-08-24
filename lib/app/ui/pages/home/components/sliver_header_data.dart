@@ -96,7 +96,7 @@ class SliverHeaderData extends StatelessWidget {
         child: Row(children: [
           Expanded(
               flex: 1,
-              child: Image.asset('assets/icons/locationGrey.png')),
+              child: SvgPicture.asset('assets/icons/Icon_location.svg',color: Palette.lightGrey,)),
           Expanded(
               flex: 4, child: Obx(() =>Text(controller.bottomSheetLo.value, style: TextStyle(fontSize: 18))))
         ]),
@@ -122,7 +122,7 @@ class SliverHeaderData extends StatelessWidget {
           children: [
             Expanded(
                 flex: 1,
-                child: Image.asset('assets/icons/calendarGrey.png')),
+                child: SvgPicture.asset('assets/icons/Icon_calendar.svg')),
             Expanded(
                 flex: 4, child: Text('calendar'.tr, style: TextStyle(fontSize: 18)))
           ],
@@ -142,9 +142,9 @@ Widget _mainAppbar() {
         Text('logo'.tr, style: TextStyle(color: Palette.black, fontSize: 20)),
         Row(
           children: [
-            IconButton(icon: svgSearch,onPressed: (){}),
+            IconButton(icon: SvgPicture.asset('assets/icons/Icon_search.svg'),onPressed: (){}),
 
-            IconButton(icon: svgNotification, onPressed: (){})
+            IconButton(icon: SvgPicture.asset('assets/icons/Icon_notification.svg'), onPressed: (){})
           ],
         )
       ],

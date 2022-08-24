@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:travelidge/app/ui/pages/nav/controller/nav_controller.dart';
 import 'package:travelidge/app/ui/theme/app_colors.dart';
 
@@ -17,7 +18,7 @@ Widget writeButton(String iconData, String text, int index) => Padding(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Image.asset(iconData),
+                SvgPicture.asset(iconData),
                 Text(text,
                     style: const TextStyle(fontSize: 12, color: Palette.black))
               ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 /** 정보 불러올 때 확인 */
@@ -27,7 +28,7 @@ Widget rowIconButton(String image,String text,VoidCallback func){
     onTap: func,
     child: Row(
       children: [
-        Image.asset(image),
+        SvgPicture.asset(image),
         SizedBox(width:5),
         Text(text)
       ],

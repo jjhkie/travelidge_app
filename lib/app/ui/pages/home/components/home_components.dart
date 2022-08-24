@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:travelidge/app/data/model/home_model.dart';
@@ -246,7 +247,7 @@ class LocationBottomSheet extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Image.asset('assets/icons/searchGrey.png'),
+                  SvgPicture.asset('assets/icons/Icon_search.svg',color: Palette.lightGrey,),
                   SizedBox(width:15),
                   Expanded(
                     child: TextField(

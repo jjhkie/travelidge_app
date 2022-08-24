@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:travelidge/app/ui/pages/community/controller/community_controller.dart';
 import 'package:travelidge/app/ui/theme/app_colors.dart';
@@ -126,7 +127,7 @@ class TabBarItem extends SliverPersistentHeaderDelegate {
                 fillColor: Palette.strongGrey,
                 hintText: "search_hint_text".tr,
                 border: InputBorder.none,
-                prefixIcon:Image.asset('assets/icons/searchGrey.png')),
+                prefixIcon:SvgPicture.asset('assets/icons/Icon_search.svg',color: Palette.lightGrey,)),
           ),
         ),
         Align(
@@ -159,9 +160,9 @@ class TabBarItem extends SliverPersistentHeaderDelegate {
                 ),
                 Row(
                   children: [
-                    rowIconButton('assets/icons/writeIcon.png', 'writing'.tr, ()=> CommunityController.to.writePageMove()),
+                    rowIconButton('assets/icons/Icon_comm_write.svg', 'writing'.tr, ()=> CommunityController.to.writePageMove()),
                     const SizedBox(width: 15),
-                    rowIconButton('assets/icons/my.png', 'my'.tr, ()=> CommunityController.to.myPageMove())
+                    rowIconButton('assets/icons/Icon_comm_my.svg', 'my'.tr, ()=> CommunityController.to.myPageMove())
                   ],
                 ),
               ],
