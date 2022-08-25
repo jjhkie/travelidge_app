@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:travelidge/app/ui/theme/app_colors.dart';
 
 final ThemeData appThemeData = ThemeData(
@@ -9,6 +10,7 @@ final ThemeData appThemeData = ThemeData(
 );
 
 
+  ///TextStyle
 class CustomTextStyle {
   static const TextStyle size12 = TextStyle(fontSize: 12);
   static const TextStyle size14 = TextStyle(fontSize: 14);
@@ -30,7 +32,8 @@ class CustomTextStyle {
       TextStyle(fontSize: 16, color: Palette.strongGrey);
   static const TextStyle size16BlackFont =
       TextStyle(fontSize: 16, color: Palette.black);
+  static const TextStyle size16BlackBoldFont =
+      TextStyle(fontSize: 16, color: Palette.black,fontWeight: FontWeight.bold);
   static const TextStyle size16SpacingHalfHeight =
-  TextStyle(fontSize: 16, letterSpacing: 0.5,height: 1.5);
+      TextStyle(fontSize: 16, letterSpacing: 0.5, height: 1.5);
 }
-

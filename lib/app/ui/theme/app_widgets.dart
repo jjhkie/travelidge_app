@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 /** 정보 불러올 때 확인 */
@@ -19,6 +20,20 @@ Widget iconButtonTheme(
     IconData icon, Color color, double size, VoidCallback func) {
   return IconButton(
       onPressed: func, icon: Icon(icon, color: color, size: size));
+}
+
+///Row Icon Button
+Widget rowIconButton(String image,String text,VoidCallback func){
+  return GestureDetector(
+    onTap: func,
+    child: Row(
+      children: [
+        SvgPicture.asset(image),
+        SizedBox(width:5),
+        Text(text)
+      ],
+    ),
+  );
 }
 
 /** appbar 제거 */

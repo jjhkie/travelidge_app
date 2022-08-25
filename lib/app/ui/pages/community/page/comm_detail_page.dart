@@ -61,7 +61,9 @@ class CommDetail extends GetView<CommunityController> {
                             color: Palette.strongGrey,
                           ),
                         ),
-                        SizedBox(height: 30),
+                        SizedBox(height: 35),
+                        Divider(thickness: 1,color: Palette.lightGrey,height: 1,),
+                        SizedBox(height: 15),
                         Text('댓글 3'),
                         SizedBox(height: 40),
 
@@ -72,7 +74,13 @@ class CommDetail extends GetView<CommunityController> {
                             itemBuilder: (context,index){
                           return ListTile(
                             leading: Text('작성자'),
-                            title:Text('content'),
+                            title:Row(
+                              children: [
+                                Text('content'),
+                                SizedBox(width: 10),
+                                Text('16:47',style: CustomTextStyle.size14LightGreyFont,)
+                              ],
+                            ),
                             subtitle: Text('답글'),
                             trailing: Icon(Icons.more_vert),
                             isThreeLine: true,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:travelidge/app/data/model/detail_model.dart';
 import 'package:travelidge/app/ui/pages/detail/components/detail_components.dart';
@@ -16,8 +17,8 @@ class Detail extends GetView<DetailController> {
         appBar: AppBar(
             leading: iconButtonTheme(Icons.arrow_back_ios,Palette.white,24,Get.back),
             actions: [
-              iconButtonTheme(Icons.cloud_upload_outlined,Palette.white,24,() { }),
-              iconButtonTheme(Icons.alarm,Palette.white,24,() { }),
+              IconButton(onPressed: (){}, icon: SvgPicture.asset('assets/icons/Icon_detail_share.svg')),
+              IconButton(onPressed: (){}, icon: SvgPicture.asset('assets/icons/Icon_detail_declaration.svg')),
             ],
             backgroundColor: Colors.transparent,
             elevation: 0.0),
@@ -242,7 +243,7 @@ class Detail extends GetView<DetailController> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            iconButtonTheme(Icons.favorite_outline_sharp,Palette.black,30,(){}),
+            IconButton(onPressed: (){}, icon: SvgPicture.asset('assets/icons/Icon_detail_heart.svg')),
             Flexible(
               fit: FlexFit.tight,
               child: Container(
