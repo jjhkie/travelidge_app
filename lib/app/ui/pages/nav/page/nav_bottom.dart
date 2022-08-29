@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:travelidge/app/ui/pages/chat/page/chat_page.dart';
 import 'package:travelidge/app/ui/pages/community/page/community_page.dart';
 import 'package:travelidge/app/ui/pages/home/page/home_page.dart';
 import 'package:travelidge/app/ui/pages/nav/components/nav_components.dart';
@@ -24,7 +25,7 @@ class Page extends GetView<NavController> {
               case RouteName.write:
                 return Container();
               case RouteName.chat:
-                return Container();
+                return Chat();
               case RouteName.user:
                 return const User();
             }
