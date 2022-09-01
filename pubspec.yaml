@@ -54,6 +54,7 @@ dependencies:
   path_provider: ^2.0.11
   assets_audio_player: ^3.0.5
   path: ^1.8.1
+  flutter_image_compress: ^1.1.2
 
   #firebase_core: ^1.18.0
 

@@ -3,11 +3,9 @@
 
 import 'dart:io';
 
-import 'package:get/get.dart';
 import 'package:flutter_sound/flutter_sound.dart';
+import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:assets_audio_player/assets_audio_player.dart';
 
 class ChatController extends GetxController{
 
