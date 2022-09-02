@@ -51,6 +51,10 @@ dependencies:
   permission_handler: ^10.0.0
   flutter_svg: ^1.1.4
   flutter_sound: ^9.2.13
+  path_provider: ^2.0.11
+  assets_audio_player: ^3.0.5
+  path: ^1.8.1
+  flutter_image_compress: ^1.1.2
 
   #firebase_core: ^1.18.0
 

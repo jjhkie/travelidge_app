@@ -3,6 +3,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:get/get.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:travelidge/app/data/model/review_model.dart';
@@ -62,11 +63,21 @@ class UploadController extends GetxController {
 
   nextPage() async{
     file = await selectedImage.value.file;
+    compressAndGetFile(file, '/data/image/');
     Get.to(() => uploadDescriptionPage(), transition: Transition.rightToLeftWithFade);
   }
 
-  backPage() {
-    Get.back();
+
+   compressAndGetFile(File? file, String targetPath) async {
+    print('testCompressAndGetFile');
+    final result = await FlutterImageCompress.compressAndGetFile(
+      file!.absolute.path,
+      targetPath,
+      quality: 90,
+      minWidth: 1024,
+      minHeight: 1024,
+      rotate: 90,
+    );
   }
 
   unfocusKeyboard(){

@@ -27,7 +27,11 @@ class CommunityController extends GetxController with SingleGetTickerProviderMix
   }
 
   Future getImage() async{
-    XFile? image = await picker.pickImage(source:ImageSource.gallery);
+    XFile? image = await picker.pickImage(
+        source:ImageSource.gallery,
+    maxHeight: 100,
+    maxWidth: 100,
+    imageQuality: 100);
     selectedImage = image;
   }
 
