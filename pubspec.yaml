@@ -29,7 +29,6 @@ environment:
 dependencies:
   flutter_dotenv:
   http: ^0.13.4
-  carousel_slider:
   flutter:
     sdk: flutter
 
